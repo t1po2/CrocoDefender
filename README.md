@@ -9,11 +9,11 @@ Have Fun :)
 *Updates Down Below*
 
 
-## [HOTFIX *v0.2.1*]
+## [HOTFIX *v0.1.1*]
 *08/05/2026*  
 -fixed Button text showing only 1 type of tower 
 
-## [PATCH *v0.2*]
+## [PATCH *v0.1*]
 *08/05/2026*  
 -added map, tower buttons  
 -added gamelogic  
