@@ -3,13 +3,11 @@ package game;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import towers.Tower;
 
 
 public class GameMechanic {
 
 
-    private Window gameWindow;
     private ArrayList<TowerData> towers;
     private String selectedTower = null;
 

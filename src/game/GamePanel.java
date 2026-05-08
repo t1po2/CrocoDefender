@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
     private BufferedImage map;
@@ -27,14 +26,27 @@ public class GamePanel extends JPanel {
         towerMenu.setLayout(new GridLayout(6, 1));
         towerMenu.setOpaque(false);
 
-        // Add 6 buttons
-        for (int i = 1; i <= 6; i++) {
-            JButton btn = new JButton("Tower " + i);
+        // Define your tower IDs 
+        String[] towerIDs = {
+                "basic_tower",
+                "cannon_tower",
+                "mage_tower",
+                "archer_tower",
+                "ice_tower",
+                "tesla_tower"
+        };
+
+        for (int i = 0; i < towerIDs.length; i++) {
+            // We store the specific ID for THIS button in a local variable
+            String currentID = towerIDs[i];
+
+            JButton btn = new JButton(towerIDs[i]);
             btn.setFocusPainted(false);
 
-            final int towerIndex = i;
+            // 2. The listener now uses the specific ID for this button
             btn.addActionListener(e -> {
-                mechanic.setSelectedTower("basic_tower");
+                mechanic.setSelectedTower(currentID);
+                System.out.println("Selected Tower ID: " + currentID);
             });
 
             towerMenu.add(btn);

@@ -8,11 +8,14 @@ I'll try to vibecode as less as possible ;)
 Have Fun :)
 *Updates Down Below*
 
-## [UPDATE *v0.2*]
+##
+
+<span style="color:red">[UPDATE *v0.2*]</span>
+
 *08/05/2026* 
--added map, tower buttons 
--added gamelogic
--added resouce manager
--added some models 
--added placeTowers mechanic
+-added map, tower buttons\ 
+-added gamelogic\
+-added resouce manager\  
+-added some models\
+-added placeTowers mechanic  
 

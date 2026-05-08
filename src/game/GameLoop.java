@@ -6,7 +6,7 @@ public class GameLoop implements Runnable{
 
 
     private GameMechanic game;
-    private PlayerStats player;
+
 
     private boolean running; // am i running?
     private double updateRate = 1.d/60d;
@@ -18,7 +18,7 @@ public class GameLoop implements Runnable{
 
     public GameLoop(GameMechanic game){
         this.game=game;
-        this.player = new PlayerStats();
+
 
     }
 
