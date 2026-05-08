@@ -10,12 +10,11 @@ Have Fun :)
 
 ##
 
-<span style="color:red">[UPDATE *v0.2*]</span>
-
-*08/05/2026* 
--added map, tower buttons\ 
--added gamelogic\
--added resouce manager\  
--added some models\
+## [UPDATE *v0.2*]
+*08/05/2026*  
+-added map, tower buttons  
+-added gamelogic  
+-added resouce manager  
+-added some models  
 -added placeTowers mechanic  
 
