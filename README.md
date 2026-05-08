@@ -1,4 +1,4 @@
-## Croco Defender v0.1
+## Croco Defender 
 
 Desciption: A little game i'm working on.
 It's a basic Tower Defense game. 
