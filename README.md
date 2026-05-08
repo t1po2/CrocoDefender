@@ -5,12 +5,15 @@ It's a basic Tower Defense game.
 
 I'll try to vibecode as less as possible ;)
 
-Have Fun :)
+Have Fun :)  
 *Updates Down Below*
 
-##
 
-## [UPDATE *v0.2*]
+## [HOTFIX *v0.2.1*]
+*08/05/2026*  
+-fixed Button text showing only 1 type of tower 
+
+## [PATCH *v0.2*]
 *08/05/2026*  
 -added map, tower buttons  
 -added gamelogic  
