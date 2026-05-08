@@ -1,0 +1,44 @@
+Here's where each file should handle different responsibilities:
+
+GameMechanic.java - Contains your core game logic (what happens in the game)
+GameLoop.java - Handles the game loop timing and updating/rendering
+GamePanel.java - Handles rendering/display logic
+Launcher.java - Just handles program startup
+
+
+The 
+GameMechanic  class already has update() and render() methods that are called by the game loop.
+ You should implement your actual game logic there.
+
+
+------------------------------------------------------------------------
+so logic comes in Gme mechanics and HUD for the player in gamepanel?
+
+Chat
+Yes, that's correct! Here's how it should be structured:
+
+>GameMechanic.java - Contains your core game logic:
+Player movement and interactions
+Game state management
+Enemy AI
+Collision detection
+Game rules and scoring
+
+
+
+>GamePanel.java - Handles rendering/display logic:
+Drawing the player (HUD elements)
+Rendering game objects
+Displaying UI elements (health bars, scores, etc.)
+
+-----------------------------------------------------------------------------
+
+>GamePanel should handle:
+Mouse click detection
+Converting screen coordinates to map coordinates
+Calling the appropriate methods on GameMechanic
+
+>GameMechanic should handle:
+Validating tower placement (can tower be placed there?)
+Actually placing the tower in its data structures
+Managing tower costs and resources
