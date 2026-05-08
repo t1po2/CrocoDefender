@@ -8,6 +8,11 @@ I'll try to vibecode as less as possible ;)
 Have Fun :)  
 *Updates Down Below*
 
+## [PATCH *v0.2*]
+*08/05/2026*  
+-reworked gamelogic:  
+    > seperated mind and eyes into to seperate classes  
+-added minimum distance to tower to place another one
 
 ## [HOTFIX *v0.1.1*]
 *08/05/2026*  

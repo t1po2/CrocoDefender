@@ -13,6 +13,11 @@ public class GamePanel extends JPanel {
     public GamePanel(GameMechanic mechanics) {
         this.mechanic = mechanics;
 
+
+
+        // Link this panel back to the mechanic so the mechanic can control it
+        mechanics.setGamePanel(this);
+
         // GamePanel Setup
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(800, 600));
@@ -57,8 +62,11 @@ public class GamePanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                //just return the click
                 mechanic.attemptPlacement(e.getPoint());
-                repaint();
+
+                
+                mechanic.render();
             }
         });
     }
