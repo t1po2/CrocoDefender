@@ -3,6 +3,8 @@ package Crocodiles;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import game.Resource;
+
 
 public abstract class Croco  {
 
@@ -16,24 +18,18 @@ public abstract class Croco  {
 
 
     // some Game stats
-    protected int dmg=1;
-    private String crocoType;
+    protected int dmg;
+    protected String crocoType;
 
     public Croco(ArrayList<Point> path){
-
 
         //set sapwn point of tcrcos
         if (path !=null && !path.isEmpty()){
             this.x = path.get(0).x;
             this.y = path.get(0).y;
         }
-
     }
 
-    protected void setCrocoType(String crocoType, double speed) {
-        this.crocoType = crocoType;
-        this.speed = speed;
-    }
 
 
 
@@ -77,15 +73,6 @@ public abstract class Croco  {
     }
 
 
-
-
-
-
-    //Setters
-    public void setDmg(int increment){
-        this.dmg = increment;
-    }
-
     //Getters
     public String getCrocoType(){
         return this.crocoType;
@@ -95,5 +82,8 @@ public abstract class Croco  {
         return reachedEnd;
     }
 
+    public int getDmg(){
+        return this.dmg;
+    }
     
 }

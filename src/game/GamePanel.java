@@ -104,12 +104,13 @@ public class GamePanel extends JPanel {
                 System.out.println("Can't place Tower");
             }
         }
-        // --- ADD THIS TO DRAW THE CROCODILES ---
-        g.setColor(Color.RED);
+        // --- DRAW THE CROCODILES ---
         if (mechanic.getCrocos() != null) {
+            BufferedImage crocoImg= Resource.getResource("basic_croco");
+
+
             for (Croco croco : mechanic.getCrocos()) {
-                // Draws a 30x30 red circle centered on the crocodile's exact X and Y
-                g.fillOval((int)croco.getX() - 15, (int)croco.getY() - 15, 30, 30);
+                g.drawImage(crocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
             }
         }
     }

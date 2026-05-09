@@ -2,8 +2,7 @@ package game;
 
 import maps.MapLayout;
 import maps.Test_map;
-
-
+import player.PlayerStats;
 import Crocodiles.*;
 
 import java.awt.Point;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 public class GameMechanic {
     //core 
     private GamePanel gamePanel;
+    private PlayerStats player;
 
     // Towers on the Map 
     private ArrayList<TowerData> towers;
@@ -53,6 +53,7 @@ public class GameMechanic {
 
         this.crocos = new ArrayList<>();
         this.towers = new ArrayList<>();
+        this.player = new PlayerStats();        //later add the player and gold and stuff
 
         // laod in map
         MapLayout currentMap = new Test_map();
@@ -101,8 +102,10 @@ public class GameMechanic {
 
     public void update() {
         // Game Loop Logic: Move enemies, shoot bullets, etc
-        // Loop backwards safely
 
+
+        //movement of crocos
+        // Loop backwards safely
         synchronized (crocos){
             for (int i = crocos.size() - 1; i >= 0; i--) {
             Croco currentCroco = crocos.get(i);
@@ -116,19 +119,18 @@ public class GameMechanic {
                 crocos.remove(i); // Delete it from the game
             }
         }
-          // --- DER SPAWNER ---
-        // Wenn wir noch nicht alle 10 Krokodile gespawnt haben und es Wegpunkte gibt...
+          // --- Croco spawner ---
         if (spawnedCrocos < maxCrocos && waypoints != null && !waypoints.isEmpty()) {
             spawnTimer++; // Timer zählt jeden Frame hoch
             
             if (spawnTimer >= spawnDelay) {
-                // Zeit ist abgelaufen! Ein neues Krokodil spawnen
+                //times up spawn new croco
                 crocos.add(new TestCroco(waypoints));
-                spawnedCrocos++; // Zähler erhöhen
-                spawnTimer = 0;  // Timer zurücksetzen für das nächste Krokodil
+                spawnedCrocos++; // increment
+                spawnTimer = 0;  // reset timer for next croco
             }
         }
-        }
+    }
         
         
 
