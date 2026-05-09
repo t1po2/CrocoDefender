@@ -9,11 +9,11 @@ public class TestCroco extends Croco {
     public TestCroco(ArrayList<Point> path) {
         
         // Croco desc, the map, and speed 
-        super(path);
 
-        this.dmg =1;
-        this.speed = 2;
-        this.crocoType = "basic_croco";
+        
+    // path,speed,crocoType,crocoHp,killReward
+        super(path,2,"basic_croco",1,240);
+
     }
 
 }

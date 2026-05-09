@@ -15,9 +15,15 @@ public class GamePanel extends JPanel {
     private BufferedImage map;
     private GameMechanic mechanic;
 
-
     //toggle mouseListener
     private boolean toggleMouseListener = true;
+
+
+    // Labels for Player Stats
+    private JLabel playerHpL;
+    private JLabel playerGoldL;
+
+
 
     public GamePanel(GameMechanic mechanics) {
         this.mechanic = mechanics;
@@ -34,7 +40,31 @@ public class GamePanel extends JPanel {
         // load in the map via mapID
         map = Resource.getResource("test_map");
 
-        // Side panel for tower selection
+        // --- Labels for Player Stats ---
+        JPanel statsPanel = new JPanel();
+        statsPanel.setPreferredSize(new Dimension(200,100));
+        statsPanel.setOpaque(false);
+
+        //creeate labels 
+        // need to import stats from GameMechanics
+        playerHpL = new JLabel("Health: 0");
+        playerHpL.setFont(new Font("Arial", Font.BOLD, 20));
+        playerHpL.setForeground(Color.RED); // red font color for hp
+
+        playerGoldL = new JLabel("Gold: 0");
+        playerGoldL.setFont(new Font("Arial", Font.BOLD, 20));
+        playerGoldL.setForeground(Color.YELLOW); // yellow font color for gold
+
+        //add labels to panel 
+        statsPanel.add(playerHpL);
+        statsPanel.add(playerGoldL);    
+
+        //locate panel to the north
+        this.add(statsPanel, BorderLayout.WEST);
+    
+
+        // --- Side panel for tower selection ---
+
         JPanel towerMenu = new JPanel();
         towerMenu.setPreferredSize(new Dimension(100, 600));
         towerMenu.setLayout(new GridLayout(6, 1));
@@ -72,7 +102,7 @@ public class GamePanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 //just return the click
-                mechanic.attemptPlacement(e.getPoint());
+                mechanic.placeTower(e.getPoint());
                 mechanic.render();
                 //toggle mouseListener via variable
                 if (toggleMouseListener == true){
@@ -83,7 +113,18 @@ public class GamePanel extends JPanel {
     }
 
 
-    //function to render all the game components 
+
+    
+    // helper function to update stats
+    public void updatePlayerStats(int health, int gold) {
+        if (playerHpL != null && playerGoldL != null) {
+            playerHpL.setText("Health: " + health);
+            playerGoldL.setText("Gold: " + gold);
+        }
+    }
+
+
+    // --- Function to render all the game components ---
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -91,6 +132,9 @@ public class GamePanel extends JPanel {
 
         // Draw the background map first
         g.drawImage(map, 0, 0, 800, getHeight(), this);
+
+
+
 
         // Draw every tower from the logic list
         for (GameMechanic.TowerData tower : mechanic.getPlacedTowers()) {
@@ -106,6 +150,10 @@ public class GamePanel extends JPanel {
                 System.out.println("Can't place Tower");
             }
         }
+
+
+
+
         // --- DRAW THE CROCODILES ---
         if (mechanic.getCrocos() != null) {
             BufferedImage crocoImg= Resource.getResource("basic_croco");
@@ -126,6 +174,15 @@ public class GamePanel extends JPanel {
                 // Draw a small 6x6 rectangle at the projectile's X and Y
                 g.fillRect((int)p.getX() - 3, (int)p.getY() - 3, 6, 6);
             }
+        }
+
+        if (mechanic.returnGameOver()){
+            g.setColor((new Color(0,0,0,150)));
+            g.fillRect(0, 0, getWidth(), getHeight());
+
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial",Font.BOLD,50));
+            g.drawString("Game Over!",250,300);
         }
 
 

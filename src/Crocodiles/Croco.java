@@ -14,15 +14,23 @@ public abstract class Croco  {
     protected double speed;
     protected int targetWaypoint = 0;   // Index of  next Waypoint in the waypoint List 
     protected boolean reachedEnd = false;
+    protected int killReward;
 
 
 
     // some Game stats
-    protected int dmg;
     protected String crocoType;
-    protected int crocoHp = 1;
+    protected int crocoHp;
 
-    public Croco(ArrayList<Point> path){
+
+    // path,speed,crocoType,crocoHp,killReward
+    public Croco(ArrayList<Point> path,int speed, String crocoType,int crocoHp,int killRward){
+
+        this.speed = speed;
+        this.crocoType = crocoType;
+        this.crocoHp = crocoHp;
+        this.killReward = killRward;
+
 
         //set sapwn point of tcrcos
         if (path !=null && !path.isEmpty()){
@@ -84,7 +92,7 @@ public abstract class Croco  {
     }
 
     public int getDmg(){
-        return this.dmg;
+        return this.crocoHp;
     }
 
     public int getHealth(){
@@ -93,6 +101,10 @@ public abstract class Croco  {
 
     public void reduceHealth(int damage){
         this.crocoHp = this.crocoHp - damage;
+    }
+
+    public int killRward(){
+        return this.killReward;
     }
     
 }

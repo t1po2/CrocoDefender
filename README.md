@@ -7,6 +7,10 @@ I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
 *Updates Down Below*
+## [PATCH *v0.5*]
+*09/05/2026*  
+-added Player Hud  
+-added Game Over Sceen  
 
 ## [PATCH *v0.4*]  
 *09/05/2026*  
@@ -14,12 +18,10 @@ Have Fun :)
 
 ## [PATCH *v0.3*]  
 *09/05/2026*  
--added toggle variable for some testing Stats
--added mapLayout class and test_map.java for further testing
--window's width is now at 900px to mitigate HUD overlay
--added logic of crocs moving rn jsut a red circle 
-
-
+-added toggle variable for some testing Stats  
+-added mapLayout class and test_map.java for further testing  
+-window's width is now at 900px to mitigate HUD overlay  
+-added logic of crocs moving rn jsut a red circle   
 
 ## [PATCH *v0.2*]
 *08/05/2026*  
