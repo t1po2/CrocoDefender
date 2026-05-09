@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Resource {
+
+    //String type is the resourceID
     private static final Map<String, BufferedImage> gameResources = new HashMap<>();
 
     public static void loadGameResouces(){
@@ -19,6 +21,7 @@ public class Resource {
         try {
             gameResources.put("test_map", ImageIO.read(new File("src\\resources\\maps\\map_background.png")));
             gameResources.put("basic_tower", ImageIO.read(new File("src\\resources\\towers\\mortar.png")));
+            gameResources.put("basic_croco", ImageIO.read(new File("src\\resources\\crocodiles\\croco.png")));
 
             System.out.println("all game resouces are loaded!");
         } catch (IOException e ) {
@@ -28,8 +31,9 @@ public class Resource {
 
 
     // Getter for any game resouces via key 
-    public static BufferedImage getResource(String resouceID){
+    public static BufferedImage getResource(String resouceID){      
         return gameResources.get(resouceID);
     }
+
     
 }

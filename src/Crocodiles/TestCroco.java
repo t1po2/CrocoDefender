@@ -13,6 +13,7 @@ public class TestCroco extends Croco {
 
         this.dmg =1;
         this.speed = 2;
+        this.crocoType = "basic_croco";
     }
 
 }
