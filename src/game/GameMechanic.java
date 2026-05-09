@@ -4,6 +4,8 @@ import maps.MapLayout;
 import maps.Test_map;
 import player.PlayerStats;
 import Crocodiles.*;
+import towers.Projectile;
+import towers.Tower;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -26,9 +28,17 @@ public class GameMechanic {
 
    //spawn Timer for crocs
     private int spawnedCrocos = 0; // Wie viele wurden schon gespawnt?
-    private int maxCrocos = 10;    // Wie viele sollen maximal spawnen?
+    private int maxCrocos = 1000000;    // Wie viele sollen maximal spawnen?
     private int spawnTimer = 0;    // Zählt die Frames (Ticks)
-    private int spawnDelay = 60;
+    private int spawnDelay = 1; // after x frames it spawn 1 new croco 
+
+    //Projectile stuff 
+    private ArrayList<Projectile> projectiles = new ArrayList<>();
+
+    // Add this Getter so GamePanel can draw them
+    public ArrayList<Projectile> getProjectiles() {
+        return projectiles;
+    }
 
     
 
@@ -42,10 +52,14 @@ public class GameMechanic {
     public static class TowerData {
         public Point pos;
         public String resID;
+        public Tower specs;
+        public long lastShotTime = 0;
 
-        public TowerData(Point pos, String resID){
+        
+        public TowerData(Point pos, String resID,Tower specs){
             this.pos = pos;
-            this.resID = resID;
+            this.resID = resID;    
+            this.specs = specs;        
         }
     }
 
@@ -83,9 +97,9 @@ public class GameMechanic {
                 return;     // Deny placement
             }
         }
-
+        Tower newTowerStats = new towers.BasicT(); // NOT GOOD AT ALL I HAVBE TO FIX THAT THERE IS ONLZ ONE TOWER TYPE?
         // If it passes the rules, add it
-        towers.add(new TowerData(p, selectedTower));
+        towers.add(new TowerData(p, selectedTower, newTowerStats));
         System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
     }
 
@@ -101,15 +115,20 @@ public class GameMechanic {
     }
 
     public void update() {
-        // Game Loop Logic: Move enemies, shoot bullets, etc
 
-
-        //movement of crocos
+        // --- Croco movement ---
         // Loop backwards safely
         synchronized (crocos){
             for (int i = crocos.size() - 1; i >= 0; i--) {
             Croco currentCroco = crocos.get(i);
             
+            // Check if Crocodiles have hp 
+            if (currentCroco.getHealth() <= 0){
+                System.out.println("Crocodile defeated! You earned gold!"); //add player.addGold here later!
+                crocos.remove(i);
+                continue; //jumps to next croco
+            }
+           
             // Tell the crocodile to figure out its own movement
             currentCroco.move(waypoints);
 
@@ -119,7 +138,7 @@ public class GameMechanic {
                 crocos.remove(i); // Delete it from the game
             }
         }
-          // --- Croco spawner ---
+        // --- Croco spawner ---
         if (spawnedCrocos < maxCrocos && waypoints != null && !waypoints.isEmpty()) {
             spawnTimer++; // Timer zählt jeden Frame hoch
             
@@ -130,11 +149,38 @@ public class GameMechanic {
                 spawnTimer = 0;  // reset timer for next croco
             }
         }
-    }
-        
-        
+        // --- TOWER SHOOTING LOGIC ---
+            long currentTime = System.currentTimeMillis();
+            for (TowerData tower : towers) {
+                // Check if the tower is ready to shoot based on its fire rate
+                if (currentTime - tower.lastShotTime >= tower.specs.getFireRate()) {
+                    
+                    // Scan all crocos to find a target in range
+                    for (Croco target : crocos) {
+                        double dist = tower.pos.distance(target.getX(), target.getY());
+                        
+                        if (dist <= tower.specs.getRange()) {
+                            // Target found! Create projectile and reset the tower's cooldown timer
+                            projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage()));
+                            tower.lastShotTime = currentTime;
+                            break; // Break the loop so it only shoots ONE croco at a time
+                        }
+                    }
+                }
+            }
 
+        // --- PROJECTILE MOVEMENT ---
+            for (int i = projectiles.size() - 1; i >= 0; i--) {
+                Projectile p = projectiles.get(i);
+                p.update();
+                if (!p.isActive()) {
+                    projectiles.remove(i);
+                }
+            }
+        }
     }
+        
+    
     public void render(){
         // The Boss tells the UI to refresh
         if (gamePanel != null) {

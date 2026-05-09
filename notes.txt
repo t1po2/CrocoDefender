@@ -42,3 +42,24 @@ Calling the appropriate methods on GameMechanic
 Validating tower placement (can tower be placed there?)
 Actually placing the tower in its data structures
 Managing tower costs and resources
+------------------------------------------
+Tower newTowerStats;
+        
+        // Decide which Tower class to instantiate based on the ID string
+        switch (selectedTower) {
+            case "cannon_tower":
+                // Assuming you created a CannonT class in your towers package!
+                newTowerStats = new towers.CannonT(); 
+                break;
+            case "mage_tower":
+                newTowerStats = new towers.MageT(); 
+                break;
+            default:
+                // If it's "basic_tower" or anything else, fall back to BasicT
+                newTowerStats = new towers.BasicT(); 
+                break;
+        }
+
+        // If it passes the rules, add it
+        towers.add(new TowerData(p, selectedTower, newTowerStats));
+        System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);

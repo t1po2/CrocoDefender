@@ -11,9 +11,19 @@ public abstract class Tower {
     public Tower(int range,int damage, int rpm, int cost, String towerType){
         this.range = range;
         this.damage = damage;
-        this.fireRate = rpm;
         this.cost = cost;
         this.towerType = towerType;
+
+        //unfortunetly there is only current time in milliseconds 
+        //rpm converter
+
+        if (rpm > 0){
+            this.fireRate = 60000 / rpm;
+        } else {
+            System.out.println("Error: rpm of Tower Class is less or equal to 0");
+        }
+
+
     }
 
     public int getRange() {

@@ -3,7 +3,8 @@ package towers;
 public class BasicT extends Tower {
 
     public BasicT(){
-        super(5,1,30,1800,"Basic Tower");
+        //int range,int damage, int rpm, int cost, String towerType
+        super(500,1,1000,24000,"Basic Tower");
     }
     
 }

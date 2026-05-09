@@ -20,6 +20,7 @@ public abstract class Croco  {
     // some Game stats
     protected int dmg;
     protected String crocoType;
+    protected int crocoHp = 1;
 
     public Croco(ArrayList<Point> path){
 
@@ -84,6 +85,14 @@ public abstract class Croco  {
 
     public int getDmg(){
         return this.dmg;
+    }
+
+    public int getHealth(){
+        return this.crocoHp;
+    }
+
+    public void reduceHealth(int damage){
+        this.crocoHp = this.crocoHp - damage;
     }
     
 }

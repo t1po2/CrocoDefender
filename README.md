@@ -8,6 +8,10 @@ I'll try to vibecode as less as possible ;)
 Have Fun :)  
 *Updates Down Below*
 
+## [PATCH *v0.4*]  
+*09/05/2026*  
+-finished combat System  
+
 ## [PATCH *v0.3*]  
 *09/05/2026*  
 -added toggle variable for some testing Stats

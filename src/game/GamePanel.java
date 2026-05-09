@@ -3,11 +3,13 @@ package game;
 import javax.swing.*;
 
 import Crocodiles.Croco;
+import towers.Projectile;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
     private BufferedImage map;
@@ -113,5 +115,19 @@ public class GamePanel extends JPanel {
                 g.drawImage(crocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
             }
         }
+
+
+        // --- DRAW THE PROJECTILES ---
+        g.setColor(Color.BLACK); // Make them black so they are easy to see
+        if (mechanic.getProjectiles() != null) {
+            // We use a safe copy to prevent ConcurrentModificationExceptions while drawing
+            ArrayList<Projectile> safeProjectiles = new ArrayList<>(mechanic.getProjectiles());
+            for (Projectile p : safeProjectiles) {
+                // Draw a small 6x6 rectangle at the projectile's X and Y
+                g.fillRect((int)p.getX() - 3, (int)p.getY() - 3, 6, 6);
+            }
+        }
+
+
     }
 }
