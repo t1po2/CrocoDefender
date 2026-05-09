@@ -1,16 +1,41 @@
 package game;
 
+import maps.MapLayout;
+import maps.Test_map;
+
+
+import Crocodiles.*;
+
 import java.awt.Point;
 import java.util.ArrayList;
 
 
 
 public class GameMechanic {
+    //core 
+    private GamePanel gamePanel;
 
-
+    // Towers on the Map 
     private ArrayList<TowerData> towers;
     private String selectedTower = null;
-    private GamePanel gamePanel;
+
+    // Crocos on the map + pathfinding
+   private ArrayList<Point> waypoints;
+   private ArrayList<Croco> crocos;
+
+
+   //spawn Timer for crocs
+    private int spawnedCrocos = 0; // Wie viele wurden schon gespawnt?
+    private int maxCrocos = 10;    // Wie viele sollen maximal spawnen?
+    private int spawnTimer = 0;    // Zählt die Frames (Ticks)
+    private int spawnDelay = 60;
+
+    
+
+
+
+
+
 
 
     //own class to store references to resouce manager
@@ -22,14 +47,19 @@ public class GameMechanic {
             this.pos = pos;
             this.resID = resID;
         }
-
     }
 
     public GameMechanic(){
 
+        this.crocos = new ArrayList<>();
         this.towers = new ArrayList<>();
-    }
 
+        // laod in map
+        MapLayout currentMap = new Test_map();
+        this.waypoints = currentMap.getWaypoints();
+        
+     
+    }
 
 
     // Connect the UI to the brain
@@ -40,10 +70,6 @@ public class GameMechanic {
     public void setSelectedTower(String id){
         this.selectedTower = id;
     }
-
-
-
-
 
     public void attemptPlacement(Point p) {
         if (selectedTower == null) return; // Drop out if nothing is selected
@@ -62,21 +88,49 @@ public class GameMechanic {
         System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
     }
 
-
-
-
-
-
     public ArrayList<TowerData> getPlacedTowers() {
         return towers;
     }
+    public ArrayList<Croco> getCrocos() {
+        synchronized (crocos){
+            return new ArrayList<>(crocos);
+            // This acts like a "lock." If the GameLoop is currently adding a crocodile, the UI thread will wait a tiny fraction of a millisecond for it to finish before it tries to grab the list for drawing.
+        }
 
+    }
 
-
-
-    
     public void update() {
         // Game Loop Logic: Move enemies, shoot bullets, etc
+        // Loop backwards safely
+
+        synchronized (crocos){
+            for (int i = crocos.size() - 1; i >= 0; i--) {
+            Croco currentCroco = crocos.get(i);
+            
+            // Tell the crocodile to figure out its own movement
+            currentCroco.move(waypoints);
+
+            // Did it reach the end of the map?
+            if (currentCroco.hasReachedEnd()) {
+                System.out.println(currentCroco.getCrocoType() + " reached the base! You took damage!");
+                crocos.remove(i); // Delete it from the game
+            }
+        }
+          // --- DER SPAWNER ---
+        // Wenn wir noch nicht alle 10 Krokodile gespawnt haben und es Wegpunkte gibt...
+        if (spawnedCrocos < maxCrocos && waypoints != null && !waypoints.isEmpty()) {
+            spawnTimer++; // Timer zählt jeden Frame hoch
+            
+            if (spawnTimer >= spawnDelay) {
+                // Zeit ist abgelaufen! Ein neues Krokodil spawnen
+                crocos.add(new TestCroco(waypoints));
+                spawnedCrocos++; // Zähler erhöhen
+                spawnTimer = 0;  // Timer zurücksetzen für das nächste Krokodil
+            }
+        }
+        }
+        
+        
 
     }
     public void render(){

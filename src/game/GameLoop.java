@@ -38,10 +38,17 @@ public class GameLoop implements Runnable{
                 accumulator -= updateRate;
             }
             render();
-            printStats();
+
+
+            // toggle for testing
+            if (toggleStats == true){
+                printStats();
+            }
         }
     }
 
+    
+    private boolean toggleStats = false;
 
 
     public void printStats(){
