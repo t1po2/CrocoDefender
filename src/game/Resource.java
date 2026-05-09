@@ -19,9 +19,15 @@ public class Resource {
 
         // laoding all nessecary game resources 
         try {
+            //map 
             gameResources.put("test_map", ImageIO.read(new File("src\\resources\\maps\\map_background.png")));
-            gameResources.put("basic_tower", ImageIO.read(new File("src\\resources\\towers\\mortar.png")));
+            
+            //Croco textures
             gameResources.put("basic_croco", ImageIO.read(new File("src\\resources\\crocodiles\\croco.png")));
+            
+            //Towers
+            gameResources.put("basic_tower", ImageIO.read(new File("src\\resources\\towers\\mortar.png")));
+            gameResources.put("sniper_tower",ImageIO.read(new File("src\\resources\\towers\\sniper.png")));
 
             System.out.println("all game resouces are loaded!");
         } catch (IOException e ) {

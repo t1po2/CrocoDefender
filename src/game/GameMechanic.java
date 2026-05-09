@@ -25,9 +25,9 @@ public class GameMechanic {
     private ArrayList<Croco> crocos;
 
     // spawn Timer for crocs
-    private int spawnedCrocos = 0; // Wie viele wurden schon gespawnt?
-    private int maxCrocos = 250; // Wie viele sollen maximal spawnen?
-    private int spawnTimer = 0; // Zählt die Frames (Ticks)
+    private int spawnedCrocos = 0; 
+    private int maxCrocos = 250; 
+    private int spawnTimer = 0; // counts frames 
     private int spawnDelay = 60; // after x frames it spawn 1 new croco
 
     // Projectile stuff
@@ -124,12 +124,28 @@ public class GameMechanic {
         }
 
 
-        Tower newTowerStats = new towers.BasicT(); // NOT GOOD AT ALL I HAVBE TO FIX THAT THERE IS ONLZ ONE TOWER TYPE?
-        if (player.getGold() < newTowerStats.getCost()) { 
+       Tower newTowerStats;
+        
+        // Decide which Tower class to instantiate based on the ID string
+        switch (selectedTower) {
+            case "basic_tower":
+                // Assuming you created a CannonT class in your towers package!
+                newTowerStats = new towers.BasicT(); 
+                break;
+            case "sniper_tower":
+                newTowerStats = new towers.SniperT(); 
+                break;
+            default:
+                newTowerStats = new towers.BasicT();
+                break;
+        }
+
+        if (player.getGold() < newTowerStats.getCost()){
             System.out.println("Not enough Gold");
             return;
         }
         // If it passes the rules, add it
+
         towers.add(new TowerData(p, selectedTower, newTowerStats));
         System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
         player.removeGold(newTowerStats.getCost());
@@ -150,9 +166,6 @@ public class GameMechanic {
             return;
         }
         
-
-
-
         // --- Croco movement ---
         // Loop backwards safely
         synchronized (crocos) {
@@ -161,7 +174,7 @@ public class GameMechanic {
 
                 // Check if Crocodiles have hp
                 if (currentCroco.getHealth() <= 0) {
-                    System.out.println("Crocodile defeated! You earned gold!"); // add player.addGold here later!
+                    System.out.println("Crocodile defeated! You earned gold!"); 
                     this.player.addGold(currentCroco.killRward());
                     crocos.remove(i);
                     continue; // jumps to next croco
@@ -187,8 +200,7 @@ public class GameMechanic {
             }
             // --- Croco spawner ---
             if (spawnedCrocos < maxCrocos && waypoints != null && !waypoints.isEmpty()) {
-                spawnTimer++; // Timer zählt jeden Frame hoch
-
+                spawnTimer++; // increments every frame
                 if (spawnTimer >= spawnDelay) {
                     // times up spawn new croco
                     crocos.add(new TestCroco(waypoints));

@@ -3,9 +3,6 @@ package Crocodiles;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import game.Resource;
-
-
 public abstract class Croco  {
 
 

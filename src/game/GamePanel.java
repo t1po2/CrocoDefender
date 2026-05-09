@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
     private GameMechanic mechanic;
 
     //toggle mouseListener
-    private boolean toggleMouseListener = true;
+    private boolean toggleMouseListener = false;
 
 
     // Labels for Player Stats
@@ -73,7 +73,7 @@ public class GamePanel extends JPanel {
         // Define your tower IDs 
         String[] towerIDs = {
                 "basic_tower",
-                "cannon_tower",
+                "sniper_tower",
                 "mage_tower",
                 "archer_tower",
                 "ice_tower",
