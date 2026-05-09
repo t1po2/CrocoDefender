@@ -1,6 +1,9 @@
 package game;
 
 import javax.swing.*;
+
+import Crocodiles.Croco;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -9,6 +12,10 @@ import java.awt.image.BufferedImage;
 public class GamePanel extends JPanel {
     private BufferedImage map;
     private GameMechanic mechanic;
+
+
+    //toggle mouseListener
+    private boolean toggleMouseListener = true;
 
     public GamePanel(GameMechanic mechanics) {
         this.mechanic = mechanics;
@@ -20,7 +27,7 @@ public class GamePanel extends JPanel {
 
         // GamePanel Setup
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(800, 600));
+        this.setPreferredSize(new Dimension(900, 600));
 
         // load in the map via mapID
         map = Resource.getResource("test_map");
@@ -64,19 +71,24 @@ public class GamePanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 //just return the click
                 mechanic.attemptPlacement(e.getPoint());
-
-                
                 mechanic.render();
+                //toggle mouseListener via variable
+                if (toggleMouseListener == true){
+                    System.out.println("waypoints.add(new Point("+e.getX()+","+e.getY()+"));");
+                }
             }
         });
     }
+
+
+    //function to render all the game components 
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         // Draw the background map first
-        g.drawImage(map, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(map, 0, 0, 800, getHeight(), this);
 
         // Draw every tower from the logic list
         for (GameMechanic.TowerData tower : mechanic.getPlacedTowers()) {
@@ -90,6 +102,14 @@ public class GamePanel extends JPanel {
                 g.drawImage(towerImg, drawX, drawY, 64, 64, null);
             } else {
                 System.out.println("Can't place Tower");
+            }
+        }
+        // --- ADD THIS TO DRAW THE CROCODILES ---
+        g.setColor(Color.RED);
+        if (mechanic.getCrocos() != null) {
+            for (Croco croco : mechanic.getCrocos()) {
+                // Draws a 30x30 red circle centered on the crocodile's exact X and Y
+                g.fillOval((int)croco.getX() - 15, (int)croco.getY() - 15, 30, 30);
             }
         }
     }
