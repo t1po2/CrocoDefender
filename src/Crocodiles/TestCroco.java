@@ -12,7 +12,7 @@ public class TestCroco extends Croco {
 
         
     // path,speed,crocoType,crocoHp,killReward
-        super(path,2,"basic_croco",1,240);
+        super(path,2,"basic_croco",1,40);
 
     }
 

@@ -127,7 +127,7 @@ public class GameMechanic {
         // If it passes the rules, add it
 
         towers.add(new TowerData(p, selectedTower, newTowerStats));
-        //System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
+        // System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
         player.removeGold(newTowerStats.getCost());
     }
 
@@ -135,7 +135,6 @@ public class GameMechanic {
 
     private WaveControll waveSystem = new WaveControll();
     private int spawnedInCurrentWave = 0;
-    private boolean waveActive = true;
 
     // --- Game Logic Down Below ---
     public void update() {
@@ -152,7 +151,7 @@ public class GameMechanic {
 
                 // Check if Crocodiles have hp
                 if (currentCroco.getHealth() <= 0) {
-                    System.out.println("+"+currentCroco.killRward());
+                    System.out.println("+" + currentCroco.killRward());
                     this.player.addGold(currentCroco.killRward());
                     crocos.remove(i);
                     continue; // jumps to next croco
@@ -163,8 +162,7 @@ public class GameMechanic {
 
                 // Did it reach the end of the map?
                 if (currentCroco.hasReachedEnd()) {
-                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took"
-                            + currentCroco.getDmg() + "damage!");
+                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took"+ currentCroco.getDmg() + "damage!");
                     this.player.takeDamage(currentCroco.getDmg());
                     crocos.remove(i); // Delete it from the game
 
@@ -177,60 +175,75 @@ public class GameMechanic {
 
                 }
             }
+        }
 
-            // Check if wavge is active
-            if (spawnedInCurrentWave >= waveSystem.getCurrentWave() && crocos.isEmpty()) {
-                startNextWave();
-            }
+        // Check if wavge is active
+        if (spawnedInCurrentWave >= waveSystem.getCrocosToSpawn() && crocos.isEmpty()) {
+            startNextWave();
+        }
 
-            // --- Croco spawner ---
-            if (spawnTimer < 0 && spawnTimer % 60 == 0){
-                System.out.println("next wave in "+(spawnTimer/-60));
-                
-            }
-            if (spawnedInCurrentWave < waveSystem.getCurrentWave()) {
-            spawnTimer++;
-            if (spawnTimer >= waveSystem.getSpawnDelay()) {
-                crocos.add(new TestCroco(waypoints));
+        // --- Croco spawner ---
+        spawnTimer++; // counts frames
+
+        if (spawnTimer < 0 && spawnTimer % 60 == 0) {
+            System.out.println("next wave in " + (spawnTimer / -60));
+        }
+
+        if (spawnTimer >= 0 && spawnedInCurrentWave < waveSystem.getCrocosToSpawn()) { // checks if max Croc limit is reached and spawn delay                                            
+            if (spawnTimer > waveSystem.getSpawnDelay()) { // checks for nex wave spawn time
+                String nextCrocoType = waveSystem.pullNextCrocoType();
+                // lsit of all types of crocos
+                switch (nextCrocoType) {
+                    case "basic_croco":
+                        crocos.add(new TestCroco(waypoints));
+                        break;
+                    case "speedy_croco":
+                        crocos.add(new SpeedyCroco(waypoints));
+                        break;
+                    default:
+                        break;
+                }
+
                 spawnedInCurrentWave++;
                 spawnTimer = 0;
             }
         }
-            // --- TOWER SHOOTING LOGIC ---
-            long currentTime = System.currentTimeMillis();
-            for (TowerData tower : towers) {
-                // Check if the tower is ready to shoot based on its fire rate
-                if (currentTime - tower.lastShotTime >= tower.specs.getFireRate()) {
 
-                    // Scan all crocos to find a target in range
-                    for (Croco target : crocos) {
-                        double dist = tower.pos.distance(target.getX(), target.getY());
+        // --- TOWER SHOOTING LOGIC ---
+        long currentTime = System.currentTimeMillis();
+        for (TowerData tower : towers) {
+            // Check if the tower is ready to shoot based on its fire rate
+            if (currentTime - tower.lastShotTime >= tower.specs.getFireRate()) {
 
-                        if (dist <= tower.specs.getRange()) {
-                            // Target found! Create projectile and reset the tower's cooldown timer
-                            projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage()));
-                            tower.lastShotTime = currentTime;
-                            break; // Break the loop so it only shoots ONE croco at a time
-                        }
+                // Scan all crocos to find a target in range
+                for (Croco target : crocos) {
+                    double dist = tower.pos.distance(target.getX(), target.getY());
+
+                    if (dist <= tower.specs.getRange()) {
+                        // Target found! Create projectile and reset the tower's cooldown timer
+                        projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage()));
+                        tower.lastShotTime = currentTime;
+                        break; // Break the loop so it only shoots ONE croco at a time
                     }
                 }
             }
-            // --- PROJECTILE MOVEMENT ---
-            for (int i = projectiles.size() - 1; i >= 0; i--) {
-                Projectile p = projectiles.get(i);
-                p.update();
-                if (!p.isActive()) {
-                    projectiles.remove(i);
-                }
+        }
+        // --- PROJECTILE MOVEMENT ---
+        for (int i = projectiles.size() - 1; i >= 0; i--) {
+            Projectile p = projectiles.get(i);
+            p.update();
+            if (!p.isActive()) {
+                projectiles.remove(i);
             }
         }
-
     }
 
     private void startNextWave() {
         waveSystem.incrementWave();
         spawnedInCurrentWave = 0;
-        spawnTimer = -120; // spawndelay in frames so basically croco spawner spawns every 60 frames a croco but if a new wave starts subtract 120 frames so update need to count 120 frames until 1 spawn
+        spawnTimer = -240; // spawndelay in frames so basically croco spawner spawns every 60 frames a
+                           // croco but if a new wave starts subtract 120 frames so update need to count
+                           // 120 frames until 1 spawn
         System.out.println("Welle " + waveSystem.curentWave() + " startet!");
     }
 
