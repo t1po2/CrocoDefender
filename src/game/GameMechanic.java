@@ -22,13 +22,10 @@ public class GameMechanic {
 
     // Crocos on the map + pathfinding
     private ArrayList<Point> waypoints;
-    private ArrayList<Croco> crocos;
+    private ArrayList<Croco> crocos; // add wave managaging class
 
     // spawn Timer for crocs
-    private int spawnedCrocos = 0; 
-    private int maxCrocos = 250; 
-    private int spawnTimer = 0; // counts frames 
-    private int spawnDelay = 60; // after x frames it spawn 1 new croco
+    private int spawnTimer = 0; // counts frames
 
     // Projectile stuff
     private ArrayList<Projectile> projectiles;
@@ -59,10 +56,6 @@ public class GameMechanic {
         this.waypoints = currentMap.getWaypoints();
     }
 
-
-
-
-
     // --- Setters ---
 
     public void setGamePanel(GamePanel panel) {
@@ -72,10 +65,6 @@ public class GameMechanic {
     public void setSelectedTower(String id) {
         this.selectedTower = id;
     }
-
-
-
-
 
     // --- Getters ---
 
@@ -96,23 +85,15 @@ public class GameMechanic {
     public ArrayList<TowerData> getPlacedTowers() {
         return towers;
     }
-    public boolean returnGameOver(){
+
+    public boolean returnGameOver() {
         return isGameOver;
     }
-    
-
-
-
-
-
-
 
     // --- Place Tower ---
     public void placeTower(Point p) {
         if (selectedTower == null)
             return; // Drop out if nothing is selected
-
-        
 
         // Don't place a tower too close to another tower
         for (TowerData existing : towers) {
@@ -123,49 +104,46 @@ public class GameMechanic {
             }
         }
 
+        Tower newTowerStats;
 
-       Tower newTowerStats;
-        
         // Decide which Tower class to instantiate based on the ID string
         switch (selectedTower) {
             case "basic_tower":
                 // Assuming you created a CannonT class in your towers package!
-                newTowerStats = new towers.BasicT(); 
+                newTowerStats = new towers.BasicT();
                 break;
             case "sniper_tower":
-                newTowerStats = new towers.SniperT(); 
+                newTowerStats = new towers.SniperT();
                 break;
             default:
                 newTowerStats = new towers.BasicT();
                 break;
         }
 
-        if (player.getGold() < newTowerStats.getCost()){
+        if (player.getGold() < newTowerStats.getCost()) {
             System.out.println("Not enough Gold");
             return;
         }
         // If it passes the rules, add it
 
         towers.add(new TowerData(p, selectedTower, newTowerStats));
-        System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
+        //System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
         player.removeGold(newTowerStats.getCost());
     }
 
+    // some variables for wavecontroll
 
-
-
-
-
-
-
+    private WaveControll waveSystem = new WaveControll();
+    private int spawnedInCurrentWave = 0;
+    private boolean waveActive = true;
 
     // --- Game Logic Down Below ---
     public void update() {
 
-        if(isGameOver){
+        if (isGameOver) {
             return;
         }
-        
+
         // --- Croco movement ---
         // Loop backwards safely
         synchronized (crocos) {
@@ -174,7 +152,7 @@ public class GameMechanic {
 
                 // Check if Crocodiles have hp
                 if (currentCroco.getHealth() <= 0) {
-                    System.out.println("Crocodile defeated! You earned gold!"); 
+                    System.out.println("+"+currentCroco.killRward());
                     this.player.addGold(currentCroco.killRward());
                     crocos.remove(i);
                     continue; // jumps to next croco
@@ -185,7 +163,8 @@ public class GameMechanic {
 
                 // Did it reach the end of the map?
                 if (currentCroco.hasReachedEnd()) {
-                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took" + currentCroco.getDmg() + "damage!");
+                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took"
+                            + currentCroco.getDmg() + "damage!");
                     this.player.takeDamage(currentCroco.getDmg());
                     crocos.remove(i); // Delete it from the game
 
@@ -193,24 +172,30 @@ public class GameMechanic {
                     if (this.player.getPlayerHp() <= 0) {
                         isGameOver = true;
                         System.out.println("GAME OVER! Die Krokodile haben die Basis zerstört.");
-                       
+
                     }
 
                 }
             }
-            // --- Croco spawner ---
-            if (spawnedCrocos < maxCrocos && waypoints != null && !waypoints.isEmpty()) {
-                spawnTimer++; // increments every frame
-                if (spawnTimer >= spawnDelay) {
-                    // times up spawn new croco
-                    crocos.add(new TestCroco(waypoints));
-                    spawnedCrocos++; // increment
-                    spawnTimer = 0; // reset timer for next croco
-                }
+
+            // Check if wavge is active
+            if (spawnedInCurrentWave >= waveSystem.getCurrentWave() && crocos.isEmpty()) {
+                startNextWave();
             }
 
-
-
+            // --- Croco spawner ---
+            if (spawnTimer < 0 && spawnTimer % 60 == 0){
+                System.out.println("next wave in "+(spawnTimer/-60));
+                
+            }
+            if (spawnedInCurrentWave < waveSystem.getCurrentWave()) {
+            spawnTimer++;
+            if (spawnTimer >= waveSystem.getSpawnDelay()) {
+                crocos.add(new TestCroco(waypoints));
+                spawnedInCurrentWave++;
+                spawnTimer = 0;
+            }
+        }
             // --- TOWER SHOOTING LOGIC ---
             long currentTime = System.currentTimeMillis();
             for (TowerData tower : towers) {
@@ -239,11 +224,15 @@ public class GameMechanic {
                 }
             }
         }
+
     }
 
-
-
-
+    private void startNextWave() {
+        waveSystem.incrementWave();
+        spawnedInCurrentWave = 0;
+        spawnTimer = -120; // spawndelay in frames so basically croco spawner spawns every 60 frames a croco but if a new wave starts subtract 120 frames so update need to count 120 frames until 1 spawn
+        System.out.println("Welle " + waveSystem.curentWave() + " startet!");
+    }
 
     // --- Render GamePanel ---
     public void render() {

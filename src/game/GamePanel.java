@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
 
         // GamePanel Setup
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(900, 600));
+        this.setPreferredSize(new Dimension(800, 600));
 
         // load in the map via mapID
         map = Resource.getResource("test_map");
@@ -65,10 +65,31 @@ public class GamePanel extends JPanel {
 
         // --- Side panel for tower selection ---
 
+        JPanel sidePanel = new JPanel(new BorderLayout());
+        sidePanel.setOpaque(false);
+
+
         JPanel towerMenu = new JPanel();
-        towerMenu.setPreferredSize(new Dimension(100, 600));
-        towerMenu.setLayout(new GridLayout(6, 1));
+        towerMenu.setPreferredSize(new Dimension(300, 600));
+        towerMenu.setLayout(new GridLayout(6, 1)); //6 rows 1 colum 
         towerMenu.setOpaque(false);
+
+        JButton toggleSidePanel = new JButton("<");
+        toggleSidePanel.setFocusPainted(false);
+        toggleSidePanel.setPreferredSize(new Dimension(30,600));
+
+        toggleSidePanel.addActionListener(e -> { 
+            boolean isVisible = towerMenu.isVisible();
+            towerMenu.setVisible(!isVisible);
+
+            if (!isVisible) { 
+                toggleSidePanel.setText("<");
+            } else {
+                toggleSidePanel.setText(">");
+            }
+            this.revalidate();        
+        });
+
 
         // Define your tower IDs 
         String[] towerIDs = {
@@ -80,11 +101,22 @@ public class GamePanel extends JPanel {
                 "tesla_tower"
         };
 
+        // need to create seperate string for label name
+
+        String[] towerName = {
+                "Basic Tower 1800",
+                "Sniper Tower 3400",
+                "mage_tower",
+                "archer_tower",
+                "ice_tower",
+                "tesla_tower"
+        };
+
         for (int i = 0; i < towerIDs.length; i++) {
             // We store the specific ID for THIS button in a local variable
             String currentID = towerIDs[i];
 
-            JButton btn = new JButton(towerIDs[i]);
+            JButton btn = new JButton(towerName[i]);
             btn.setFocusPainted(false);
 
             // 2. The listener now uses the specific ID for this button
@@ -95,7 +127,11 @@ public class GamePanel extends JPanel {
 
             towerMenu.add(btn);
         }
-        this.add(towerMenu, BorderLayout.EAST);
+
+        // uncoment this to activate button for toggle Side panel
+        //sidePanel.add(toggleSidePanel,BorderLayout.WEST);
+        sidePanel.add(towerMenu, BorderLayout.CENTER);
+        this.add(sidePanel, BorderLayout.EAST);
 
         // Mouseclick to place tower
         this.addMouseListener(new MouseAdapter() {

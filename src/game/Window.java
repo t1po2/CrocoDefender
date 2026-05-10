@@ -7,7 +7,7 @@ public class Window {
 
     public Window(GameMechanic mechanic){
         frame = new JFrame("Croco Defender");
-        frame.setSize(900,600);
+        frame.setSize(1115,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create game panel with the mechanic
