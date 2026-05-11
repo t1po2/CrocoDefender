@@ -27,6 +27,10 @@ public class GameMechanic {
     // spawn Timer for crocs
     private int spawnTimer = 0; // counts frames
 
+    // some variables for wavecontroll
+    private WaveControll waveSystem = new WaveControll();
+    private int spawnedInCurrentWave = 0;
+
     // Projectile stuff
     private ArrayList<Projectile> projectiles;
 
@@ -69,11 +73,8 @@ public class GameMechanic {
     // --- Getters ---
 
     public ArrayList<Croco> getCrocos() {
-        synchronized (crocos) {
+        synchronized (crocos) {     //let the gamepanel wait before it draws anopther one
             return new ArrayList<>(crocos);
-            // This acts like a "lock." If the GameLoop is currently adding a crocodile, the
-            // UI thread will wait a tiny fraction of a millisecond for it to finish before
-            // it tries to grab the list for drawing.
         }
 
     }
@@ -131,10 +132,7 @@ public class GameMechanic {
         player.removeGold(newTowerStats.getCost());
     }
 
-    // some variables for wavecontroll
-
-    private WaveControll waveSystem = new WaveControll();
-    private int spawnedInCurrentWave = 0;
+ 
 
     // --- Game Logic Down Below ---
     public void update() {
@@ -192,7 +190,11 @@ public class GameMechanic {
         if (spawnTimer >= 0 && spawnedInCurrentWave < waveSystem.getCrocosToSpawn()) { // checks if max Croc limit is reached and spawn delay                                            
             if (spawnTimer > waveSystem.getSpawnDelay()) { // checks for nex wave spawn time
                 String nextCrocoType = waveSystem.pullNextCrocoType();
-                // lsit of all types of crocos
+
+
+                // -- spawns crocoType acording to WaveControll -- 
+
+                
                 switch (nextCrocoType) {
                     case "basic_croco":
                         crocos.add(new TestCroco(waypoints));

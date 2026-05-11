@@ -24,7 +24,7 @@ public class Resource {
             
             //Croco textures
             gameResources.put("basic_croco", ImageIO.read(new File("src\\resources\\crocodiles\\croco.png")));
-            
+            gameResources.put("speedy_croco",ImageIO.read(new File("src\\resources\\crocodiles\\kahttan.png")));
             //Towers
             gameResources.put("basic_tower", ImageIO.read(new File("src\\resources\\towers\\mortar.png")));
             gameResources.put("sniper_tower",ImageIO.read(new File("src\\resources\\towers\\sniper.png")));

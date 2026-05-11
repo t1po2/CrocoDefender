@@ -14,9 +14,9 @@ public class WaveControll {
     private int totalCrocosThisWave;
 
     //List for spawning Diffrent types of crocs
-    private ArrayList<String> spawnPattern = new ArrayList<>();
+    private ArrayList<String> spawnPattern = new ArrayList<>(); // this list is the Blue prinbt for the spawnQ later last pattern gets appended to this list
 
-    private ArrayList<String> spawnQ = new ArrayList<>(); //Bug fixed: Seperate Lists for the the copy lastPattern mechancic
+    private ArrayList<String> spawnQ = new ArrayList<>(); //Bug fixed: Seperate Lists for the the copy lastPattern mechancic sapwnQ is the List that gets subtracted 
 
 
     public WaveControll(){
@@ -28,10 +28,13 @@ public class WaveControll {
         ArrayList<String> lastPattern = new ArrayList<>(spawnPattern); // saves last Pattern 
         spawnPattern.clear(); // clear list of previous Pattern 
         
-
-
         // now kust define the next waves introducing new crocs and than we
         // we do a formula for combining last and now pattern together for next wave
+
+
+        // -- Configure Wave difficulty --
+
+
         if (wave == 1){
             for (int i= 0;i<10;i++){
                 spawnPattern.add("basic_croco");
@@ -42,20 +45,15 @@ public class WaveControll {
                 spawnPattern.add("basic_croco");
                 
             }
-        } else {
-             for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2
-            spawnPattern.add(lastPattern.get(i));
-             }
-
-        }
+        } 
 
        for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2
             spawnPattern.add(lastPattern.get(i));
         }
+
         totalCrocosThisWave = spawnPattern.size();   
-        
         // transfer last Pattern to list that gets pulled
-        spawnQ = new ArrayList<>(lastPattern);
+        spawnQ = new ArrayList<>(spawnPattern);
     }
 
 

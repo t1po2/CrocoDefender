@@ -190,13 +190,28 @@ public class GamePanel extends JPanel {
 
 
 
-        // --- DRAW THE CROCODILES ---
-        if (mechanic.getCrocos() != null) {
-            BufferedImage crocoImg= Resource.getResource("basic_croco");
+        
+        // import all croco type Images
 
+        if (mechanic.getCrocos() != null) {
+            BufferedImage basicCrocoImg= Resource.getResource("basic_croco");
+            BufferedImage speedyCrocoImg = Resource.getResource("speedy_croco");
+
+
+            
+            // --- DRAW THE CROCODILES ---
 
             for (Croco croco : mechanic.getCrocos()) {
-                g.drawImage(crocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
+
+                // -- Insert the types of Crocos so they get rendered with their own game texture --
+
+                if (croco.getCrocoType().equals("basic_croco")){
+                    g.drawImage(basicCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
+
+                } else if (croco.getCrocoType().equals("speedy_croco")){
+                    g.drawImage(speedyCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
+
+                }
             }
         }
 

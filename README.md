@@ -6,7 +6,14 @@ It's a basic Tower Defense game.
 I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
-*Updates Down Below*
+*Updates Down Below*  
+## [PATCH *v0.6*]  
+*11/05/2026*  
+-added new Tower (Sniper Tower)  
+-added new Croco Variant (Speedy Croco)  
+-added Wave System to increase difficulty over time  
+-fixed minor bugs  
+
 ## [PATCH *v0.5*]
 *09/05/2026*  
 -added Player Hud  

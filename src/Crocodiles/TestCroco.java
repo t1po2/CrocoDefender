@@ -10,6 +10,7 @@ public class TestCroco extends Croco {
         
         // Croco desc, the map, and speed 
 
+        //impoortant crocoType is the Key for calling that resource
         
     // path,speed,crocoType,crocoHp,killReward
         super(path,2,"basic_croco",1,40);
