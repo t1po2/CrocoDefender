@@ -7,6 +7,11 @@ I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
 *Updates Down Below*  
+## [Hotfix *v0.6.1*]  
+*11/05/2026*  
+-fixed wrong spelling of some methods
+
+
 ## [PATCH *v0.6*]  
 *11/05/2026*  
 -added new Tower (Sniper Tower)  

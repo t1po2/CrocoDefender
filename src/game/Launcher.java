@@ -7,7 +7,7 @@ public class Launcher {
 
     public static void main(String[] args){
 
-        Resource.loadGameResouces();
+        Resource.loadGameResources();
         //initiate GameLoop inside a thread
         GameMechanic gameMechanic = new GameMechanic();
         GameLoop gameLoop = new GameLoop(gameMechanic);     

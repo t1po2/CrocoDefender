@@ -28,7 +28,7 @@ public class GameMechanic {
     private int spawnTimer = 0; // counts frames
 
     // some variables for wavecontroll
-    private WaveControll waveSystem = new WaveControll();
+    private WaveControl waveSystem = new WaveControl();
     private int spawnedInCurrentWave = 0;
 
     // Projectile stuff

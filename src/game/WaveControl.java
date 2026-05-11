@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 
-public class WaveControll {
+public class WaveControl {
 
 
     private int wave = 1;
@@ -19,7 +19,7 @@ public class WaveControll {
     private ArrayList<String> spawnQ = new ArrayList<>(); //Bug fixed: Seperate Lists for the the copy lastPattern mechancic sapwnQ is the List that gets subtracted 
 
 
-    public WaveControll(){
+    public WaveControl(){
         
         prepareNextWave(); 
     }

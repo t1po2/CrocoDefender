@@ -15,7 +15,7 @@ public class Resource {
     //String type is the resourceID
     private static final Map<String, BufferedImage> gameResources = new HashMap<>();
 
-    public static void loadGameResouces(){
+    public static void loadGameResources(){
 
         // laoding all nessecary game resources 
         try {
