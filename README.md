@@ -13,6 +13,7 @@ Have Fun :)
     > fat Croco  
 -reduced damage of Sniper Tower 20 >> 15  
 -reduced spawn delay of Crocos spawn rate: Croco/60 Frames >> Croco/30 Frames  
+-added new HUD variable to see current Wave  
 
 ## [Hotfix *v0.6.2*]  
 *11/05/2026*  
@@ -67,6 +68,10 @@ Have Fun :)
 
 ## CREDITS:  
 *Big thank you to:*    
-Kahttan Abbas - Texture Design    
-Max Dax - Texture Design
+> Texture Design
+Kahttan Abbas      
+Max Dix     
+Anna Tra My Le    
 
+> The Rest  
+Nguyen Viet Hung  

@@ -16,12 +16,13 @@ public class GamePanel extends JPanel {
     private GameMechanic mechanic;
 
     //toggle mouseListener
-    private boolean toggleMouseListener = true;
+    private boolean toggleMouseListener = false;        //toggle mouseListener
 
 
     // Labels for Player Stats
     private JLabel playerHpL;
     private JLabel playerGoldL;
+    private JLabel playerWaveL;
 
 
 
@@ -44,6 +45,7 @@ public class GamePanel extends JPanel {
         JPanel statsPanel = new JPanel();
         statsPanel.setPreferredSize(new Dimension(200,100));
         statsPanel.setOpaque(false);
+        statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
 
         //creeate labels 
         // need to import stats from GameMechanics
@@ -55,9 +57,14 @@ public class GamePanel extends JPanel {
         playerGoldL.setFont(new Font("Arial", Font.BOLD, 20));
         playerGoldL.setForeground(Color.YELLOW); // yellow font color for gold
 
+        playerWaveL = new JLabel("Wave: 1");
+        playerWaveL.setFont(new Font("Arial", Font.BOLD,20));
+        playerWaveL.setForeground(Color.WHITE);
+
         //add labels to panel 
         statsPanel.add(playerHpL);
         statsPanel.add(playerGoldL);    
+        statsPanel.add(playerWaveL);
 
         //locate panel to the north
         this.add(statsPanel, BorderLayout.WEST);
@@ -152,10 +159,11 @@ public class GamePanel extends JPanel {
 
     
     // helper function to update stats
-    public void updatePlayerStats(int health, int gold) {
-        if (playerHpL != null && playerGoldL != null) {
+    public void updatePlayerStats(int health, int gold,int wave) {
+        if (playerHpL != null && playerGoldL != null && playerWaveL != null) {
             playerHpL.setText("Health: " + health);
             playerGoldL.setText("Gold: " + gold);
+            playerWaveL.setText("Wave: "+ wave);
         }
     }
 

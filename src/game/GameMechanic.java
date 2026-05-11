@@ -258,7 +258,7 @@ public class GameMechanic {
     public void render() {
         // The Boss tells the UI to refresh
         if (gamePanel != null) {
-            gamePanel.updatePlayerStats(player.getPlayerHp(), player.getGold()); // UI aktualisieren!
+            gamePanel.updatePlayerStats(player.getPlayerHp(), player.getGold(),waveSystem.curentWave()); // UI aktualisieren!
             gamePanel.repaint();
 
         }
