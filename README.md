@@ -68,10 +68,13 @@ Have Fun :)
 
 ## CREDITS:  
 *Big thank you to:*    
-> Texture Design
+  
+Texture Design:
+> 
 Kahttan Abbas      
 Max Dix     
 Anna Tra My Le    
 
-> The Rest  
+The Rest:  
+> 
 Nguyen Viet Hung  
