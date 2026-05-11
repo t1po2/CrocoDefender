@@ -59,7 +59,7 @@ public class GamePanel extends JPanel {
 
         playerWaveL = new JLabel("Wave: 1");
         playerWaveL.setFont(new Font("Arial", Font.BOLD,20));
-        playerWaveL.setForeground(Color.WHITE);
+        playerWaveL.setForeground(Color.WHITE); // White for current Wave
 
         //add labels to panel 
         statsPanel.add(playerHpL);
