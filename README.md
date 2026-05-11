@@ -14,6 +14,7 @@ Have Fun :)
 -reduced damage of Sniper Tower 20 >> 15  
 -reduced spawn delay of Crocos spawn rate: Croco/60 Frames >> Croco/30 Frames  
 -added new HUD variable to see current Wave  
+-added possibility for map selection  
 
 ## [Hotfix *v0.6.2*]  
 *11/05/2026*  
