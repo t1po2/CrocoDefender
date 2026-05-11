@@ -37,7 +37,7 @@ Have Fun :)
 -added toggle variable for some testing Stats  
 -added mapLayout class and test_map.java for further testing  
 -window's width is now at 900px to mitigate HUD overlay  
--added logic of crocs moving rn jsut a red circle   
+-added logic of crocs moving rn just a red circle tho  
 
 ## [PATCH *v0.2*]
 *08/05/2026*  
@@ -53,7 +53,7 @@ Have Fun :)
 *08/05/2026*  
 -added map, tower buttons  
 -added gamelogic  
--added resouce manager  
+-added resource manager  
 -added some models  
 -added placeTowers mechanic  
 
