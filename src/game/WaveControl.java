@@ -43,9 +43,12 @@ public class WaveControl {
             for (int i= 0;i<5;i++){
                 spawnPattern.add("speedy_croco");
                 spawnPattern.add("basic_croco");
-                
             }
-        } 
+        } else {
+            for (int i=0; i<lastPattern.size()/2; i++) { //for the rounds in between without new Crocos
+            spawnPattern.add(lastPattern.get(i));
+        }
+        }
 
        for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2
             spawnPattern.add(lastPattern.get(i));

@@ -7,10 +7,14 @@ I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
 *Updates Down Below*  
+
+## [Hotfix *v0.6.2*]  
+*11/05/2026*  
+-fixed a bug where the game would speed-run itself by skipping rounds with zero enemies.  
+
 ## [Hotfix *v0.6.1*]  
 *11/05/2026*  
 -fixed wrong spelling of some methods
-
 
 ## [PATCH *v0.6*]  
 *11/05/2026*  
