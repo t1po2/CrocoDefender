@@ -34,6 +34,10 @@ public class GameMechanic {
     // Projectile stuff
     private ArrayList<Projectile> projectiles;
 
+    //
+    private String currentMap;
+
+
     // own class to store references to resouce manager
     public static class TowerData {
         public Point pos;
@@ -48,16 +52,21 @@ public class GameMechanic {
         }
     }
 
-    public GameMechanic() {
+    public GameMechanic(String mapName) {
 
         this.crocos = new ArrayList<>();
         this.towers = new ArrayList<>();
         this.player = new PlayerStats(); // later add the player and gold and stuff
         this.projectiles = new ArrayList<>();
+        this.currentMap = mapName;
 
-        // laod in map
-        MapLayout currentMap = new Swamp_Map();
-        this.waypoints = currentMap.getWaypoints();
+        // laod in map 
+        //add all map Keys here
+
+        if (currentMap.equals("swamp_map")){
+            MapLayout currentMap = new Swamp_Map();
+            this.waypoints = currentMap.getWaypoints(); 
+        }
     }
 
     // --- Setters ---
@@ -76,8 +85,12 @@ public class GameMechanic {
         synchronized (crocos) {     //let the gamepanel wait before it draws anopther one
             return new ArrayList<>(crocos);
         }
-
     }
+
+    public String getMapName(){
+        return currentMap;
+    }
+
 
     public ArrayList<Projectile> getProjectiles() {
         return projectiles; // reference to GamePanel

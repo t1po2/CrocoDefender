@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
     //toggle mouseListener
     private boolean toggleMouseListener = false;        //toggle mouseListener
 
+   
 
     // Labels for Player Stats
     private JLabel playerHpL;
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel {
         this.setPreferredSize(new Dimension(800, 600));
 
         // load in the map via mapID
-        map = Resource.getResource("swamp_map");
+        map = Resource.getResource(mechanics.getMapName());
 
         // --- Labels for Player Stats ---
         JPanel statsPanel = new JPanel();
@@ -154,8 +155,6 @@ public class GamePanel extends JPanel {
             }
         });
     }
-
-
 
     
     // helper function to update stats
