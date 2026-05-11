@@ -1,12 +1,18 @@
 ## Croco Defender 
-
-Desciption: A little game i'm working on.
+A little game i'm working on.
 It's a basic Tower Defense game. 
 
 I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
 *Updates Down Below*  
+## [Patch *v0.7*]  
+*11/05/2026*    
+-added new Crocodiles    
+    > mid Croco  
+    > fat Croco  
+-reduced damage of Sniper Tower 20 >> 15  
+-reduced spawn delay of Crocos spawn rate: Croco/60 Frames >> Croco/30 Frames  
 
 ## [Hotfix *v0.6.2*]  
 *11/05/2026*  
@@ -56,4 +62,11 @@ Have Fun :)
 -added resource manager  
 -added some models  
 -added placeTowers mechanic  
+
+
+
+## CREDITS:  
+*Big thank you to:*    
+Kahttan Abbas - Texture Design    
+Max Dax - Texture Design
 

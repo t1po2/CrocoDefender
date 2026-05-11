@@ -1,7 +1,7 @@
 package game;
 
 import maps.MapLayout;
-import maps.Test_map;
+import maps.Swamp_Map;
 import player.PlayerStats;
 import Crocodiles.*;
 import towers.Projectile;
@@ -56,7 +56,7 @@ public class GameMechanic {
         this.projectiles = new ArrayList<>();
 
         // laod in map
-        MapLayout currentMap = new Test_map();
+        MapLayout currentMap = new Swamp_Map();
         this.waypoints = currentMap.getWaypoints();
     }
 
@@ -202,6 +202,11 @@ public class GameMechanic {
                     case "speedy_croco":
                         crocos.add(new SpeedyCroco(waypoints));
                         break;
+                    case "mid_croco":
+                        crocos.add(new MidCroco(waypoints));
+                        break;
+                    case "fat_croco":
+                        crocos.add(new FatCroco(waypoints));
                     default:
                         break;
                 }

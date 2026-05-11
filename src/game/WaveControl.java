@@ -10,7 +10,7 @@ public class WaveControl {
 
 
     private int wave = 1;
-    private int spawnDelay = 60;
+    private int spawnDelay = 30;
     private int totalCrocosThisWave;
 
     //List for spawning Diffrent types of crocs
@@ -39,16 +39,40 @@ public class WaveControl {
             for (int i= 0;i<10;i++){
                 spawnPattern.add("basic_croco");
             }
-        } else if ( wave == 3){
+        } else if ( wave == 3){                        //wave 3 +speedy_croco
             for (int i= 0;i<5;i++){
                 spawnPattern.add("speedy_croco");
                 spawnPattern.add("basic_croco");
             }
+        } else if (wave==6){                        // wave 6   +mid_croco , +fat_croco
+            spawnPattern.add("fat_croco");
+            for (int i=0;i<6;i++){
+                spawnPattern.add("mid_croco");
+            } 
+        } else if (wave== 7){                       // wave 7
+            for (int i = 0;i<15;i++){
+                spawnPattern.add("basic_croco");
+            }
+        } else if (wave == 8){                  //wave 8   +fat_Croco
+            for (int i = 0;i<6;i++){
+                spawnPattern.add("fat_croco");
+            }
+            for (int i = 0 ; i<4;i++){
+                spawnPattern.add("speedy_croco");
+                spawnPattern.add("mid_croco");
+            }
+            for (int i=0;i<10;i++){
+                spawnPattern.add("basic_croco");
+            }
         } else {
             for (int i=0; i<lastPattern.size()/2; i++) { //for the rounds in between without new Crocos
-            spawnPattern.add(lastPattern.get(i));
+                spawnPattern.add(lastPattern.get(i));
+            }
         }
-        }
+        
+        
+
+
 
        for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2
             spawnPattern.add(lastPattern.get(i));

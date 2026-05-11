@@ -8,7 +8,7 @@ public class PlayerStats {
 
 
     public PlayerStats(){
-        this.gold = 2500;
+        this.gold = 100000;
     }
 
 

@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
     private GameMechanic mechanic;
 
     //toggle mouseListener
-    private boolean toggleMouseListener = false;
+    private boolean toggleMouseListener = true;
 
 
     // Labels for Player Stats
@@ -38,7 +38,7 @@ public class GamePanel extends JPanel {
         this.setPreferredSize(new Dimension(800, 600));
 
         // load in the map via mapID
-        map = Resource.getResource("test_map");
+        map = Resource.getResource("swamp_map");
 
         // --- Labels for Player Stats ---
         JPanel statsPanel = new JPanel();
@@ -196,6 +196,8 @@ public class GamePanel extends JPanel {
         if (mechanic.getCrocos() != null) {
             BufferedImage basicCrocoImg= Resource.getResource("basic_croco");
             BufferedImage speedyCrocoImg = Resource.getResource("speedy_croco");
+            BufferedImage midCrocoImg = Resource.getResource("mid_croco");
+            BufferedImage fatCrocoImg = Resource.getResource("fat_croco");
 
 
             
@@ -207,11 +209,19 @@ public class GamePanel extends JPanel {
 
                 if (croco.getCrocoType().equals("basic_croco")){
                     g.drawImage(basicCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
-
-                } else if (croco.getCrocoType().equals("speedy_croco")){
+                } 
+                
+                else if (croco.getCrocoType().equals("speedy_croco")){
                     g.drawImage(speedyCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
+                } 
+                
+                else if (croco.getCrocoType().equals("mid_croco")){
+                    g.drawImage(midCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
+                } 
 
-                }
+                else if (croco.getCrocoType().equals("fat_croco")){
+                    g.drawImage(fatCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
+                } 
             }
         }
 
