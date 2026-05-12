@@ -9,7 +9,7 @@ Have Fun :)
 ## [Patch v0.9]  
 *12/05/2026*   
 -optimized laoding game textures by loading Textures inside TowerData class   
--added Upgrade System (although all upgrades only gives plus 2 damage (IT WORKS THO BE PROUD OF ME!)). 
+-added Upgrade System (although all upgrades only gives plus 2 damage (IT WORKS THO BE PROUD OF ME!))        
 -if trying to start a game without any map selected, instead of a warning message, it opens Map selector. 
 
 ## [Hotfix v0.8.1]  
