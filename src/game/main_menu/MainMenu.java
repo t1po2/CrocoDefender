@@ -44,7 +44,8 @@ public class MainMenu extends JFrame {
                 Launcher.startGame(mapName);
                
             } else {  // if no map is selected
-                JOptionPane.showMessageDialog(startButton,"Please select a map before starting :)","No Map Selected",JOptionPane.WARNING_MESSAGE);
+                //JOptionPane.showMessageDialog(startButton,"Please select a map before starting :)","No Map Selected",JOptionPane.WARNING_MESSAGE);
+                new MapSelector(); // if no map is selected then open map selctor
             }
         });
         gbc.gridy = 1;

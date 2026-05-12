@@ -1,7 +1,11 @@
 package Crocodiles;
 
+
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import game.Resource;
 
 public abstract class Croco  {
 
@@ -12,21 +16,23 @@ public abstract class Croco  {
     protected int targetWaypoint = 0;   // Index of  next Waypoint in the waypoint List 
     protected boolean reachedEnd = false;
     protected int killReward;
+    protected BufferedImage texture;
 
 
 
     // some Game stats
-    protected String crocoType;
+    protected String textureKey;
     protected int crocoHp;
 
 
-    // path,speed,crocoType,crocoHp,killReward
-    public Croco(ArrayList<Point> path,int speed, String crocoType,int crocoHp,int killRward){
+    // path,speed,textureKey(NEEDS TO BE EXACTLY LIKE TEXTRE NAME),crcoHp,killReward
+    public Croco(ArrayList<Point> path,int speed, String textureKey,int crocoHp,int killRward){
 
         this.speed = speed;
-        this.crocoType = crocoType;
+        this.textureKey = textureKey;
         this.crocoHp = crocoHp;
         this.killReward = killRward;
+        this.texture = Resource.getResource(textureKey);
 
 
         //set sapwn point of tcrcos
@@ -81,7 +87,10 @@ public abstract class Croco  {
 
     //Getters
     public String getCrocoType(){
-        return this.crocoType;
+        return textureKey;
+    }
+    public BufferedImage getTexture(){
+        return this.texture;
     }
 
     public boolean hasReachedEnd(){

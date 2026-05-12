@@ -6,6 +6,12 @@ I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
 *Updates Down Below*   
+## [Patch v0.9]  
+*12/05/2026*   
+-optimized laoding game textures by loading Textures inside TowerData class   
+-added Upgrade System (although all upgrades only gives plus 2 damage (IT WORKS THO BE PROUD OF ME!)). 
+-if trying to start a game without any map selected, instead of a warning message, it opens Map selector. 
+
 ## [Hotfix v0.8.1]  
 *12/05/2026*  
 -fixed bug of placing a non existing tower  
@@ -27,8 +33,7 @@ Have Fun :)
     > fat Croco  
 -reduced damage of Sniper Tower 20 >> 15  
 -reduced spawn delay of Crocos spawn rate: Croco/60 Frames >> Croco/30 Frames  
--added new HUD variable to see current Wave  
--added possibility for map selection  
+-added new HUD variable to see current Wave   
 -added Main Menu  
 -added map selector  
 

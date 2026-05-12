@@ -3,6 +3,7 @@ package game;
 import javax.swing.*;
 
 import Crocodiles.Croco;
+import game.GameMechanic.TowerData;
 import towers.Projectile;
 
 import java.awt.*;
@@ -15,22 +16,20 @@ public class GamePanel extends JPanel {
     private BufferedImage map;
     private GameMechanic mechanic;
 
-    //toggle mouseListener
-    private boolean toggleMouseListener = false;        //toggle mouseListener
-
-   
+    // toggle mouseListener
+    private boolean toggleMouseListener = false; // toggle mouseListener
 
     // Labels for Player Stats
     private JLabel playerHpL;
     private JLabel playerGoldL;
     private JLabel playerWaveL;
 
-
+    // For UpgradeUI
+    private UpgradePanel upgradePanel;
+    private TowerData rangeOfCurrentTower = null;
 
     public GamePanel(GameMechanic mechanics) {
         this.mechanic = mechanics;
-
-
 
         // Link this panel back to the mechanic so the mechanic can control it
         mechanics.setGamePanel(this);
@@ -44,11 +43,11 @@ public class GamePanel extends JPanel {
 
         // --- Labels for Player Stats ---
         JPanel statsPanel = new JPanel();
-        statsPanel.setPreferredSize(new Dimension(200,100));
+        statsPanel.setPreferredSize(new Dimension(200, 100));
         statsPanel.setOpaque(false);
         statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
 
-        //creeate labels 
+        // creeate labels
         // need to import stats from GameMechanics
         playerHpL = new JLabel("Health: 0");
         playerHpL.setFont(new Font("Arial", Font.BOLD, 20));
@@ -59,47 +58,44 @@ public class GamePanel extends JPanel {
         playerGoldL.setForeground(Color.YELLOW); // yellow font color for gold
 
         playerWaveL = new JLabel("Wave: 1");
-        playerWaveL.setFont(new Font("Arial", Font.BOLD,20));
+        playerWaveL.setFont(new Font("Arial", Font.BOLD, 20));
         playerWaveL.setForeground(Color.WHITE); // White for current Wave
 
-        //add labels to panel 
+        // add labels to panel
         statsPanel.add(playerHpL);
-        statsPanel.add(playerGoldL);    
+        statsPanel.add(playerGoldL);
         statsPanel.add(playerWaveL);
 
-        //locate panel to the north
+        // locate panel to the north
         this.add(statsPanel, BorderLayout.WEST);
-    
 
         // --- Side panel for tower selection ---
 
         JPanel sidePanel = new JPanel(new BorderLayout());
         sidePanel.setOpaque(false);
 
-
         JPanel towerMenu = new JPanel();
         towerMenu.setPreferredSize(new Dimension(300, 600));
-        towerMenu.setLayout(new GridLayout(6, 1)); //6 rows 1 colum 
+        towerMenu.setLayout(new GridLayout(6, 1)); // 6 rows 1 colum
         towerMenu.setOpaque(false);
 
         JButton toggleSidePanel = new JButton("<");
         toggleSidePanel.setFocusPainted(false);
-        toggleSidePanel.setPreferredSize(new Dimension(30,600));
+        toggleSidePanel.setPreferredSize(new Dimension(30, 600));
 
-        toggleSidePanel.addActionListener(e -> { 
+        toggleSidePanel.addActionListener(e -> {
             boolean isVisible = towerMenu.isVisible();
             towerMenu.setVisible(!isVisible);
 
-            if (!isVisible) { 
+            if (!isVisible) {
                 toggleSidePanel.setText("<");
             } else {
                 toggleSidePanel.setText(">");
             }
-            this.revalidate();        
+            this.revalidate();
         });
 
-
-        // Define your tower IDs 
+        // Define your tower IDs
         String[] towerIDs = {
                 "basic_tower",
                 "sniper_tower",
@@ -136,36 +132,55 @@ public class GamePanel extends JPanel {
             towerMenu.add(btn);
         }
 
-        // uncoment this to activate button for toggle Side panel
-        //sidePanel.add(toggleSidePanel,BorderLayout.WEST);
         sidePanel.add(towerMenu, BorderLayout.CENTER);
         this.add(sidePanel, BorderLayout.EAST);
 
-        // Mouseclick to place tower
+      
+
+        // Mouseclick to place tower OR select a tower
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                //just return the click
-                mechanic.placeTower(e.getPoint());
-                mechanic.render();
-                //toggle mouseListener via variable
-                if (toggleMouseListener == true){
-                    System.out.println("waypoints.add(new Point("+e.getX()+","+e.getY()+"));");
+                Point clickPoint = e.getPoint();
+                boolean clickedOnTower = false;
+
+                // checks if tower is clicked
+                for (GameMechanic.TowerData tower : mechanic.getPlacedTowers()) {
+                    if (clickPoint.distance(tower.pos) < 32) { // 32 Pixel Hitbox
+                        // if tower is in 32 radius is clicked
+                        upgradePanel.updateUIForTower(tower);
+                        rangeOfCurrentTower = tower; // sets the tower of which the range will show
+                        clickedOnTower = true;
+                        break;
+                    }
+                }
+
+                // if nothing is clicked build selected tower
+                if (!clickedOnTower) {
+                    upgradePanel.hidePanel(); // hides panel
+                    mechanic.placeTower(clickPoint);
+                    mechanic.setSelectedTower(null);
+                    rangeOfCurrentTower = null;
+                }
+
+                mechanic.render(); // repainbt UI
+
+                // toggle mouseListener via variable
+                if (toggleMouseListener == true) {
+                    System.out.println("waypoints.add(new Point(" + e.getX() + "," + e.getY() + "));");
                 }
             }
         });
     }
 
-    
     // helper function to update stats
-    public void updatePlayerStats(int health, int gold,int wave) {
+    public void updatePlayerStats(int health, int gold, int wave) {
         if (playerHpL != null && playerGoldL != null && playerWaveL != null) {
             playerHpL.setText("Health: " + health);
             playerGoldL.setText("Gold: " + gold);
-            playerWaveL.setText("Wave: "+ wave);
+            playerWaveL.setText("Wave: " + wave);
         }
     }
-
 
     // --- Function to render all the game components ---
 
@@ -176,83 +191,74 @@ public class GamePanel extends JPanel {
         // Draw the background map first
         g.drawImage(map, 0, 0, 800, getHeight(), this);
 
-
-
-
         // Draw every tower from the logic list
         for (GameMechanic.TowerData tower : mechanic.getPlacedTowers()) {
-            BufferedImage towerImg = Resource.getResource(tower.resID);    // asks for the Tower image
-
-            if (towerImg != null) {
+            if (tower.texture != null) {
                 // Subtract 32 from X and Y to center the 64x64 image on the click
                 int drawX = tower.pos.x - 32;
                 int drawY = tower.pos.y - 32;
 
-                g.drawImage(towerImg, drawX, drawY, 64, 64, null);
+                g.drawImage(tower.texture, drawX, drawY, 64, 64, null);
             } else {
                 System.out.println("Can't place Tower | Texture not found");
             }
         }
 
-
-
-
-        
-        // import all croco type Images
-
         if (mechanic.getCrocos() != null) {
-            BufferedImage basicCrocoImg= Resource.getResource("basic_croco");
-            BufferedImage speedyCrocoImg = Resource.getResource("speedy_croco");
-            BufferedImage midCrocoImg = Resource.getResource("mid_croco");
-            BufferedImage fatCrocoImg = Resource.getResource("fat_croco");
-
-
-            
             // --- DRAW THE CROCODILES ---
-
             for (Croco croco : mechanic.getCrocos()) {
+                if (croco.getTexture() != null) {
+                    g.drawImage(croco.getTexture(), (int) croco.getX() - 32, (int) croco.getY() - 32, 64, 64, null);
+                }
 
-                // -- Insert the types of Crocos so they get rendered with their own game texture --
+            }
 
-                if (croco.getCrocoType().equals("basic_croco")){
-                    g.drawImage(basicCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
-                } 
-                
-                else if (croco.getCrocoType().equals("speedy_croco")){
-                    g.drawImage(speedyCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
-                } 
-                
-                else if (croco.getCrocoType().equals("mid_croco")){
-                    g.drawImage(midCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
-                } 
+            // --- DRAW THE PROJECTILES ---
+            g.setColor(Color.BLACK); // Make them black so they are easy to see
+            if (mechanic.getProjectiles() != null) {
+                // We use a safe copy to prevent ConcurrentModificationExceptions while drawing
+                ArrayList<Projectile> safeProjectiles = new ArrayList<>(mechanic.getProjectiles());
+                for (Projectile p : safeProjectiles) {
+                    // Draw a small 6x6 rectangle at the projectile's X and Y
+                    g.fillRect((int) p.getX() - 3, (int) p.getY() - 3, 6, 6);
+                }
+            }
 
-                else if (croco.getCrocoType().equals("fat_croco")){
-                    g.drawImage(fatCrocoImg,(int)croco.getX()-32,(int)croco.getY()-32, 64,64,null);
-                } 
+            if (mechanic.returnGameOver()) {
+                g.setColor((new Color(0, 0, 0, 150)));
+                g.fillRect(0, 0, getWidth(), getHeight());
+
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Arial", Font.BOLD, 50));
+                g.drawString("Game Over!", 250, 300);
+            }
+
+            // draw range of clicked tower
+            if (rangeOfCurrentTower != null) {
+                Graphics2D g2d = (Graphics2D) g;
+
+                // get range of current Tower
+                int range = rangeOfCurrentTower.specs.getRange(); // TowerData.Tower.method inside tower data there is a
+                                                                  // Tower variable(specs) via specs we can access
+                                                                  // methods of that towertype
+                int centerX = rangeOfCurrentTower.pos.x;
+                int centerY = rangeOfCurrentTower.pos.y;
+
+                g2d.setColor(new Color(255, 255, 255, 40));
+                g2d.fillOval(centerX - range, centerY - range, range * 2, range * 2);
+                g2d.setColor(new Color(255, 255, 255, 150));
+                g2d.drawOval(centerX - range, centerY - range, range * 2, range * 2);
             }
         }
+    }
 
+    // setter for UpgradeUI
 
-        // --- DRAW THE PROJECTILES ---
-        g.setColor(Color.BLACK); // Make them black so they are easy to see
-        if (mechanic.getProjectiles() != null) {
-            // We use a safe copy to prevent ConcurrentModificationExceptions while drawing
-            ArrayList<Projectile> safeProjectiles = new ArrayList<>(mechanic.getProjectiles());
-            for (Projectile p : safeProjectiles) {
-                // Draw a small 6x6 rectangle at the projectile's X and Y
-                g.fillRect((int)p.getX() - 3, (int)p.getY() - 3, 6, 6);
-            }
-        }
+    public void setUpgradePanel(game.UpgradePanel upgradePanel) {
+        this.upgradePanel = upgradePanel;
+    }
 
-        if (mechanic.returnGameOver()){
-            g.setColor((new Color(0,0,0,150)));
-            g.fillRect(0, 0, getWidth(), getHeight());
-
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Arial",Font.BOLD,50));
-            g.drawString("Game Over!",250,300);
-        }
-
-
+    public void clearRangeHighlight() {     //helper method, deletes range of Tower when Tower is getting selled 
+        this.rangeOfCurrentTower=null;  
     }
 }

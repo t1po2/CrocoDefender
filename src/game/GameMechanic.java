@@ -8,6 +8,7 @@ import towers.Projectile;
 import towers.Tower;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class GameMechanic {
@@ -25,7 +26,8 @@ public class GameMechanic {
     private ArrayList<Croco> crocos; // add wave managaging class
 
     // spawn Timer for crocs
-    private int spawnTimer = -600; // counts frames negative because start of game needs a little delay to palce first tower
+    private int spawnTimer = -600; // counts frames negative because start of game needs a little delay to palce
+                                   // first tower
 
     // some variables for wavecontroll
     private WaveControl waveSystem = new WaveControl();
@@ -37,18 +39,19 @@ public class GameMechanic {
     //
     private String currentMap;
 
-
     // own class to store references to resouce manager
     public static class TowerData {
         public Point pos;
         public String resID;
         public Tower specs;
         public long lastShotTime = 0;
+        public BufferedImage texture;
 
         public TowerData(Point pos, String resID, Tower specs) {
             this.pos = pos;
             this.resID = resID;
             this.specs = specs;
+            this.texture = Resource.getResource(resID);
         }
     }
 
@@ -60,17 +63,18 @@ public class GameMechanic {
         this.projectiles = new ArrayList<>();
         this.currentMap = mapName;
 
-        // laod in map 
-        //add all map Keys here
+        // laod in map
+        // add all map Keys here
 
-        if (currentMap.equals("swamp_map")){
-            MapLayout currentMap = new Swamp_Map();
-            this.waypoints = currentMap.getWaypoints(); 
+        switch (currentMap) {
+            case "swamp_map":
+                MapLayout loadedMap = new Swamp_Map();
+                this.waypoints = loadedMap.getWaypoints();
+                break;
         }
     }
 
     // --- Setters ---
-
     public void setGamePanel(GamePanel panel) {
         this.gamePanel = panel; // Connect the UI to the brain
     }
@@ -80,17 +84,15 @@ public class GameMechanic {
     }
 
     // --- Getters ---
-
     public ArrayList<Croco> getCrocos() {
-        synchronized (crocos) {     //let the gamepanel wait before it draws anopther one
+        synchronized (crocos) { // let the gamepanel wait before it draws anopther one
             return new ArrayList<>(crocos);
         }
     }
 
-    public String getMapName(){
+    public String getMapName() {
         return currentMap;
     }
-
 
     public ArrayList<Projectile> getProjectiles() {
         return projectiles; // reference to GamePanel
@@ -148,7 +150,20 @@ public class GameMechanic {
         player.removeGold(newTowerStats.getCost());
     }
 
- 
+    // tower selection method for Upgrades detects weather tower is clicked or not
+
+    @SuppressWarnings("unused")
+    private TowerData selectedTowerforUpgrade = null;
+
+    @SuppressWarnings("unused")
+    private void selectTowerAt(Point mouseClick) {
+        selectedTowerforUpgrade = null; // remove previous selxted tower
+        for (TowerData tower : towers) {
+            if (mouseClick.distance(tower.pos) < 32) {
+                selectedTowerforUpgrade = tower;
+            }
+        }
+    }
 
     // --- Game Logic Down Below ---
     public void update() {
@@ -176,7 +191,8 @@ public class GameMechanic {
 
                 // Did it reach the end of the map?
                 if (currentCroco.hasReachedEnd()) {
-                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took"+ currentCroco.getDmg() + "damage!");
+                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took"
+                            + currentCroco.getDmg() + "damage!");
                     this.player.takeDamage(currentCroco.getDmg());
                     crocos.remove(i); // Delete it from the game
 
@@ -203,14 +219,13 @@ public class GameMechanic {
             System.out.println("next wave in " + (spawnTimer / -60));
         }
 
-        if (spawnTimer >= 0 && spawnedInCurrentWave < waveSystem.getCrocosToSpawn()) { // checks if max Croc limit is reached and spawn delay                                            
+        if (spawnTimer >= 0 && spawnedInCurrentWave < waveSystem.getCrocosToSpawn()) { // checks if max Croc limit is
+                                                                                       // reached and spawn delay
             if (spawnTimer > waveSystem.getSpawnDelay()) { // checks for nex wave spawn time
                 String nextCrocoType = waveSystem.pullNextCrocoType();
 
+                // -- spawns crocoType acording to WaveControll --
 
-                // -- spawns crocoType acording to WaveControll -- 
-
-                
                 switch (nextCrocoType) {
                     case "basic_croco":
                         crocos.add(new TestCroco(waypoints));
@@ -234,31 +249,35 @@ public class GameMechanic {
 
         // --- TOWER SHOOTING LOGIC ---
         long currentTime = System.currentTimeMillis();
-        for (TowerData tower : towers) {
-            // Check if the tower is ready to shoot based on its fire rate
-            if (currentTime - tower.lastShotTime >= tower.specs.getFireRate()) {
 
-                // Scan all crocos to find a target in range
-                for (Croco target : crocos) {
-                    double dist = tower.pos.distance(target.getX(), target.getY());
+        synchronized (towers) {
+            for (TowerData tower : towers) {
+                // Check if the tower is ready to shoot based on its fire rate
+                if (currentTime - tower.lastShotTime >= tower.specs.getFireRate()) {
 
-                    if (dist <= tower.specs.getRange()) {
-                        // Target found! Create projectile and reset the tower's cooldown timer
-                        projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage()));
-                        tower.lastShotTime = currentTime;
-                        break; // Break the loop so it only shoots ONE croco at a time
+                    // Scan all crocos to find a target in range
+                    for (Croco target : crocos) {
+                        double dist = tower.pos.distance(target.getX(), target.getY());
+
+                        if (dist <= tower.specs.getRange()) {
+                            // Target found! Create projectile and reset the tower's cooldown timer
+                            projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage()));
+                            tower.lastShotTime = currentTime;
+                            break; // Break the loop so it only shoots ONE croco at a time
+                        }
                     }
                 }
             }
-        }
-        // --- PROJECTILE MOVEMENT ---
-        for (int i = projectiles.size() - 1; i >= 0; i--) {
-            Projectile p = projectiles.get(i);
-            p.update();
-            if (!p.isActive()) {
-                projectiles.remove(i);
+            // --- PROJECTILE MOVEMENT ---
+            for (int i = projectiles.size() - 1; i >= 0; i--) {
+                Projectile p = projectiles.get(i);
+                p.update();
+                if (!p.isActive()) {
+                    projectiles.remove(i);
+                }
             }
         }
+
     }
 
     private void startNextWave() {
@@ -274,9 +293,33 @@ public class GameMechanic {
     public void render() {
         // The Boss tells the UI to refresh
         if (gamePanel != null) {
-            gamePanel.updatePlayerStats(player.getPlayerHp(), player.getGold(),waveSystem.curentWave()); // UI aktualisieren!
+            gamePanel.updatePlayerStats(player.getPlayerHp(), player.getGold(), waveSystem.curentWave()); // UI aktualisieren!                                           
             gamePanel.repaint();
+        }
+    }
 
+    // somehelper methods to control spend gold on Upgrades
+
+    // In GameMechanic.java
+    public int getPlayerGold() {
+        return player.getGold(); // Getter
+    }
+
+    public void spendGold(int amount) {
+        player.removeGold(amount); // setter
+    }
+
+    public void addGold(int amount) {
+        player.addGold(amount);
+    }
+
+    public void sellTower(TowerData tower) {
+        synchronized (towers) { // when projectile still lives and sell tower -->
+                                // ConcurrentModificationException Fixed!
+            towers.remove(tower);
+        }
+        if (gamePanel != null) {
+            gamePanel.clearRangeHighlight();
         }
     }
 

@@ -8,7 +8,7 @@ public class PlayerStats {
 
 
     public PlayerStats(){
-        this.gold = 100000;
+        gold = 100000;
     }
 
 
@@ -24,10 +24,10 @@ public class PlayerStats {
 
     //Setters
     public void addGold(int value){
-        this.gold = this.gold + value;
+        gold = gold + value;
     }
     public void takeDamage(int dmg){
-        this.playerHP = this.playerHP - dmg;
+        playerHP = playerHP - dmg;
     }
 
     public void removeGold(int value){
