@@ -115,9 +115,9 @@ public class GamePanel extends JPanel {
                 "Basic Tower 1800",
                 "Sniper Tower 3400",
                 "Super Duck 5200",
-                "archer_tower",
-                "ice_tower",
-                "tesla_tower"
+                "coming soon...",
+                "coming soon...",
+                "coming soon..."
         };
 
         for (int i = 0; i < towerIDs.length; i++) {
