@@ -6,8 +6,13 @@ I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
 *Updates Down Below*  
+## [Hotfix *v0.7.1*]  
+*12/05/2026*  
+-fixed name for duck tower  
+-added a delay before first round starts  
+
 ## [Patch *v0.7*]  
-*11/05/2026*    
+*12/05/2026*    
 -added new Crocodiles    
     > mid Croco  
     > fat Croco  

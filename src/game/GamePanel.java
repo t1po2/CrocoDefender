@@ -114,7 +114,7 @@ public class GamePanel extends JPanel {
         String[] towerName = {
                 "Basic Tower 1800",
                 "Sniper Tower 3400",
-                "Duck Tower 2400",
+                "Super Duck 5200",
                 "archer_tower",
                 "ice_tower",
                 "tesla_tower"

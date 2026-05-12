@@ -25,7 +25,7 @@ public class GameMechanic {
     private ArrayList<Croco> crocos; // add wave managaging class
 
     // spawn Timer for crocs
-    private int spawnTimer = 0; // counts frames
+    private int spawnTimer = -600; // counts frames negative because start of game needs a little delay to palce first tower
 
     // some variables for wavecontroll
     private WaveControl waveSystem = new WaveControl();
