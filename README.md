@@ -5,7 +5,11 @@ It's a basic Tower Defense game.
 I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
-*Updates Down Below*  
+*Updates Down Below*   
+## [Hotfix v0.8.1]  
+*12/05/2026*  
+-fixed bug of placing a non existing tower  
+
 ## [Beta Release v0.8]  
 *12/05/2026*  
 -still in testing stage  

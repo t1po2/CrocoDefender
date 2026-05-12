@@ -104,9 +104,9 @@ public class GamePanel extends JPanel {
                 "basic_tower",
                 "sniper_tower",
                 "duck_tower",
-                "archer_tower",
-                "ice_tower",
-                "tesla_tower"
+                "coming soon...",
+                "coming soon...",
+                "coming soon..."
         };
 
         // need to create seperate string for label name
@@ -190,7 +190,7 @@ public class GamePanel extends JPanel {
 
                 g.drawImage(towerImg, drawX, drawY, 64, 64, null);
             } else {
-                System.out.println("Can't place Tower");
+                System.out.println("Can't place Tower | Texture not found");
             }
         }
 
