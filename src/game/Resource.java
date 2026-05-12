@@ -20,20 +20,20 @@ public class Resource {
         // laoding all nessecary game resources 
         try {
             //map 
-            gameResources.put("swamp_map", ImageIO.read(new File("src\\resources\\maps\\swamp_map.png")));
+            gameResources.put("swamp_map", ImageIO.read(new File("src/resources/maps/swamp_map.png")));
             
             //Croco textures
-            gameResources.put("basic_croco", ImageIO.read(new File("src\\resources\\crocodiles\\basic_croco.png")));
-            gameResources.put("speedy_croco",ImageIO.read(new File("src\\resources\\crocodiles\\speedy_croco.png")));
-            gameResources.put("mid_croco", ImageIO.read(new File("src\\resources\\crocodiles\\mid_croco.png")));
-            gameResources.put("fat_croco", ImageIO.read(new File("src\\resources\\crocodiles\\fat_croco.png")));
+            gameResources.put("basic_croco", ImageIO.read(new File("src/resources/crocodiles/basic_croco.png")));
+            gameResources.put("speedy_croco",ImageIO.read(new File("src/resources/crocodiles/speedy_croco.png")));
+            gameResources.put("mid_croco", ImageIO.read(new File("src/resources/crocodiles/mid_croco.png")));
+            gameResources.put("fat_croco", ImageIO.read(new File("src/resources/crocodiles/fat_croco.png")));
             
 
 
             //Towers
-            gameResources.put("basic_tower", ImageIO.read(new File("src\\resources\\towers\\mortar.png")));
-            gameResources.put("sniper_tower",ImageIO.read(new File("src\\resources\\towers\\sniper.png")));
-            gameResources.put("duck_tower", ImageIO.read(new File("src\\resources\\towers\\duck.png")));
+            gameResources.put("basic_tower", ImageIO.read(new File("src/resources/towers/mortar.png")));
+            gameResources.put("sniper_tower",ImageIO.read(new File("src/resources/towers/sniper.png")));
+            gameResources.put("duck_tower", ImageIO.read(new File("src/resources/towers/duck.png")));
 
             System.out.println("all game resouces are loaded!");
         } catch (IOException e ) {
