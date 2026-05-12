@@ -7,7 +7,7 @@ I'll try to vibecode as less as possible ;)
 Have Fun :)  
 *Updates Down Below*  
 ## [Beta Release v0.8]  
-*12/05/2026*
+*12/05/2026*  
 -still in testing stage  
 -new content soon!  
 
