@@ -33,6 +33,7 @@ public class Resource {
             //Towers
             gameResources.put("basic_tower", ImageIO.read(new File("src\\resources\\towers\\mortar.png")));
             gameResources.put("sniper_tower",ImageIO.read(new File("src\\resources\\towers\\sniper.png")));
+            gameResources.put("duck_tower", ImageIO.read(new File("src\\resources\\towers\\duck.png")));
 
             System.out.println("all game resouces are loaded!");
         } catch (IOException e ) {

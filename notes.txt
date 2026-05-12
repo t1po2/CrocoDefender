@@ -1,65 +1,27 @@
-Here's where each file should handle different responsibilities:
+JScrollPane listScroller = new JScrollPane(list);
+listScroller.setPreferredSize(new Dimension(250, 80));
+listScroller.setAlignmentX(LEFT_ALIGNMENT);
+...
+//Lay out the label and scroll pane from top to bottom.
+JPanel listPane = new JPanel();
+listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
+JLabel label = new JLabel(labelText);
+...
+listPane.add(label);
+listPane.add(Box.createRigidArea(new Dimension(0,5)));
+listPane.add(listScroller);
+listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-GameMechanic.java - Contains your core game logic (what happens in the game)
-GameLoop.java - Handles the game loop timing and updating/rendering
-GamePanel.java - Handles rendering/display logic
-Launcher.java - Just handles program startup
+//Lay out the buttons from left to right.
+JPanel buttonPane = new JPanel();
+buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
+buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+buttonPane.add(Box.createHorizontalGlue());
+buttonPane.add(cancelButton);
+buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+buttonPane.add(setButton);
 
-
-The 
-GameMechanic  class already has update() and render() methods that are called by the game loop.
- You should implement your actual game logic there.
-
-
-------------------------------------------------------------------------
-so logic comes in Gme mechanics and HUD for the player in gamepanel?
-
-Chat
-Yes, that's correct! Here's how it should be structured:
-
->GameMechanic.java - Contains your core game logic:
-Player movement and interactions
-Game state management
-Enemy AI
-Collision detection
-Game rules and scoring
-
-
-
->GamePanel.java - Handles rendering/display logic:
-Drawing the player (HUD elements)
-Rendering game objects
-Displaying UI elements (health bars, scores, etc.)
-
------------------------------------------------------------------------------
-
->GamePanel should handle:
-Mouse click detection
-Converting screen coordinates to map coordinates
-Calling the appropriate methods on GameMechanic
-
->GameMechanic should handle:
-Validating tower placement (can tower be placed there?)
-Actually placing the tower in its data structures
-Managing tower costs and resources
-------------------------------------------
-Tower newTowerStats;
-        
-        // Decide which Tower class to instantiate based on the ID string
-        switch (selectedTower) {
-            case "cannon_tower":
-                // Assuming you created a CannonT class in your towers package!
-                newTowerStats = new towers.CannonT(); 
-                break;
-            case "mage_tower":
-                newTowerStats = new towers.MageT(); 
-                break;
-            default:
-                // If it's "basic_tower" or anything else, fall back to BasicT
-                newTowerStats = new towers.BasicT(); 
-                break;
-        }
-
-        // If it passes the rules, add it
-        towers.add(new TowerData(p, selectedTower, newTowerStats));
-        System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
+//Put everything together, using the content pane's BorderLayout.
+Container contentPane = getContentPane();
+contentPane.add(listPane, BorderLayout.CENTER);
+contentPane.add(buttonPane, BorderLayout.PAGE_END);

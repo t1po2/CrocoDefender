@@ -15,6 +15,8 @@ Have Fun :)
 -reduced spawn delay of Crocos spawn rate: Croco/60 Frames >> Croco/30 Frames  
 -added new HUD variable to see current Wave  
 -added possibility for map selection  
+-added Main Menu  
+-added map selector  
 
 ## [Hotfix *v0.6.2*]  
 *11/05/2026*  

@@ -1,14 +1,25 @@
-package game;
+package game.main_menu;
 
 import javax.swing.SwingUtilities;
 
-public class Launcher {
+import game.GameLoop;
+import game.GameMechanic;
+import game.Resource;
+import game.Window;
 
-    private static String mapName;   
+public class Launcher {
+ 
 
     public static void main(String[] args){
 
-        mapName = "swamp_map";  // insert map name here
+        SwingUtilities.invokeLater(() -> {              // Launches Main Menu from there u can start game
+           new MainMenu();
+        });
+
+    }
+
+    public static void startGame(String mapName){
+        mapName = MainMenu.getMap();  // insert map name here
 
         Resource.loadGameResources();
         //initiate GameLoop inside a thread

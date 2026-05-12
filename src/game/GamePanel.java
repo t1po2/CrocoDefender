@@ -103,7 +103,7 @@ public class GamePanel extends JPanel {
         String[] towerIDs = {
                 "basic_tower",
                 "sniper_tower",
-                "mage_tower",
+                "duck_tower",
                 "archer_tower",
                 "ice_tower",
                 "tesla_tower"
@@ -114,7 +114,7 @@ public class GamePanel extends JPanel {
         String[] towerName = {
                 "Basic Tower 1800",
                 "Sniper Tower 3400",
-                "mage_tower",
+                "Duck Tower 2400",
                 "archer_tower",
                 "ice_tower",
                 "tesla_tower"
@@ -181,7 +181,7 @@ public class GamePanel extends JPanel {
 
         // Draw every tower from the logic list
         for (GameMechanic.TowerData tower : mechanic.getPlacedTowers()) {
-            BufferedImage towerImg = Resource.getResource(tower.resID);
+            BufferedImage towerImg = Resource.getResource(tower.resID);    // asks for the Tower image
 
             if (towerImg != null) {
                 // Subtract 32 from X and Y to center the 64x64 image on the click
