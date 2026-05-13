@@ -7,7 +7,7 @@ public class SniperT extends Tower {
 
     public SniperT(){
         //int range,int damage, int rpm, int cost, String towerType
-        super(500,10,15,3400,"Sniper Tower");
+        super(500,10,15,3400,"Sniper Tower","default_proj");
         this.upgrade1Cost = 800;
         this.upgrade2Cost = 1500;
         this.upgrade3Cost = 3000;

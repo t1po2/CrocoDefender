@@ -5,7 +5,7 @@ public class BasicT extends Tower {
 
     public BasicT(){
         //int range,int damage, int rpm, int cost, String towerType
-        super(200,1,80,1800,"Basic Tower");
+        super(200,1,80,1800,"Basic Tower","default_proj");
         this.upgrade1Cost = 800;
         this.upgrade2Cost = 1500;
         this.upgrade3Cost = 3000;

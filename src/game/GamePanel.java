@@ -195,13 +195,24 @@ public class GamePanel extends JPanel {
             }
 
             // --- DRAW THE PROJECTILES ---
-            g.setColor(Color.BLACK); // Make them black so they are easy to see
             if (mechanic.getProjectiles() != null) {
                 // We use a safe copy to prevent ConcurrentModificationExceptions while drawing
                 ArrayList<Projectile> safeProjectiles = new ArrayList<>(mechanic.getProjectiles());
                 for (Projectile p : safeProjectiles) {
-                    // Draw a small 6x6 rectangle at the projectile's X and Y
-                    g.fillRect((int) p.getX() - 3, (int) p.getY() - 3, 6, 6);
+                    if (p.getTexture()!=null){
+                        Graphics2D g2d = (Graphics2D) g.create();
+
+                        int cx = (int) p.getX();        // g2d draws the projectile defaultly at 0, 0 this woulD be top left corner tahts why we set 
+                        int cy = (int) p.getY();        // the palce to draw at the center of our projectile
+                        g2d.translate(cx,cy);
+
+                        g2d.rotate(p.getAngle());       //rotates picture the angle 
+
+                        g2d.drawImage(p.getTexture(),-8,-8,16,16,null);
+                        g2d.dispose();
+                    } else {
+                        System.out.println("Error coud not find projectle texture");
+                    }
                 }
             }
 

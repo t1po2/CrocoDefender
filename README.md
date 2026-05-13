@@ -15,6 +15,7 @@ Have Fun :)
 -added now diffrent upgrades although every tower has the same upgrades  
 -added BalanceChangeControl.java for easier balance changes  
 -cleaned up code for a easier overview  
+-added own projectile textures  
 
 ## [Patch v0.9]  
 *12/05/2026*   

@@ -247,7 +247,7 @@ public class GameMechanic {
 
                         if (dist <= tower.specs.getRange()) {
                             // Target found! Create projectile and reset the tower's cooldown timer
-                            projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage()));
+                            projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage(),tower.specs.getProjectileKey()));
                             tower.lastShotTime = currentTime;
                             break; // Break the loop so it only shoots ONE croco at a time
                         }

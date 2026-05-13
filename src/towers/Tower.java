@@ -7,6 +7,7 @@ public abstract class Tower implements Upgrades {
     protected int fireRate; // milliseconds between shots
     protected int cost;
     protected String towerType;
+    protected String projectileKey;
     protected double towerValue;
 
 
@@ -25,12 +26,13 @@ public abstract class Tower implements Upgrades {
     protected String upgrade3Desc;
     protected String upgrade4Desc;
 
-    public Tower(int range,int damage, int rpm, int cost, String towerType){
+    public Tower(int range,int damage, int rpm, int cost, String towerType,String projectileKey){
         this.range = range;
         this.damage = damage;
         this.cost = cost;
         this.towerType = towerType;
         this.towerValue = cost;       //rounds the number sell price is at 70%
+        this.projectileKey = projectileKey;
 
         //unfortunetly there is only current time in milliseconds 
         //rpm converter
@@ -137,6 +139,10 @@ public abstract class Tower implements Upgrades {
 
     public String getUpgrade4Desc() {
         return upgrade4Desc;
+    }
+
+    public String getProjectileKey() {
+        return projectileKey;
     }
 
     //setters
