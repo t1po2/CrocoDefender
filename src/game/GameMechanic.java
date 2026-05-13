@@ -26,8 +26,8 @@ public class GameMechanic {
     private ArrayList<Croco> crocos; // add wave managaging class
 
     // spawn Timer for crocs
-    private int spawnTimer = -600; // counts frames negative because start of game needs a little delay to palce
-                                   // first tower
+    private int spawnTimer = BalanceChangeControl.getFirstRoundStartDelay(); // counts frames negative because start of game needs a little delay to palce first tower
+                                   
 
     // some variables for wavecontroll
     private WaveControl waveSystem = new WaveControl();
@@ -150,20 +150,6 @@ public class GameMechanic {
         player.removeGold(newTowerStats.getCost());
     }
 
-    // tower selection method for Upgrades detects weather tower is clicked or not
-
-    @SuppressWarnings("unused")
-    private TowerData selectedTowerforUpgrade = null;
-
-    @SuppressWarnings("unused")
-    private void selectTowerAt(Point mouseClick) {
-        selectedTowerforUpgrade = null; // remove previous selxted tower
-        for (TowerData tower : towers) {
-            if (mouseClick.distance(tower.pos) < 32) {
-                selectedTowerforUpgrade = tower;
-            }
-        }
-    }
 
     // --- Game Logic Down Below ---
     public void update() {

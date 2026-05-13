@@ -17,12 +17,20 @@ public abstract class Tower implements Upgrades {
     protected int upgrade3Cost;
     protected int upgrade4Cost;
 
+
+    //Uograde desc for Buttons
+
+    protected String upgrade1Desc;
+    protected String upgrade2Desc;
+    protected String upgrade3Desc;
+    protected String upgrade4Desc;
+
     public Tower(int range,int damage, int rpm, int cost, String towerType){
         this.range = range;
         this.damage = damage;
         this.cost = cost;
         this.towerType = towerType;
-        this.towerValue = (int)Math.round(cost*0.7);        //rounds the number sell price is at 70%
+        this.towerValue = cost;       //rounds the number sell price is at 70%
 
         //unfortunetly there is only current time in milliseconds 
         //rpm converter
@@ -115,7 +123,21 @@ public abstract class Tower implements Upgrades {
         return upgrade4Cost;
     }
 
-    
+    public String getUpgrade1Desc() {
+        return upgrade1Desc;
+    }
+
+    public String getUpgrade2Desc() {
+        return upgrade2Desc;
+    }
+
+    public String getUpgrade3Desc() {
+        return upgrade3Desc;
+    }
+
+    public String getUpgrade4Desc() {
+        return upgrade4Desc;
+    }
 
     //setters
     public void addValue(int value){

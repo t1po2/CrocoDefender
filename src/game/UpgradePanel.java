@@ -19,7 +19,7 @@ public class UpgradePanel extends JPanel {
 
     //for balance changes:
 
-    private int factor = 5;     // setts factor of which upgrade prices increases after upgraded realFactor = ((factor/10)+1)
+    private int factor = BalanceChangeControl.getUpgradeFactor(); // setts factor of which upgrade prices increases after upgraded realFactor = ((factor/10)+1)
 
 
     public UpgradePanel() {
@@ -42,7 +42,7 @@ public class UpgradePanel extends JPanel {
 
             if (currentTower != null && gameMechanic != null) {
                 int currentPlayerGold = gameMechanic.getPlayerGold();
-                int cost = currentTower.specs.getUpgrade1Cost();
+                 int cost = currentTower.specs.getUpgrade1Cost();
 
             if (currentPlayerGold >= cost) {
                 int spent = currentTower.specs.upgrade1(); 
@@ -57,26 +57,53 @@ public class UpgradePanel extends JPanel {
         });
 
         upgradeBtn2.addActionListener(e -> {
-            if (currentTower != null) {
-                System.out.println("Upgrade gedrückt für: " + currentTower.resID);
-                //currentTower.specs.upgrade2();
-                updateUIForTower(currentTower); // Text nach Upgrade aktualisieren
+             if (currentTower != null && gameMechanic != null) {
+                int currentPlayerGold = gameMechanic.getPlayerGold();
+                 int cost = currentTower.specs.getUpgrade2Cost();
+
+            if (currentPlayerGold >= cost) {
+                int spent = currentTower.specs.upgrade2(); 
+                gameMechanic.spendGold(spent); 
+                currentTower.specs.setUpgrade2Cost(factor);     
+                updateUIForTower(currentTower);
+                System.out.println("Upgrade erfolgreich!");
+            } else {
+                System.out.println("Nicht genug Gold!");
+                }
             }
         });
 
         upgradeBtn3.addActionListener(e -> {
-            if (currentTower != null) {
-                System.out.println("Upgrade gedrückt für: " + currentTower.resID);
-               // currentTower.specs.upgrade3();
-                updateUIForTower(currentTower); // Text nach Upgrade aktualisieren
+             if (currentTower != null && gameMechanic != null) {
+                int currentPlayerGold = gameMechanic.getPlayerGold();
+                 int cost = currentTower.specs.getUpgrade3Cost();
+
+            if (currentPlayerGold >= cost) {
+                int spent = currentTower.specs.upgrade3(); 
+                gameMechanic.spendGold(spent); 
+                currentTower.specs.setUpgrade3Cost(factor);     
+                updateUIForTower(currentTower);
+                System.out.println("Upgrade erfolgreich!");
+            } else {
+                System.out.println("Nicht genug Gold!");
+                }
             }
         });
 
         upgradeBtn4.addActionListener(e -> {
-            if (currentTower != null) {
-                System.out.println("Upgrade gedrückt für: " + currentTower.resID);
-               // currentTower.specs.upgrade4();
-                updateUIForTower(currentTower); // Text nach Upgrade aktualisieren
+              if (currentTower != null && gameMechanic != null) {
+                int currentPlayerGold = gameMechanic.getPlayerGold();
+                 int cost = currentTower.specs.getUpgrade4Cost();
+
+            if (currentPlayerGold >= cost) {
+                int spent = currentTower.specs.upgrade4(); 
+                gameMechanic.spendGold(spent); 
+                currentTower.specs.setUpgrade4Cost(factor);      
+                updateUIForTower(currentTower);
+                System.out.println("Upgrade erfolgreich!");
+            } else {
+                System.out.println("Nicht genug Gold!");
+                }
             }
         });
 
@@ -105,10 +132,10 @@ public class UpgradePanel extends JPanel {
         this.currentTower = tower;
         // Texte anpassen
         infoLabel.setText("Sell Price: "+tower.specs.getTowerValue());
-        upgradeBtn1.setText("Upgrade 1 (" + tower.specs.getUpgrade1Cost() + "Gold)");
-        upgradeBtn2.setText("Upgrade 2 (" + tower.specs.getUpgrade2Cost() + "Gold)");
-        upgradeBtn3.setText("Upgrade 3 (" + tower.specs.getUpgrade3Cost() + "Gold)");
-        upgradeBtn4.setText("Upgrade 4 (" + tower.specs.getUpgrade4Cost() + "Gold)");
+        upgradeBtn1.setText("Upgrade 1 " + tower.specs.getUpgrade1Desc() +" "+tower.specs.getUpgrade1Cost()+" Gold");
+        upgradeBtn2.setText("Upgrade 2 " + tower.specs.getUpgrade2Desc() +" "+tower.specs.getUpgrade2Cost()+" Gold");
+        upgradeBtn3.setText("Upgrade 3 " + tower.specs.getUpgrade3Desc() +" "+tower.specs.getUpgrade3Cost()+" Gold");
+        upgradeBtn4.setText("Upgrade 4 " + tower.specs.getUpgrade4Desc() +" "+tower.specs.getUpgrade4Cost()+" Gold");
         
         this.setVisible(true); //set panel to visible
     }

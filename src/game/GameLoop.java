@@ -17,6 +17,7 @@ public class GameLoop implements Runnable{
 
     public GameLoop(GameMechanic game){
         this.game=game;
+       
     }
 
 

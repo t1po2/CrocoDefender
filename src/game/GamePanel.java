@@ -71,29 +71,12 @@ public class GamePanel extends JPanel {
 
         // --- Side panel for tower selection ---
 
-        JPanel sidePanel = new JPanel(new BorderLayout());
-        sidePanel.setOpaque(false);
 
         JPanel towerMenu = new JPanel();
         towerMenu.setPreferredSize(new Dimension(300, 600));
         towerMenu.setLayout(new GridLayout(6, 1)); // 6 rows 1 colum
         towerMenu.setOpaque(false);
 
-        JButton toggleSidePanel = new JButton("<");
-        toggleSidePanel.setFocusPainted(false);
-        toggleSidePanel.setPreferredSize(new Dimension(30, 600));
-
-        toggleSidePanel.addActionListener(e -> {
-            boolean isVisible = towerMenu.isVisible();
-            towerMenu.setVisible(!isVisible);
-
-            if (!isVisible) {
-                toggleSidePanel.setText("<");
-            } else {
-                toggleSidePanel.setText(">");
-            }
-            this.revalidate();
-        });
 
         // Define your tower IDs
         String[] towerIDs = {
@@ -131,9 +114,7 @@ public class GamePanel extends JPanel {
 
             towerMenu.add(btn);
         }
-
-        sidePanel.add(towerMenu, BorderLayout.CENTER);
-        this.add(sidePanel, BorderLayout.EAST);
+        this.add(towerMenu, BorderLayout.EAST);
 
       
 

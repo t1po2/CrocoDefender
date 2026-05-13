@@ -5,16 +5,23 @@ It's a basic Tower Defense game.
 I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
-*Updates Down Below*   
+*Updates Down Below*    
+
+## [Patch v0.10]    
+*13/05/2026*  
+-added now diffrent upgrades although every tower has the same upgrades  
+-added BalanceChangeControl.java for easier balance changes  
+-cleaned up code for a easier overview  
+
 ## [Patch v0.9]  
 *12/05/2026*   
--optimized laoding game textures by loading Textures inside TowerData class   
+-optimized loading game textures by loading Textures inside TowerData class   
 -added Upgrade System (although all upgrades only gives plus 2 damage (IT WORKS THO BE PROUD OF ME!))        
--if trying to start a game without any map selected, instead of a warning message, it opens Map selector. 
+-if trying to start a game without any map selected, instead of a warning message, it opens Map selector.               
 
 ## [Hotfix v0.8.1]  
 *12/05/2026*  
--fixed bug of placing a non existing tower  
+-fixed bug of placing a non existing tower   
 
 ## [Beta Release v0.8]  
 *12/05/2026*  
