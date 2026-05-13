@@ -26,7 +26,7 @@ public class Splitter_proj extends Projectile {
         }
         if (allProjectiles != null) {
             Random rand = new Random();
-            for (int i = 0; i < rand.nextInt(12); i++) {
+            for (int i = 0; i < 20 + rand.nextInt(20); i++) {
                 allProjectiles.add(new Shrapnel(this.x, this.y));
             }
         }
