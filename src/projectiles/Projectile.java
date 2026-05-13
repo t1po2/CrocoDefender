@@ -66,4 +66,5 @@ public abstract class Projectile {
     public double getY() { return y; }
     public boolean isActive() { return active; }
     public BufferedImage getTexture() { return texture; }
+    public boolean isShrapnell(){ return false; }   //default for all non aoe projectiles
 }

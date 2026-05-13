@@ -198,7 +198,16 @@ public class GamePanel extends JPanel {
             if (mechanic.getProjectiles() != null) {
                 // We use a safe copy to prevent ConcurrentModificationExceptions while drawing
                 ArrayList<Projectile> safeProjectiles = new ArrayList<>(mechanic.getProjectiles());
+
+
                 for (Projectile p : safeProjectiles) {
+
+                    if (p.isShrapnell()) {
+                        g.setColor(Color.BLACK);
+                        g.fillRect((int) p.getX() - 3 , (int) p.getY()-3, 6, 6);      //6x6 square for shrapnel -> need to subtract 3 for the center
+                        continue;
+                    }
+
                     if (p.getTexture()!=null){
                         Graphics2D g2d = (Graphics2D) g.create();
 

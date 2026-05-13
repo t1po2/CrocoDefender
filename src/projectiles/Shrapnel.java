@@ -1,5 +1,6 @@
 package projectiles;
 
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Shrapnel extends Projectile {
@@ -35,6 +36,14 @@ public class Shrapnel extends Projectile {
     @Override
     protected void onHit() {
     //empty its just visual effect
+    }
+
+    @Override
+    public BufferedImage getTexture() {
+        return null;   // force GamePanel to draw it manually
+    }
+    public boolean isShrapnel() {
+        return true;    // set true so gamepanel knows he ahs to render shrapnel
     }
     
 }
