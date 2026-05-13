@@ -6,6 +6,9 @@ I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
 *Updates Down Below*    
+## [Hotfix v0.11]  
+*13/05/2026*  
+-fixed an issue where upgrading a tower's fire rate would unintentionally increase the firing interval, causing them to shoot slower  
 
 ## [Patch v0.10]    
 *13/05/2026*  
@@ -17,7 +20,7 @@ Have Fun :)
 *12/05/2026*   
 -optimized loading game textures by loading Textures inside TowerData class   
 -added Upgrade System (although all upgrades only gives plus 2 damage (IT WORKS THO BE PROUD OF ME!))        
--if trying to start a game without any map selected, instead of a warning message, it opens Map selector.               
+-if trying to start a game without any map selected, instead of a warning message, it opens Map selector                
 
 ## [Hotfix v0.8.1]  
 *12/05/2026*  

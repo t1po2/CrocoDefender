@@ -26,7 +26,7 @@ public class SniperT extends Tower {
     }
     @Override
     public void applyUpgrade2(){
-        this.fireRate = (int)Math.round(fireRate*1.2);  //20 % fireRate Buff
+        this.fireRate = (int)Math.round(fireRate/1.2);  //20 % fireRate Buff
     }
     @Override
     public void applyUpgrade3(){
