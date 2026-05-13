@@ -4,8 +4,8 @@ public class BalanceChangeControl {
 
 
 
-    private static int sellFactor=10;        //tower sell factor in %
-    private static int upgradeFactor=10;     // price in crease after an upgrade in %
+    private static int sellFactor=7;        //tower sell factor in %
+    private static int upgradeFactor=3;     // price in crease after an upgrade in %
 
     private static int firstRoundStartDelay = -600;         //how many frames wait brfore first Round starts
 
