@@ -10,11 +10,11 @@ public class GameConfig {
 
     // -- Wave and Round Delay --
     private static int firstRoundStartDelay = 200;         //how many frames wait brfore first Round starts
-    private static int nextRoundDelay = 240;        // pause inbetween waves
+    private static int nextRoundDelay = 240;        // pause inbetween waves in frames
 
     // -- Projectile AOE Radius --
-    private static int splashRadius = 50;
-    private static int splashDamage = 1;
+    private static int splashRadius = 120; //in px
+    private static int splashDamage = 1;    
 
 
 
