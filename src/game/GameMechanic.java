@@ -26,7 +26,7 @@ public class GameMechanic {
     private ArrayList<Croco> crocos; // add wave managaging class
 
     // spawn Timer for crocs
-    private int spawnTimer = BalanceChangeControl.getFirstRoundStartDelay(); // counts frames negative because start of game needs a little delay to palce first tower
+    private int spawnTimer = GameConfig.getFirstRoundStartDelay(); // counts frames negative because start of game needs a little delay to palce first tower
                                    
 
     // some variables for wavecontroll
@@ -269,9 +269,9 @@ public class GameMechanic {
     private void startNextWave() {
         waveSystem.incrementWave();
         spawnedInCurrentWave = 0;
-        spawnTimer = -240; // spawndelay in frames so basically croco spawner spawns every 60 frames a
-                           // croco but if a new wave starts subtract 120 frames so update need to count
-                           // 120 frames until 1 spawn
+        spawnTimer = GameConfig.getNextRoundDelay();  // spawndelay in frames so basically croco spawner spawns every 60 frames a
+                                                                // croco but if a new wave starts subtract 120 frames so update need to count
+                                                                // 120 frames until 1 spawn
         System.out.println("Welle " + waveSystem.curentWave() + " startet!");
     }
 

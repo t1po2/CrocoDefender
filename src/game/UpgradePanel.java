@@ -19,7 +19,7 @@ public class UpgradePanel extends JPanel {
 
     //for balance changes:
 
-    private int factor = BalanceChangeControl.getUpgradeFactor(); // setts factor of which upgrade prices increases after upgraded realFactor = ((factor/10)+1)
+    private int factor = GameConfig.getUpgradeFactor(); // setts factor of which upgrade prices increases after upgraded realFactor = ((factor/10)+1)
 
 
     public UpgradePanel() {

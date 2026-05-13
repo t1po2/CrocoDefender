@@ -9,6 +9,8 @@ Have Fun :)
 ## [Hotfix v0.11]  
 *13/05/2026*  
 -fixed an issue where upgrading a tower's fire rate would unintentionally increase the firing interval, causing them to shoot slower  
+-renamed BalanceChangeControl.java to GameConfig.java for easier understanding  
+
 
 ## [Patch v0.10]    
 *13/05/2026*  
