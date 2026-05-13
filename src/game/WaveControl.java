@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class WaveControl {
 
 
-    private int wave = 1;
-    private int spawnDelay = 30;
+    private int wave = 4;
+    private int spawnDelay = GameConfig.getSpawnDelay();
     private int totalCrocosThisWave;
 
     //List for spawning Diffrent types of crocs
@@ -36,32 +36,32 @@ public class WaveControl {
 
 
         if (wave == 1){
-            for (int i= 0;i<10;i++){
+            for (int i= 0;i<25;i++){
                 spawnPattern.add("basic_croco");
             }
         } else if ( wave == 3){                        //wave 3 +speedy_croco
-            for (int i= 0;i<5;i++){
+            for (int i= 0;i<10;i++){
                 spawnPattern.add("speedy_croco");
                 spawnPattern.add("basic_croco");
             }
         } else if (wave==6){                        // wave 6   +mid_croco , +fat_croco
             spawnPattern.add("fat_croco");
-            for (int i=0;i<6;i++){
+            for (int i=0;i<30;i++){
                 spawnPattern.add("mid_croco");
             } 
         } else if (wave== 7){                       // wave 7
-            for (int i = 0;i<15;i++){
+            for (int i = 0;i<30;i++){
                 spawnPattern.add("basic_croco");
             }
         } else if (wave == 8){                  //wave 8   +fat_Croco
-            for (int i = 0;i<6;i++){
+            for (int i = 0;i<20;i++){
                 spawnPattern.add("fat_croco");
             }
-            for (int i = 0 ; i<4;i++){
+            for (int i = 0 ; i<10;i++){
                 spawnPattern.add("speedy_croco");
                 spawnPattern.add("mid_croco");
             }
-            for (int i=0;i<10;i++){
+            for (int i=0;i<40;i++){
                 spawnPattern.add("basic_croco");
             }
         } else {
@@ -71,8 +71,6 @@ public class WaveControl {
         }
         
         
-
-
 
        for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2
             spawnPattern.add(lastPattern.get(i));

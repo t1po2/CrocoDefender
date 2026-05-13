@@ -1,13 +1,12 @@
 package towers;
 
-public class SniperT extends Tower {
+public class TankT extends Tower {
+
     
 
+    public TankT(){
+        super(200,1,55,2400,"splitter_proj");
 
-
-    public SniperT(){
-        //int range,int damage, int rpm, int cost, String towerType
-        super(500,10,15,3400,"default_proj");
         this.upgrade1Cost = 800;
         this.upgrade2Cost = 1500;
         this.upgrade3Cost = 3000;
@@ -17,9 +16,8 @@ public class SniperT extends Tower {
         this.upgrade2Desc = "+20% fireRate";
         this.upgrade3Desc = "+10% range";
         this.upgrade4Desc = "comming soon...";
+
     }
-
-
     @Override
     public void applyUpgrade1(){
         this.damage +=2;
@@ -35,4 +33,4 @@ public class SniperT extends Tower {
     @Override
     public void applyUpgrade4(){
     }
-}   
+}

@@ -11,9 +11,10 @@ public class GameConfig {
     // -- Wave and Round Delay --
     private static int firstRoundStartDelay = 200;         //how many frames wait brfore first Round starts
     private static int nextRoundDelay = 240;        // pause inbetween waves in frames
+    private static int spawnDelay = 20;         //spawn delay between each croco in frames
 
     // -- Projectile AOE Radius --
-    private static int splashRadius = 80; //in px
+    private static int splashRadius = 65; //in px
     private static int splashDamage = 1;    
 
 
@@ -79,5 +80,8 @@ public class GameConfig {
     }
     public static int getSplashDamage(){
         return splashDamage;
+    }
+    public static int getSpawnDelay(){
+        return spawnDelay;
     }
 }

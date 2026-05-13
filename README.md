@@ -104,6 +104,9 @@ Have Fun :)
 -added some models  
 -added placeTowers mechanic  
 
+## [Known Issues]  
+-if sattement for upgrade locked mechanism is execuiting after button press -> leads to fake upgrade
+
 
 
 ## CREDITS:  

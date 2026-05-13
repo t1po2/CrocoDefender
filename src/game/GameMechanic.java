@@ -136,6 +136,9 @@ public class GameMechanic {
             case "duck_tower":
                 newTowerStats = new towers.DuckT();
                 break;
+            case "tank_tower":
+                newTowerStats = new towers.TankT();
+                break;
             default:
                 newTowerStats = new towers.BasicT();
                 break;
