@@ -39,21 +39,25 @@ public class UpgradePanel extends JPanel {
 
         // pgrade logic
         upgradeBtn1.addActionListener(e -> {
-
-            if (currentTower != null && gameMechanic != null) {
-                int currentPlayerGold = gameMechanic.getPlayerGold();
-                 int cost = currentTower.specs.getUpgrade1Cost();
-
-            if (currentPlayerGold >= cost) {
-                int spent = currentTower.specs.upgrade1(); 
-                gameMechanic.spendGold(spent); 
-                currentTower.specs.setUpgrade1Cost(factor);      // increase upgrade price by factor
-                updateUIForTower(currentTower);
-                System.out.println("Upgrade erfolgreich!");
+             if (currentTower.specs.locked1()){
+                    upgradeBtn1.setText("max. level reached");      // it checks lock after button is pressed leading to a fake press upgrade
             } else {
-                System.out.println("Nicht genug Gold!");
+                if (currentTower != null && gameMechanic != null) {
+                    int currentPlayerGold = gameMechanic.getPlayerGold();
+                    int cost = currentTower.specs.getUpgrade1Cost();
+
+                    if (currentPlayerGold >= cost) {
+                        int spent = currentTower.specs.upgrade1(); 
+                        gameMechanic.spendGold(spent); 
+                        currentTower.specs.setUpgrade1Cost(factor);      // increase upgrade price by factor
+                        updateUIForTower(currentTower);
+                        System.out.println("Upgrade erfolgreich!");                    
+                    }
+                } else {
+                    System.out.println("Nicht genug Gold!");
                 }
             }
+
         });
 
         upgradeBtn2.addActionListener(e -> {

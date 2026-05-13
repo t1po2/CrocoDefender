@@ -13,7 +13,7 @@ public class GameConfig {
     private static int nextRoundDelay = 240;        // pause inbetween waves in frames
 
     // -- Projectile AOE Radius --
-    private static int splashRadius = 120; //in px
+    private static int splashRadius = 80; //in px
     private static int splashDamage = 1;    
 
 

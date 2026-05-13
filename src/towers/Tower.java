@@ -20,11 +20,17 @@ public abstract class Tower implements Upgrades {
 
 
     //Uograde desc for Buttons
-
     protected String upgrade1Desc;
     protected String upgrade2Desc;
     protected String upgrade3Desc;
     protected String upgrade4Desc;
+    // upgrade lock 
+    protected int lock1=0;
+    protected int lock2=0;
+    protected int lock3=0;
+    protected int lock4=0;
+
+
 
     public Tower(int range,int damage, int rpm, int cost,String projectileKey){
         this.range = range;
@@ -47,24 +53,28 @@ public abstract class Tower implements Upgrades {
     public final int upgrade1(){
         applyUpgrade1();
         this.addValue((int)Math.round(upgrade1Cost*0.7));
+        lock1++;
         return upgrade1Cost;
     }
     @Override
     public final int upgrade2(){
         applyUpgrade2();
         this.addValue((int)Math.round(upgrade2Cost*0.7));
+        lock2++;
         return upgrade2Cost;
     }
     @Override
     public final int upgrade3(){
         applyUpgrade3();
         this.addValue((int)Math.round(upgrade3Cost*0.7));
+        lock3++;
         return upgrade3Cost;
     }
     @Override
     public final int upgrade4(){
         applyUpgrade4();
         this.addValue((int)Math.round(upgrade4Cost*0.7));
+        lock4++;
         return upgrade4Cost;
     }
 
@@ -143,6 +153,38 @@ public abstract class Tower implements Upgrades {
     public String getProjectileKey() {
         return projectileKey;
     }
+
+
+    public boolean locked1(){
+        if(lock1>=4){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean locked2(){
+        if(lock2>=4){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean locke3(){
+        if(lock3>=4){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean locked4(){
+        if(lock4>=4){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
     //setters
     public void addValue(int value){
