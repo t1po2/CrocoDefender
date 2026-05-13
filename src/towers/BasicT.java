@@ -25,7 +25,7 @@ public class BasicT extends Tower {
     }
     @Override
     public void applyUpgrade2(){
-        this.fireRate = (int)Math.round(fireRate*1.2);  
+        this.fireRate = (int)Math.round(fireRate/1.2);  
     }
     @Override
     public void applyUpgrade3(){
