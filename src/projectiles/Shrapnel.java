@@ -42,8 +42,8 @@ public class Shrapnel extends Projectile {
     public BufferedImage getTexture() {
         return null;   // force GamePanel to draw it manually
     }
-    public boolean isShrapnel() {
-        return true;    // set true so gamepanel knows he ahs to render shrapnel
-    }
-    
+    @Override
+    public boolean isShrapnel(){ 
+        return true; 
+    } 
 }

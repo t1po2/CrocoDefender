@@ -71,12 +71,10 @@ public class GamePanel extends JPanel {
 
         // --- Side panel for tower selection ---
 
-
         JPanel towerMenu = new JPanel();
         towerMenu.setPreferredSize(new Dimension(300, 600));
         towerMenu.setLayout(new GridLayout(6, 1)); // 6 rows 1 colum
         towerMenu.setOpaque(false);
-
 
         // Define your tower IDs
         String[] towerIDs = {
@@ -115,8 +113,6 @@ public class GamePanel extends JPanel {
             towerMenu.add(btn);
         }
         this.add(towerMenu, BorderLayout.EAST);
-
-      
 
         // Mouseclick to place tower OR select a tower
         this.addMouseListener(new MouseAdapter() {
@@ -199,26 +195,23 @@ public class GamePanel extends JPanel {
                 // We use a safe copy to prevent ConcurrentModificationExceptions while drawing
                 ArrayList<Projectile> safeProjectiles = new ArrayList<>(mechanic.getProjectiles());
 
-
                 for (Projectile p : safeProjectiles) {
 
-                    if (p.isShrapnell()) {
+                    if (p.isShrapnel()) {
                         g.setColor(Color.BLACK);
-                        g.fillRect((int) p.getX() - 3 , (int) p.getY()-3, 6, 6);      //6x6 square for shrapnel -> need to subtract 3 for the center
+                        g.fillRect((int) p.getX() - 3, (int) p.getY() - 3, 6, 6); // 6x6 square for shrapnel -> need to subtract 3 for the center
                         continue;
                     }
-
-                    if (p.getTexture()!=null){
+                    if (p.getTexture() != null) {
                         Graphics2D g2d = (Graphics2D) g.create();
 
-                        int cx = (int) p.getX();        // g2d draws the projectile defaultly at 0, 0 this woulD be top left corner tahts why we set 
-                        int cy = (int) p.getY();        // the palce to draw at the center of our projectile
-                        g2d.translate(cx,cy);
-
-                        g2d.rotate(p.getAngle());       //rotates picture the angle 
-
-                        g2d.drawImage(p.getTexture(),-8,-8,16,16,null);
+                        int cx = (int) p.getX(); // g2d draws the projectile defaultly at 0, 0 this woulD be top left corner tahts why we set the palce to draw at the center of our projectile
+                        int cy = (int) p.getY(); 
+                        g2d.translate(cx, cy);
+                        g2d.rotate(p.getAngle()); // rotates picture the angle
+                        g2d.drawImage(p.getTexture(), -8, -8, 16, 16, null);
                         g2d.dispose();
+
                     } else {
                         System.out.println("Error coud not find projectle texture");
                     }
@@ -239,10 +232,10 @@ public class GamePanel extends JPanel {
                 Graphics2D g2d = (Graphics2D) g;
 
                 // get range of current Tower
-                int range = rangeOfCurrentTower.specs.getRange(); // TowerData.Tower.method inside tower data there is a
-                                                                  // Tower variable(specs) via specs we can access
-                                                                  // methods of that towertype
+                int range = rangeOfCurrentTower.specs.getRange(); // TowerData.Tower.method inside tower data there is a Tower variable(specs) via specs we can access methods of that towertype
+                                                                 
                 int centerX = rangeOfCurrentTower.pos.x;
+                                                                 
                 int centerY = rangeOfCurrentTower.pos.y;
 
                 g2d.setColor(new Color(255, 255, 255, 40));
@@ -259,7 +252,7 @@ public class GamePanel extends JPanel {
         this.upgradePanel = upgradePanel;
     }
 
-    public void clearRangeHighlight() {     //helper method, deletes range of Tower when Tower is getting selled 
-        this.rangeOfCurrentTower=null;  
+    public void clearRangeHighlight() { // helper method, deletes range of Tower when Tower is getting selled
+        this.rangeOfCurrentTower = null;
     }
 }
