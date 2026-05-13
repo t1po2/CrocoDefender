@@ -5,12 +5,17 @@ It's a basic Tower Defense game.
 I'll try to vibecode as less as possible ;)
 
 Have Fun :)  
-*Updates Down Below*    
+*Updates Down Below*  
+## [Patch v0.10]  
+*13/05/2026*  
+-added splash damage  
+-fixed various bugs  
+
+
 ## [Hotfix v0.11]  
 *13/05/2026*  
 -fixed an issue where upgrading a tower's fire rate would unintentionally increase the firing interval, causing them to shoot slower  
 -renamed BalanceChangeControl.java to GameConfig.java for easier understanding  
-
 
 ## [Patch v0.10]    
 *13/05/2026*  

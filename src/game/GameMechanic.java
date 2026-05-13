@@ -3,8 +3,10 @@ package game;
 import maps.MapLayout;
 import maps.Swamp_Map;
 import player.PlayerStats;
+import projectiles.Default_proj;
+import projectiles.Projectile;
+import projectiles.Splitter_proj;
 import Crocodiles.*;
-import towers.Projectile;
 import towers.Tower;
 
 import java.awt.Point;
@@ -247,8 +249,19 @@ public class GameMechanic {
 
                         if (dist <= tower.specs.getRange()) {
                             // Target found! Create projectile and reset the tower's cooldown timer
-                            projectiles.add(new Projectile(tower.pos.x, tower.pos.y, target, tower.specs.getDamage(),tower.specs.getProjectileKey()));
-                            tower.lastShotTime = currentTime;
+                            // now choose what projectile
+
+                            switch (tower.specs.getProjectileKey()) {
+                                case "default_proj":
+                                    projectiles.add(new Default_proj(tower.pos.x, tower.pos.y, target, tower.specs.getDamage(),tower.specs.getProjectileKey(),crocos,projectiles));
+                                    tower.lastShotTime = currentTime;
+                                    break;
+                                case "splitter_proj":
+                                    projectiles.add(new Splitter_proj(tower.pos.x, tower.pos.y, target, tower.specs.getDamage(),tower.specs.getProjectileKey(),crocos,projectiles));
+                                    tower.lastShotTime = currentTime;
+                                    break;
+                            }
+                            
                             break; // Break the loop so it only shoots ONE croco at a time
                         }
                     }

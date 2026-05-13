@@ -26,11 +26,10 @@ public abstract class Tower implements Upgrades {
     protected String upgrade3Desc;
     protected String upgrade4Desc;
 
-    public Tower(int range,int damage, int rpm, int cost, String towerType,String projectileKey){
+    public Tower(int range,int damage, int rpm, int cost,String projectileKey){
         this.range = range;
         this.damage = damage;
         this.cost = cost;
-        this.towerType = towerType;
         this.towerValue = cost;       //rounds the number sell price is at 70%
         this.projectileKey = projectileKey;
 

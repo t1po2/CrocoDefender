@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import Crocodiles.Croco;
 import game.GameMechanic.TowerData;
-import towers.Projectile;
+import projectiles.Projectile;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
