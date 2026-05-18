@@ -34,7 +34,7 @@ public class Resource {
             gameResources.put("basic_tower", ImageIO.read(new File("src/resources/towers/mortar.png")));
             gameResources.put("sniper_tower",ImageIO.read(new File("src/resources/towers/sniper.png")));
             gameResources.put("duck_tower", ImageIO.read(new File("src/resources/towers/duck.png")));
-            gameResources.put("tank_tower", ImageIO.read(new File("src\\resources\\towers\\tank.png")));
+            gameResources.put("tank_tower", ImageIO.read(new File("src/resources/towers/tank.png")));
 
             //projectiles 
             gameResources.put("splitter_proj",ImageIO.read(new File("src/resources/projectiles/default_proj.png")));    // change that
