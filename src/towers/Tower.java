@@ -183,8 +183,21 @@ public abstract class Tower implements Upgrades {
             return false;
         }
     }
+    public int getLock1() {
+        return lock1;
+    }
 
+    public int getLock2() {
+        return lock2;
+    }
 
+    public int getLock3() {
+        return lock3;
+    }
+
+    public int getLock4() {
+        return lock4;
+    }
 
     //setters
     public void addValue(int value){

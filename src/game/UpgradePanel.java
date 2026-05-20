@@ -142,7 +142,7 @@ public class UpgradePanel extends JPanel {
             upgradeBtn1.setToolTipText("Upgraded reached max level!");
             upgradeBtn1.setEnabled(false); //disable button if upgrade is locked
         } else {
-            upgradeBtn1.setText("Upgrade 1");
+            upgradeBtn1.setText("Upgrade 1 ("+tower.specs.getLock1()+")");
             String tooltipInfo = "<html>"
                            + "<b>" + tower.specs.getUpgrade1Desc() + "</b><br>"
                            + "Kosten: <b>" + tower.specs.getUpgrade1Cost() + " Gold</b>"
@@ -156,7 +156,7 @@ public class UpgradePanel extends JPanel {
             upgradeBtn2.setToolTipText("Upgraded reached max level!");
             upgradeBtn2.setEnabled(false); //disable button if upgrade is locked
         } else {
-            upgradeBtn2.setText("Upgrade 2");
+            upgradeBtn2.setText("Upgrade 2 ("+tower.specs.getLock2()+")");
             String tooltipInfo = "<html>"
                            + "<b>" + tower.specs.getUpgrade2Desc() + "</b><br>"
                            + "Kosten: <b>" + tower.specs.getUpgrade2Cost() + " Gold</b>"
@@ -170,7 +170,7 @@ public class UpgradePanel extends JPanel {
             upgradeBtn3.setToolTipText("Upgraded reached max level!");
             upgradeBtn3.setEnabled(false); //disable button if upgrade is locked
         } else {
-            upgradeBtn3.setText("Upgrade 3");
+            upgradeBtn3.setText("Upgrade 3 ("+tower.specs.getLock3()+")");
             String tooltipInfo = "<html>"
                            + "<b>" + tower.specs.getUpgrade3Desc() + "</b><br>"                 //Jframe HTML for good looking text hehehe 
                            + "Kosten: <b>" + tower.specs.getUpgrade3Cost() + " Gold</b>"        //<html> start and end 
@@ -184,7 +184,7 @@ public class UpgradePanel extends JPanel {
             upgradeBtn4.setToolTipText("Upgraded reached max level!");
             upgradeBtn4.setEnabled(false); //disable button if upgrade is locked
         } else {
-            upgradeBtn4.setText("Upgrade 4");
+            upgradeBtn4.setText("Upgrade 4 ("+tower.specs.getLock4()+")");
             String tooltipInfo = "<html>"
                            + "<b>" + tower.specs.getUpgrade4Desc() + "</b><br>"
                            + "Kosten: <b>" + tower.specs.getUpgrade4Cost() + " Gold</b>"
