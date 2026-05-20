@@ -131,7 +131,6 @@ public class GamePanel extends JPanel {
                         break;
                     }
                 }
-
                 // if nothing is clicked build selected tower
                 if (!clickedOnTower) {
                     upgradePanel.hidePanel(); // hides panel

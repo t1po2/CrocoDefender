@@ -23,7 +23,10 @@ public class UpgradePanel extends JPanel {
 
 
     public UpgradePanel() {
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        // 1 row , 6 collums , 1 for a label + 5 for buttons ,10 px horizontal padding 0 vertikal 
+        this.setLayout(new GridLayout(1, 6, 10, 0));    
+        // padding: top 15, left 20 , bottom 15, rright 20
+        this.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
         this.setBackground(Color.DARK_GRAY);
         this.setPreferredSize(new Dimension(800,80)); 
 
@@ -39,9 +42,6 @@ public class UpgradePanel extends JPanel {
 
         // pgrade logic
         upgradeBtn1.addActionListener(e -> {
-             if (currentTower.specs.locked1()){
-                    upgradeBtn1.setText("max. level reached");      // it checks lock after button is pressed leading to a fake press upgrade
-            } else {
                 if (currentTower != null && gameMechanic != null) {
                     int currentPlayerGold = gameMechanic.getPlayerGold();
                     int cost = currentTower.specs.getUpgrade1Cost();
@@ -55,9 +55,7 @@ public class UpgradePanel extends JPanel {
                     }
                 } else {
                     System.out.println("Nicht genug Gold!");
-                }
             }
-
         });
 
         upgradeBtn2.addActionListener(e -> {
@@ -132,16 +130,69 @@ public class UpgradePanel extends JPanel {
     }
 
    //reference in game panle tower is clicked current tower is linked this method so UpgradeUI always knows which tower is clicked
-    public void updateUIForTower(TowerData tower) {
+   public void updateUIForTower(TowerData tower) {
         this.currentTower = tower;
-        // Texte anpassen
-        infoLabel.setText("Sell Price: "+tower.specs.getTowerValue());
-        upgradeBtn1.setText("Upgrade 1 " + tower.specs.getUpgrade1Desc() +" "+tower.specs.getUpgrade1Cost()+" Gold");
-        upgradeBtn2.setText("Upgrade 2 " + tower.specs.getUpgrade2Desc() +" "+tower.specs.getUpgrade2Cost()+" Gold");
-        upgradeBtn3.setText("Upgrade 3 " + tower.specs.getUpgrade3Desc() +" "+tower.specs.getUpgrade3Cost()+" Gold");
-        upgradeBtn4.setText("Upgrade 4 " + tower.specs.getUpgrade4Desc() +" "+tower.specs.getUpgrade4Cost()+" Gold");
-        
-        this.setVisible(true); //set panel to visible
+        infoLabel.setText("Sell Price: " + tower.specs.getTowerValue());
+
+        sellBtn.setToolTipText("Turm verkaufen und Gold zurückerhalten.");
+
+        // --- UPGRADE 1 CHECK ---
+        if (tower.specs.locked1()) {
+            upgradeBtn1.setText("Max. level");
+            upgradeBtn1.setToolTipText("Upgraded reached max level!");
+            upgradeBtn1.setEnabled(false); //disable button if upgrade is locked
+        } else {
+            upgradeBtn1.setText("Upgrade 1");
+            String tooltipInfo = "<html>"
+                           + "<b>" + tower.specs.getUpgrade1Desc() + "</b><br>"
+                           + "Kosten: <b>" + tower.specs.getUpgrade1Cost() + " Gold</b>"
+                           + "</html>";
+        upgradeBtn1.setToolTipText(tooltipInfo);
+        upgradeBtn1.setEnabled(true);  //set button text and enable if upgrade is not locked
+        }
+        // --- UPGRADE 2 CHECK ---
+        if (tower.specs.locked2()) {
+            upgradeBtn2.setText("Max. level");
+            upgradeBtn2.setToolTipText("Upgraded reached max level!");
+            upgradeBtn2.setEnabled(false); //disable button if upgrade is locked
+        } else {
+            upgradeBtn2.setText("Upgrade 2");
+            String tooltipInfo = "<html>"
+                           + "<b>" + tower.specs.getUpgrade2Desc() + "</b><br>"
+                           + "Kosten: <b>" + tower.specs.getUpgrade2Cost() + " Gold</b>"
+                           + "</html>";
+        upgradeBtn2.setToolTipText(tooltipInfo);
+        upgradeBtn2.setEnabled(true);  //set button text and enable if upgrade is not locked
+        }
+        // --- UPGRADE 3 CHECK ---
+        if (tower.specs.locked3()) {
+            upgradeBtn3.setText("Max. level");
+            upgradeBtn3.setToolTipText("Upgraded reached max level!");
+            upgradeBtn3.setEnabled(false); //disable button if upgrade is locked
+        } else {
+            upgradeBtn3.setText("Upgrade 3");
+            String tooltipInfo = "<html>"
+                           + "<b>" + tower.specs.getUpgrade3Desc() + "</b><br>"                 //Jframe HTML for good looking text hehehe 
+                           + "Kosten: <b>" + tower.specs.getUpgrade3Cost() + " Gold</b>"        //<html> start and end 
+                           + "</html>";                                                         // <b> = thick text <br> = \n
+        upgradeBtn3.setToolTipText(tooltipInfo);
+        upgradeBtn3.setEnabled(true);  //set button text and enable if upgrade is not locked
+        }
+        // --- UPGRADE 4 CHECK ---
+        if (tower.specs.locked4()) {
+            upgradeBtn4.setText("Max. level");
+            upgradeBtn4.setToolTipText("Upgraded reached max level!");
+            upgradeBtn4.setEnabled(false); //disable button if upgrade is locked
+        } else {
+            upgradeBtn4.setText("Upgrade 4");
+            String tooltipInfo = "<html>"
+                           + "<b>" + tower.specs.getUpgrade4Desc() + "</b><br>"
+                           + "Kosten: <b>" + tower.specs.getUpgrade4Cost() + " Gold</b>"
+                           + "</html>";
+        upgradeBtn4.setToolTipText(tooltipInfo);
+        upgradeBtn4.setEnabled(true);  //set button text and enable if upgrade is not locked
+        }
+        this.setVisible(true); 
     }
 
     public void hidePanel() {

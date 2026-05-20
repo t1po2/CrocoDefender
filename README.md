@@ -7,9 +7,11 @@ I'll try to vibecode as less as possible ;)
 Have Fun :)  
 *Updates Down Below*  
 ## [Patch v0.10]  
-*13/05/2026*  
+*21/05/2026*  
 -added splash damage  
 -fixed various bugs  
+-improved UI System for The Upgrades  
+
 
 
 ## [Hotfix v0.11]  

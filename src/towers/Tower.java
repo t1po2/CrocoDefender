@@ -169,7 +169,7 @@ public abstract class Tower implements Upgrades {
             return false;
         }
     }
-    public boolean locke3(){
+    public boolean locked3(){
         if(lock3>=4){
             return true;
         } else {

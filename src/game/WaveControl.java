@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class WaveControl {
 
 
-    private int wave = 4;
+    private int wave = 1;
     private int spawnDelay = GameConfig.getSpawnDelay();
     private int totalCrocosThisWave;
 
