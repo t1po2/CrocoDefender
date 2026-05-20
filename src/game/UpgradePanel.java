@@ -144,7 +144,8 @@ public class UpgradePanel extends JPanel {
         } else {
             upgradeBtn1.setText("Upgrade 1 ("+tower.specs.getLock1()+")");
             String tooltipInfo = "<html>"
-                           + "<b>" + tower.specs.getUpgrade1Desc() + "</b><br>"
+                           + "Level: " + "<b>" +tower.specs.getLock1() + "</b> <br>"
+                           + "Effect:"+"<b>" + tower.specs.getUpgrade1Desc() + "</b><br>"
                            + "Kosten: <b>" + tower.specs.getUpgrade1Cost() + " Gold</b>"
                            + "</html>";
         upgradeBtn1.setToolTipText(tooltipInfo);
@@ -158,7 +159,8 @@ public class UpgradePanel extends JPanel {
         } else {
             upgradeBtn2.setText("Upgrade 2 ("+tower.specs.getLock2()+")");
             String tooltipInfo = "<html>"
-                           + "<b>" + tower.specs.getUpgrade2Desc() + "</b><br>"
+                           + "Level: " + "<b>" +tower.specs.getLock2() + "</b> <br>"
+                           + "Effect:"+"<b>" + tower.specs.getUpgrade2Desc() + "</b><br>"
                            + "Kosten: <b>" + tower.specs.getUpgrade2Cost() + " Gold</b>"
                            + "</html>";
         upgradeBtn2.setToolTipText(tooltipInfo);
@@ -172,7 +174,8 @@ public class UpgradePanel extends JPanel {
         } else {
             upgradeBtn3.setText("Upgrade 3 ("+tower.specs.getLock3()+")");
             String tooltipInfo = "<html>"
-                           + "<b>" + tower.specs.getUpgrade3Desc() + "</b><br>"                 //Jframe HTML for good looking text hehehe 
+                           + "Level: " + "<b>" +tower.specs.getLock3() + "</b> <br>"
+                           + "Effect:"+"<b>" + tower.specs.getUpgrade3Desc() + "</b><br>"                 //Jframe HTML for good looking text hehehe 
                            + "Kosten: <b>" + tower.specs.getUpgrade3Cost() + " Gold</b>"        //<html> start and end 
                            + "</html>";                                                         // <b> = thick text <br> = \n
         upgradeBtn3.setToolTipText(tooltipInfo);
@@ -186,7 +189,8 @@ public class UpgradePanel extends JPanel {
         } else {
             upgradeBtn4.setText("Upgrade 4 ("+tower.specs.getLock4()+")");
             String tooltipInfo = "<html>"
-                           + "<b>" + tower.specs.getUpgrade4Desc() + "</b><br>"
+                           + "Level: " + "<b>" +tower.specs.getLock4() + "</b> <br>"
+                           + "Effect:"+"<b>" + tower.specs.getUpgrade4Desc() + "</b><br>"
                            + "Kosten: <b>" + tower.specs.getUpgrade4Cost() + " Gold</b>"
                            + "</html>";
         upgradeBtn4.setToolTipText(tooltipInfo);
