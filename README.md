@@ -1,20 +1,15 @@
-## Croco Defender 
-A little game i'm working on.
-It's a basic Tower Defense game. 
-
-I'll try to vibecode as less as possible ;)
+## Croco Defender
+Can you hold the line against the ultimate swamp invasion? Get ready for action-packed Tower Defense gameplay! Hungry crocodiles are swarming your base, and it's up to you to stop them. Strategically place your towers, manage your gold, and unleash devastating upgrades to survive endless waves of scaly enemies.
 
 Have Fun :)  
 *Updates Down Below*  
-## [Patch v0.10]  
+## [Patch v0.11]  
 *21/05/2026*  
 -added splash damage  
+-improved UI System for The Upgrades    
 -fixed various bugs  
--improved UI System for The Upgrades  
 
-
-
-## [Hotfix v0.11]  
+## [Hotfix v0.10.1]  
 *13/05/2026*  
 -fixed an issue where upgrading a tower's fire rate would unintentionally increase the firing interval, causing them to shoot slower  
 -renamed BalanceChangeControl.java to GameConfig.java for easier understanding  
