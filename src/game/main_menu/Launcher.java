@@ -11,12 +11,13 @@ import java.io.IOException;
 
 
 /**
- * @author Nguyen Viet Hung 
  * 
- * Starting point of Game, before executing a thread loads in all necessery game files  
- * Core Game Instances are initilised and run in a thread 
+ * 
+ * Starting point of Game <br>
+ * before executing a thread loads in all necessary game files  
+ * Core Game Instances are initialized and run in a thread 
  * Game UI is displayed inside a window class 
- * 
+ * @author Nguyen Viet Hung 
  */
 
 
@@ -44,6 +45,13 @@ public class Launcher {
         });
 
     }
+
+    /**
+     * Initializes game resources and starts the main game loop in a new thread.
+     * It also launches the main game window.
+     *
+     * @param mapName the name of the map to be loaded
+     */
 
     public static void startGame(String mapName){
         mapName = MainMenu.getMap();  // insert map name here
