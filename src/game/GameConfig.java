@@ -1,5 +1,12 @@
 package game;
 
+/**
+ * @author Nguyen Viet Hung 
+ * 
+ * <b> Global game configs </b>
+ * For easier balance changes 
+ */
+
 public class GameConfig {
 
 

@@ -9,6 +9,13 @@ import javax.swing.JPanel;
 
 
 
+/**
+ * @author Nguyen Viet Hung
+ * Additional Window for displaying map options for a cleaner user interface 
+ * and improves quality of life
+ */
+
+
 public class MapSelector extends JFrame {
 
     private String map;

@@ -1,11 +1,22 @@
 package game.main_menu;
 
 import javax.swing.SwingUtilities;
-
 import game.GameLoop;
 import game.GameMechanic;
 import game.Resource;
 import game.Window;
+
+
+/**
+ * @author Nguyen Viet Hung 
+ * 
+ * Starting point of Game, before executing a thread loads in all necessery game files  
+ * Core Game Instances are initilised and run in a thread 
+ * Game UI is displayed inside a window class 
+ * 
+ */
+
+
 
 public class Launcher {
  

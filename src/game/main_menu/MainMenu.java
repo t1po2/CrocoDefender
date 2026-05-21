@@ -1,10 +1,21 @@
 package game.main_menu;
 
 import java.awt.*;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+
+/**
+ * @author Nguyen Viet Hung 
+ * 
+ * Main menu of the game.
+ * Create options to start a game, choose a map or quit the game
+ */
+
+
+
+
 
 public class MainMenu extends JFrame {
 
