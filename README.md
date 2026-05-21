@@ -1,5 +1,5 @@
 ## Croco Defender
-Can you hold the line against the ultimate CROCO invasion? Get ready for action-packed Tower Defense gameplay! Hungry crocodiles are swarming your base, and it's up to you to stop them. Strategically place your towers, manage your gold, and unleash devastating upgrades to survive endless waves of scaly enemies.
+Can you hold the line against the ultimate CROCO invasion? Get ready for action-packed Tower Defense gameplay! Hungry crocodiles are swarming your base, and it's up to you to stop them. Strategically place your towers, manage your gold, and unleash devastating upgrades to survive endless waves of scary enemies.
 
 Have Fun :)  
 *Updates Down Below*  
