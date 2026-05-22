@@ -1,7 +1,7 @@
 package game;
 
 import java.util.ArrayList;
-
+import java.util.Random;
 
 
 
@@ -31,6 +31,20 @@ public class WaveControl {
         // now kust define the next waves introducing new crocs and than we
         // we do a formula for combining last and now pattern together for next wave
 
+        
+        
+
+        String[] quotes = {
+            "Let your plans be dark and impenetrable as night, and when you move, fall like a thunderbolt.",
+            "“In the midst of chaos, there is also opportunity”",
+            "“To know your Enemy, you must become your Enemy.”",
+            "“Treat your men as you would your own beloved sons. And they will follow you into the deepest valley.”",
+            "“Even the finest sword plunged into salt water will eventually rust.”"
+        };
+        int len = quotes.length;
+        Random randInt = new Random();
+        int rng = randInt.nextInt(len);
+        System.out.println(quotes[rng]);
 
         // -- Configure Wave difficulty --
 
@@ -73,16 +87,9 @@ public class WaveControl {
         } else if (wave == 20){
             spawnPattern.add("arnab");
             spawnPattern.add("arnab");
-        }
-        
-        
-        
-
-
-        // -- Default wave generation -- 
-        else {
+        } else {
             for (int i=0; i<lastPattern.size()/2; i++) { //for the rounds in between without new Crocos
-                spawnPattern.add(lastPattern.get(i));
+                spawnPattern.addAll(lastPattern);
             }
         }
        for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2
