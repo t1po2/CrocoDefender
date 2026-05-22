@@ -27,7 +27,7 @@ public class Resource {
             gameResources.put("speedy_croco",ImageIO.read(new File("src/resources/crocodiles/speedy_croco.png")));
             gameResources.put("mid_croco", ImageIO.read(new File("src/resources/crocodiles/mid_croco.png")));
             gameResources.put("fat_croco", ImageIO.read(new File("src/resources/crocodiles/fat_croco.png")));
-            
+            gameResources.put("arnab",ImageIO.read(new File("src/resources/crocodiles/arnab.png")));
 
 
             //Towers
