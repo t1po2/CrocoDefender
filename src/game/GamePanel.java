@@ -77,6 +77,7 @@ public class GamePanel extends JPanel {
         exitBtn.setBackground(new Color(200, 50, 50));
         exitBtn.setForeground(Color.WHITE);
         exitBtn.setFont(new Font("Arial", Font.BOLD, 14));
+        exitBtn.setPreferredSize(new Dimension(50,20));
 
         exitBtn.addActionListener(e -> {
             mechanic.saveGameHighscore();
@@ -90,7 +91,7 @@ public class GamePanel extends JPanel {
         //put bottompanel at the bottom 
         bottomPanel.add(exitBtn,BorderLayout.SOUTH);
         JPanel leftContainer = new JPanel(new BorderLayout());
-        leftContainer.setPreferredSize(new Dimension(200, 600));
+        leftContainer.setPreferredSize(new Dimension(150, 600));
         leftContainer.setOpaque(false);
         
         leftContainer.add(statsPanel, BorderLayout.NORTH); // Player info top 
