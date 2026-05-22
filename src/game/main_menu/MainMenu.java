@@ -120,8 +120,8 @@ public class MainMenu extends JFrame {
         } else {
             for (int i = 0; i < limit; i++) {
                 game.HighScoreEntry entry = scores.get(i);
-                sb.append(i + 1).append(". ").append(entry.getName())
-                  .append(" - Wave ").append(entry.getWave()).append("<br>");
+                sb.append(i + 1).append(". Player: ").append(entry.getName())
+                  .append(" - Reached Wave ").append(entry.getWave()).append("<br>");
             }
         }
         sb.append("</center></html>");
