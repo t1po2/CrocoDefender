@@ -5,7 +5,9 @@ Have Fun :)
 *Updates Down Below*  
 ## [Patch v0.12]   
 *22/05/2026*  
--added a score board for tracking heroic actions in the Croco invasion
+-added a score board for tracking heroic actions in the Croco invasion  
+-added new Croco:  
+        > The Arnab: Slow, STINKY and TANKY  
 
 ## [Patch v0.11]  
 *21/05/2026*  
