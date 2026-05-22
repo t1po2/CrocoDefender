@@ -5,14 +5,9 @@ import game.GameLoop;
 import game.GameMechanic;
 import game.Resource;
 import game.Window;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 
 /**
- * 
- * 
  * Starting point of Game <br>
  * before executing a thread loads in all necessary game files  
  * Core Game Instances are initialized and run in a thread 
@@ -26,19 +21,6 @@ public class Launcher {
  
 
     public static void main(String[] args){
-
-        try {
-            BufferedReader scoreReader = new BufferedReader(new FileReader("score.txt"));
-            String line;
-            while ((line=scoreReader.readLine())!=null){
-                System.out.println(line);
-            }
-            scoreReader.close();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        
-
 
         SwingUtilities.invokeLater(() -> {              // Launches Main Menu from there u can start game
            new MainMenu();

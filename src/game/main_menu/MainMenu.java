@@ -3,7 +3,9 @@ package game.main_menu;
 import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 
 /**
@@ -20,12 +22,13 @@ import javax.swing.JPanel;
 public class MainMenu extends JFrame {
 
     private static String mapName;
+    private static JLabel scoreLabel;
     
     public MainMenu() {
 
         //set up window properties
         setTitle("Main Menu (Croco Defender)");
-        setSize(new Dimension(400,300));
+        setSize(new Dimension(400,350));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); //centers weindow to screen 
@@ -53,8 +56,7 @@ public class MainMenu extends JFrame {
                 this.dispose();
                 Launcher.startGame(mapName);
                
-            } else {  // if no map is selected
-                //JOptionPane.showMessageDialog(startButton,"Please select a map before starting :)","No Map Selected",JOptionPane.WARNING_MESSAGE);
+            } else { 
                 new MapSelector(); // if no map is selected then open map selctor
             }
         });
@@ -74,6 +76,10 @@ public class MainMenu extends JFrame {
         gbc.gridy = 3 ;
         mainMenu.add(exitButton,gbc);
 
+        scoreLabel = new JLabel("Score",SwingConstants.CENTER);
+
+        gbc.gridy = 4;
+        mainMenu.add(scoreLabel,gbc);
         add(mainMenu);
         setVisible(true);
 
