@@ -7,7 +7,10 @@ Have Fun :)
 *22/05/2026*  
 -added a score board for tracking heroic actions in the Croco invasion  
 -added new Croco:  
-        > The Arnab: Slow, STINKY and TANKY  
+        > The Arnab: Slow, STINKY and TANKY   
+-decreased splash damage radius: 65 -> 25  
+-decreased time inbetween each Croco spawn: 20 -> 10   
+-qol changes for the scoreboard  
 
 ## [Patch v0.11]  
 *21/05/2026*  
