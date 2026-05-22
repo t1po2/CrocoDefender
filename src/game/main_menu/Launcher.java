@@ -22,10 +22,11 @@ public class Launcher {
 
     public static void main(String[] args){
 
+        
         SwingUtilities.invokeLater(() -> {              // Launches Main Menu from there u can start game
            new MainMenu();
         });
-
+        
     }
 
     /**

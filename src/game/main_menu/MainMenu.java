@@ -1,6 +1,8 @@
 package game.main_menu;
 
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -77,7 +79,7 @@ public class MainMenu extends JFrame {
         mainMenu.add(exitButton,gbc);
 
         scoreLabel = new JLabel("Score",SwingConstants.CENTER);
-
+        loadAndDisplayHighscores();
         gbc.gridy = 4;
         mainMenu.add(scoreLabel,gbc);
         add(mainMenu);
@@ -96,6 +98,34 @@ public class MainMenu extends JFrame {
 
     public static String getMap(){
         return mapName;
+    }
+
+    //Helper method to display highscore 
+
+    private void loadAndDisplayHighscores() {
+        // HighscoreManager liest automatisch die JSON-Datei und sortiert sie
+        game.HighScoreManager hm = new game.HighScoreManager();
+        ArrayList<game.HighScoreEntry> scores = hm.getScores();
+
+        // creatse HTML String little nice header for the scoreboard
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html><center>");
+        sb.append("<br><b>--- Top 5 Croco Hunters ---</b><br>");
+
+        // top5 scores cause of window size is limited 
+        int limit = Math.min(scores.size(), 5); 
+
+        if (scores.isEmpty()) {
+            sb.append("<i>No Heros were born yet</i><br>");
+        } else {
+            for (int i = 0; i < limit; i++) {
+                game.HighScoreEntry entry = scores.get(i);
+                sb.append(i + 1).append(". ").append(entry.getName())
+                  .append(" - Wave ").append(entry.getWave()).append("<br>");
+            }
+        }
+        sb.append("</center></html>");
+        scoreLabel.setText(sb.toString());
     }
 
 }

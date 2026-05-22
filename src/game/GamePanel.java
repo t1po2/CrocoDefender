@@ -1,11 +1,9 @@
 package game;
 
 import javax.swing.*;
-
 import Crocodiles.Croco;
 import game.GameMechanic.TowerData;
 import projectiles.Projectile;
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,6 +21,8 @@ public class GamePanel extends JPanel {
     private JLabel playerHpL;
     private JLabel playerGoldL;
     private JLabel playerWaveL;
+    
+
 
     // For UpgradeUI
     private UpgradePanel upgradePanel;
@@ -66,8 +66,37 @@ public class GamePanel extends JPanel {
         statsPanel.add(playerGoldL);
         statsPanel.add(playerWaveL);
 
-        // locate panel to the north
-        this.add(statsPanel, BorderLayout.WEST);
+        // new Panel on the bottom for the surrender button 
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setOpaque(false);
+        bottomPanel.setLayout(new BorderLayout());
+
+        JButton exitBtn = new JButton("Surrender");
+        exitBtn.setFocusPainted(false);
+        exitBtn.setBackground(new Color(200, 50, 50));
+        exitBtn.setForeground(Color.WHITE);
+        exitBtn.setFont(new Font("Arial", Font.BOLD, 14));
+
+        exitBtn.addActionListener(e -> {
+            mechanic.saveGameHighscore();
+            java.awt.Window window = SwingUtilities.getWindowAncestor(this);  //had to put java.awt infront cause i have a class with the same name  type missmatch 
+            if (window != null){
+                window.dispose();
+            }
+            new game.main_menu.MainMenu();
+        });
+
+        //put bottompanel at the bottom 
+        bottomPanel.add(exitBtn,BorderLayout.SOUTH);
+        JPanel leftContainer = new JPanel(new BorderLayout());
+        leftContainer.setPreferredSize(new Dimension(200, 600));
+        leftContainer.setOpaque(false);
+        
+        leftContainer.add(statsPanel, BorderLayout.NORTH); // Player info top 
+        leftContainer.add(bottomPanel, BorderLayout.CENTER); // exit button center bottom but left cause whole container is left 
+
+        this.add(leftContainer, BorderLayout.WEST);
 
         // --- Side panel for tower selection ---
 
@@ -217,6 +246,7 @@ public class GamePanel extends JPanel {
                 }
             }
 
+            // Game Over Screen Overlay
             if (mechanic.returnGameOver()) {
                 g.setColor((new Color(0, 0, 0, 150)));
                 g.fillRect(0, 0, getWidth(), getHeight());

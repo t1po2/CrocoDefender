@@ -191,7 +191,7 @@ public class GameMechanic {
                     if (this.player.getPlayerHp() <= 0) {
                         isGameOver = true;
                         System.out.println("GAME OVER! Die Krokodile haben die Basis zerstört.");
-
+                        saveGameHighscore();
                     }
 
                 }
@@ -285,22 +285,20 @@ public class GameMechanic {
     private void startNextWave() {
         waveSystem.incrementWave();
         spawnedInCurrentWave = 0;
-        spawnTimer = GameConfig.getNextRoundDelay();  // spawndelay in frames so basically croco spawner spawns every 60 frames a
-                                                                // croco but if a new wave starts subtract 120 frames so update need to count
-                                                                // 120 frames until 1 spawn
-        System.out.println("Welle " + waveSystem.curentWave() + " startet!");
+        spawnTimer = GameConfig.getNextRoundDelay();  // spawndelay in frames so basically croco spawner spawns every 60 frames a croco but if a new wave starts subtract 120 frames so update need to count 120 frames until 1 spawn
+        System.out.println("wave " + waveSystem.curentWave() + " beginns!");
     }
 
     // --- Render GamePanel ---
     public void render() {
         // The Boss tells the UI to refresh
         if (gamePanel != null) {
-            gamePanel.updatePlayerStats(player.getPlayerHp(), player.getGold(), waveSystem.curentWave()); // UI aktualisieren!                                           
+            gamePanel.updatePlayerStats(player.getPlayerHp(), player.getGold(), waveSystem.curentWave()); // update UI!                                           
             gamePanel.repaint();
         }
     }
 
-    // somehelper methods to control spend gold on Upgrades
+    // some helper methods to control spend gold on Upgrades
 
     // In GameMechanic.java
     public int getPlayerGold() {
@@ -316,13 +314,32 @@ public class GameMechanic {
     }
 
     public void sellTower(TowerData tower) {
-        synchronized (towers) { // when projectile still lives and sell tower -->
-                                // ConcurrentModificationException Fixed!
+        synchronized (towers) { // when projectile still lives and sell tower --> ConcurrentModificationException Fixed!
             towers.remove(tower);
         }
         if (gamePanel != null) {
             gamePanel.clearRangeHighlight();
         }
+    }
+
+    // helper method to save Game highscore 
+    public void saveGameHighscore() {
+        //opens new Panel for Player name input
+        String playerName = javax.swing.JOptionPane.showInputDialog(
+            null, 
+            "The wise warrior avoids the battle.\nWhat is your name?", 
+            "Game Over", 
+            javax.swing.JOptionPane.PLAIN_MESSAGE
+        );
+
+        //failsafe if player only types spaces or aborts window 
+        if (playerName == null || playerName.trim().isEmpty()) {
+            playerName = "Secret Super Hero";
+        }
+
+        HighScoreManager hm = new HighScoreManager();
+        hm.addScore(playerName, waveSystem.curentWave()); 
+        System.out.println("Highscore for " + playerName + " saved in JSON!");
     }
 
 }
