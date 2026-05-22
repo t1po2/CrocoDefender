@@ -91,7 +91,7 @@ public class GamePanel extends JPanel {
         //put bottompanel at the bottom 
         bottomPanel.add(exitBtn,BorderLayout.SOUTH);
         JPanel leftContainer = new JPanel(new BorderLayout());
-        leftContainer.setPreferredSize(new Dimension(150, 600));
+        leftContainer.setPreferredSize(new Dimension(135,600));
         leftContainer.setOpaque(false);
         
         leftContainer.add(statsPanel, BorderLayout.NORTH); // Player info top 
