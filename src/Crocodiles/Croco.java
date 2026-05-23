@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import game.GameConfig;
 import game.Resource;
 
 public abstract class Croco  {
@@ -126,7 +127,7 @@ public abstract class Croco  {
     }
 
     //slow effect 
-    public void reduceSpeed(int value) {
+    public void reduceSpeed(double value) {
     //onlz tagets non effected crocos
     if (!isSlowed) {
         this.originalSpeed = this.speed; 
@@ -135,7 +136,7 @@ public abstract class Croco  {
     this.speed = value;
     this.isSlowed = true;
     
-    // Aktuelle Zeit + 3000 Millisekunden (3 Sekunden) in die Zukunft rechnen
-    this.effectTime = System.currentTimeMillis() + 3000; 
+    // slow time effect
+    this.effectTime = System.currentTimeMillis() + GameConfig.getSlowEffectTime(); 
 }
 }

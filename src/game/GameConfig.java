@@ -13,6 +13,7 @@ public class GameConfig {
     // -- Tower Upgrades -- 
     private static int sellFactor=7;        //tower sell factor in %
     private static int upgradeFactor=3;     // price in crease after an upgrade in %
+    private static int slowEffect=1000;     //1000 = 1 sec
 
 
     // -- Wave and Round Delay --
@@ -90,5 +91,8 @@ public class GameConfig {
     }
     public static int getSpawnDelay(){
         return spawnDelay;
+    }
+    public static int getSlowEffectTime(){
+        return slowEffect;
     }
 }

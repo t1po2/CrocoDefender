@@ -4,10 +4,11 @@ Can you hold the line against the ultimate CROCO invasion? Get ready for action-
 Have Fun :)  
 *Updates Down Below*   
 ## [Patch v0.13]   
-*23/05/2026*  
+*23/05/2026* + *24/05/2026*   
 -migrated tower shooting logic to super Tower class to ensure wider spectrum of shooting possibilities  
 -added new Tower:  
         > Strong Duck: He has so much Aura OMG. He is so tuff he doesn't need to shoot anything. His aura influences nearby crocos  
+-reworked most Towers       
 
 ## [Patch v0.12]   
 *22/05/2026*  

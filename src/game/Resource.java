@@ -40,6 +40,8 @@ public class Resource {
             //projectiles 
             gameResources.put("splitter_proj",ImageIO.read(new File("src/resources/projectiles/default_proj.png")));    // change that
             gameResources.put("default_proj",ImageIO.read(new File("src/resources/projectiles/default_proj.png")));
+            gameResources.put("laser_proj",ImageIO.read(new File("src/resources/projectiles/laser_proj.png")));
+
 
             System.out.println("all game resouces are loaded!");
         } catch (IOException e ) {

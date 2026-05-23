@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Crocodiles.Croco;
 import projectiles.Projectile;
 import projectiles.Default_proj;
+import projectiles.Laser_proj;
 import projectiles.Splitter_proj;
 
 
@@ -74,13 +75,16 @@ public abstract class Tower implements Upgrades {
                     switch (this.projectileKey) {
                         case "default_proj":
                             projectiles.add(new Default_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
-                            this.lastShotTime = currentTime;
                             break;
                         case "splitter_proj":
                             projectiles.add(new Splitter_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
-                            this.lastShotTime = currentTime;
                             break;
+                        case "laser_proj":
+                            projectiles.add(new Laser_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
+                            break;
+
                     }
+                    this.lastShotTime = currentTime;
                     break;
                 }
             }

@@ -5,15 +5,15 @@ public class DuckT extends Tower {
 
     public DuckT(){
         super(300, 1, 380, 5200,"default_proj");
-        this.upgrade1Cost = 800;
-        this.upgrade2Cost = 1500;
-        this.upgrade3Cost = 3000;
-        this.upgrade4Cost = 4000;
+        this.upgrade1Cost = 1400;
+        this.upgrade2Cost = 2760;
+        this.upgrade3Cost = 3560;
+        this.upgrade4Cost = 6000;
 
-        this.upgrade1Desc = "+1 dmg";
-        this.upgrade2Desc = "+20% fireRate";
-        this.upgrade3Desc = "+10% range";
-        this.upgrade4Desc = "Enable Splitter Projectiles";
+        this.upgrade1Desc = "Increase +1 dmg";
+        this.upgrade2Desc = "Increase +20% fireRate";
+        this.upgrade3Desc = "Increase +10% range";
+        this.upgrade4Desc = "-DUCKS INVASION- Splitter Projectile ACTIVATED (!)";
     }
 
 

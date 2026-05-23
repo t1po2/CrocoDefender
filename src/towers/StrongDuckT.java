@@ -8,20 +8,20 @@ import projectiles.Projectile;
 
 public class StrongDuckT extends Tower{
 
-    private int slowEffectValue = 1; // substracts the speed of corocso in range 
+    private double slowEffectValue = 1; // set the speed of corocso in range 
 
 
     public StrongDuckT(){
-        super(100, 0, 240, 2600,"default_proj");
-        this.upgrade1Cost = 800;
-        this.upgrade2Cost = 1500;
-        this.upgrade3Cost = 3000;
+        super(100, 0, 24, 2600,"default_proj");
+        this.upgrade1Cost = 1200;
+        this.upgrade2Cost = 2875;
+        this.upgrade3Cost = 2200;
         this.upgrade4Cost = 5000;
 
-        this.upgrade1Desc = "+2 dmg";
-        this.upgrade2Desc = "+20% fireRate";
-        this.upgrade3Desc = "+10% range";
-        this.upgrade4Desc = "comming soon...";
+        this.upgrade1Desc = "-PERFORMATIVE MODE- +5% range boost";
+        this.upgrade2Desc = "-STEROIDS INJECTION- +1 damage (2!)";
+        this.upgrade3Desc = "-PHONK ON- +25% fire rate";
+        this.upgrade4Desc = "10000KG BENCH PRESS ULTIMATE AURA FARM (!)";
     }
 
     // t his duck dioesnt shoot but apllies effects to crocos within its range
@@ -47,18 +47,26 @@ public class StrongDuckT extends Tower{
 
     @Override
     public void applyUpgrade1() {
+        this.range = (int)Math.round(range*1.05);
     }
 
     @Override
     public void applyUpgrade2() {  
+        this.damage=this.damage + 1;
+        if (lock2==2){
+            lock2=4;
+        }
     }
 
     @Override
     public void applyUpgrade3() {
+        this.fireRate = (int)Math.round(fireRate/1.25); 
     }
 
     @Override
     public void applyUpgrade4() {
+        this.slowEffectValue=0.5;
+        lock4=4;
     }
     
 }
