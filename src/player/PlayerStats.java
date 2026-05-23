@@ -8,7 +8,7 @@ public class PlayerStats {
 
 
     public PlayerStats(){
-        gold = 1800;
+        gold = 11000;
     }
 
 

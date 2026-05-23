@@ -132,7 +132,7 @@ public abstract class Croco  {
         this.originalSpeed = this.speed; 
     }
     
-    this.speed = this.speed -value;
+    this.speed = value;
     this.isSlowed = true;
     
     // Aktuelle Zeit + 3000 Millisekunden (3 Sekunden) in die Zukunft rechnen
