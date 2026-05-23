@@ -19,7 +19,7 @@ public class StrongDuckT extends Tower{
         this.upgrade4Cost = 5000;
 
         this.upgrade1Desc = "-PERFORMATIVE MODE- +5% range boost";
-        this.upgrade2Desc = "-STEROIDS INJECTION- +1 damage (2!)";
+        this.upgrade2Desc = "-STEROIDS INJECTION- +1 damage (!2)";
         this.upgrade3Desc = "-PHONK ON- +25% fire rate";
         this.upgrade4Desc = "10000KG BENCH PRESS ULTIMATE AURA FARM (!)";
     }
