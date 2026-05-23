@@ -46,7 +46,6 @@ public class GameMechanic {
         public Point pos;
         public String resID;
         public Tower specs;
-        public long lastShotTime = 0;
         public BufferedImage texture;
 
         public TowerData(Point pos, String resID, Tower specs) {
@@ -140,7 +139,7 @@ public class GameMechanic {
                 newTowerStats = new towers.TankT();
                 break;
             default:
-                newTowerStats = new towers.BasicT();
+                newTowerStats = null;
                 break;
         }
 
@@ -241,46 +240,23 @@ public class GameMechanic {
         // --- TOWER SHOOTING LOGIC ---
         long currentTime = System.currentTimeMillis();
 
-        synchronized (towers) {
-            for (TowerData tower : towers) {
-                // Check if the tower is ready to shoot based on its fire rate
-                if (currentTime - tower.lastShotTime >= tower.specs.getFireRate()) {
-
-                    // Scan all crocos to find a target in range
-                    for (Croco target : crocos) {
-                        double dist = tower.pos.distance(target.getX(), target.getY());
-
-                        if (dist <= tower.specs.getRange()) {
-                            // Target found! Create projectile and reset the tower's cooldown timer
-                            // now choose what projectile
-
-                            switch (tower.specs.getProjectileKey()) {
-                                case "default_proj":
-                                    projectiles.add(new Default_proj(tower.pos.x, tower.pos.y, target, tower.specs.getDamage(),tower.specs.getProjectileKey(),crocos,projectiles));
-                                    tower.lastShotTime = currentTime;
-                                    break;
-                                case "splitter_proj":
-                                    projectiles.add(new Splitter_proj(tower.pos.x, tower.pos.y, target, tower.specs.getDamage(),tower.specs.getProjectileKey(),crocos,projectiles));
-                                    tower.lastShotTime = currentTime;
-                                    break;
-                            }
-                            
-                            break; // Break the loop so it only shoots ONE croco at a time
-                        }
-                    }
-                }
-            }
-            // --- PROJECTILE MOVEMENT ---
-            for (int i = projectiles.size() - 1; i >= 0; i--) {
-                Projectile p = projectiles.get(i);
-                p.update();
-                if (!p.isActive()) {
-                    projectiles.remove(i);
-                }
+        synchronized (towers){
+            for (TowerData tower : towers){
+                tower.specs.updateShooting(currentTime, tower.pos, crocos, projectiles);
             }
         }
-
+            
+        // --- PROJECTILE MOVEMENT ---
+        for (int i = projectiles.size() - 1; i >= 0; i--) {
+            Projectile p = projectiles.get(i);
+            p.update();
+            if (!p.isActive()) {
+                projectiles.remove(i);
+            }
+        }
     }
+
+    
 
     private void startNextWave() {
         waveSystem.incrementWave();

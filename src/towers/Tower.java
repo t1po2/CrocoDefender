@@ -1,5 +1,14 @@
 package towers;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import Crocodiles.Croco;
+import projectiles.Projectile;
+import projectiles.Default_proj;
+import projectiles.Splitter_proj;
+
+
+
 public abstract class Tower implements Upgrades {
 
     protected int range;
@@ -10,6 +19,7 @@ public abstract class Tower implements Upgrades {
     protected String projectileKey;
     protected double towerValue;
 
+    protected long lastShotTime = 0;
 
     // induviduell uprade cost
 
@@ -48,6 +58,44 @@ public abstract class Tower implements Upgrades {
             System.out.println("Error: rpm of Tower Class is less or equal to 0");
         }
     }
+
+    public void updateShooting(long currentTime, Point pos, ArrayList<Croco> crocos, ArrayList<Projectile> projectiles){
+
+        if (currentTime - lastShotTime >= this.fireRate){
+            
+            for (Croco target : crocos){
+
+                double dist = pos.distance(target.getX(),target.getY());
+
+                if (dist <= this.range){
+
+                    switch (this.projectileKey) {
+                        case "default_proj":
+                            projectiles.add(new Default_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
+                            this.lastShotTime = currentTime;
+                            break;
+                        case "splitter_proj":
+                            projectiles.add(new Splitter_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
+                            this.lastShotTime = currentTime;
+                            break;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public final int upgrade1(){

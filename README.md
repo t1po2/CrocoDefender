@@ -2,7 +2,11 @@
 Can you hold the line against the ultimate CROCO invasion? Get ready for action-packed Tower Defense gameplay! Hungry crocodiles are swarming your base, and it's up to you to stop them. Strategically place your towers, manage your gold, and unleash devastating upgrades to survive endless waves of scary enemies.
 
 Have Fun :)  
-*Updates Down Below*  
+*Updates Down Below*   
+## [Patch v0.13]   
+*23/05/2026*  
+-migrated tower shooting logic to super Tower class to ensure wider spectrum of shooting possibilities  
+
 ## [Patch v0.12]   
 *22/05/2026*  
 -added a score board for tracking heroic actions in the Croco invasion  
