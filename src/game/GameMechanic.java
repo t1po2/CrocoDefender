@@ -190,7 +190,7 @@ public class GameMechanic {
                     // --- check if playerHp = 0 then game over
                     if (this.player.getPlayerHp() <= 0) {
                         isGameOver = true;
-                        System.out.println("GAME OVER! Die Krokodile haben die Basis zerstört.");
+                        System.out.println("I WILL TOLERATE YOUR WEAKNESS NO LONGER.");
                         saveGameHighscore();
                     }
 
