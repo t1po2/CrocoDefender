@@ -3,9 +3,7 @@ package game;
 import maps.MapLayout;
 import maps.Swamp_Map;
 import player.PlayerStats;
-import projectiles.Default_proj;
 import projectiles.Projectile;
-import projectiles.Splitter_proj;
 import Crocodiles.*;
 import towers.Tower;
 

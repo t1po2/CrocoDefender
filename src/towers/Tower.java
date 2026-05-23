@@ -59,13 +59,15 @@ public abstract class Tower implements Upgrades {
         }
     }
 
+
+    // -- Tower shooting logic --
     public void updateShooting(long currentTime, Point pos, ArrayList<Croco> crocos, ArrayList<Projectile> projectiles){
 
         if (currentTime - lastShotTime >= this.fireRate){
             
             for (Croco target : crocos){
 
-                double dist = pos.distance(target.getX(),target.getY());
+                double dist = pos.distance(target.getX(),target.getY());        // calcs distance between tower pos and target X/Y
 
                 if (dist <= this.range){
 
