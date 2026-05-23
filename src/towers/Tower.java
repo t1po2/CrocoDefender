@@ -216,6 +216,17 @@ public abstract class Tower implements Upgrades {
         this.upgrade4Cost = (int)Math.round(upgrade4Cost *((factor/10)+1));
     }
 
+    @Override
+    public String toString() {
+        return "Tower [range=" + range + ", damage=" + damage + ", fireRate=" + fireRate + ", cost=" + cost
+                + ", towerType=" + towerType + ", projectileKey=" + projectileKey + ", towerValue=" + towerValue
+                + ", upgrade1Cost=" + upgrade1Cost + ", upgrade2Cost=" + upgrade2Cost + ", upgrade3Cost=" + upgrade3Cost
+                + ", upgrade4Cost=" + upgrade4Cost + ", upgrade1Desc=" + upgrade1Desc + ", upgrade2Desc=" + upgrade2Desc
+                + ", upgrade3Desc=" + upgrade3Desc + ", upgrade4Desc=" + upgrade4Desc + "]";
+    }
+
+    
+
 
 
 
