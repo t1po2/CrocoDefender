@@ -112,7 +112,7 @@ public class GamePanel extends JPanel {
                 "sniper_tower",
                 "duck_tower",
                 "tank_tower",
-                "coming soon...",
+                "strong_duck",
                 "coming soon..."
         };
 
@@ -123,7 +123,7 @@ public class GamePanel extends JPanel {
                 "Sniper Tower 3400",
                 "Super Duck 5200",
                 "Tank Tower 2400",
-                "coming soon...",
+                "Strong Duck",
                 "coming soon..."
         };
 

@@ -50,7 +50,7 @@ public class WaveControl {
 
 
         if (wave == 1){
-            for (int i= 0;i<25;i++){
+            for (int i= 0;i<20;i++){
                 spawnPattern.add("basic_croco");
             }
         } else if ( wave == 3){                        //wave 3 +speedy_croco
@@ -89,7 +89,7 @@ public class WaveControl {
             spawnPattern.add("arnab");
         } else {
             for (int i=0; i<lastPattern.size()/2; i++) { //for the rounds in between without new Crocos
-                spawnPattern.addAll(lastPattern);
+                spawnPattern.add(lastPattern.get(i));
             }
         }
        for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2

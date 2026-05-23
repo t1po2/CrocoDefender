@@ -136,8 +136,12 @@ public class GameMechanic {
             case "tank_tower":
                 newTowerStats = new towers.TankT();
                 break;
+            case "strong_duck":
+                newTowerStats = new towers.StrongDuckT();
+                break;
             default:
-                newTowerStats = null;
+                newTowerStats = new towers.BasicT();
+                System.out.println("newTowerStats coudn't load in Tower");
                 break;
         }
 
