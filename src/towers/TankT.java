@@ -5,7 +5,7 @@ public class TankT extends Tower {
     
 
     public TankT(){
-        super(200,1,55,2400,"splitter_proj");
+        super(200,3,55,2400,"splitter_proj");
 
         this.upgrade1Cost = 800;
         this.upgrade2Cost = 1500;

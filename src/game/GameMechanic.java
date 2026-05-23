@@ -220,7 +220,7 @@ public class GameMechanic {
 
                 switch (nextCrocoType) {
                     case "basic_croco":
-                        crocos.add(new TestCroco(waypoints));
+                        crocos.add(new BasicCroco(waypoints));
                         break;
                     case "speedy_croco":
                         crocos.add(new SpeedyCroco(waypoints));

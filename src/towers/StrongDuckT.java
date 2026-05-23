@@ -8,7 +8,7 @@ import projectiles.Projectile;
 
 public class StrongDuckT extends Tower{
 
-    private int slowEffectValue = 1; // set the speed of corocso in range 
+    private int slowEffectValue = 1; // substracts the speed of corocso in range 
 
 
     public StrongDuckT(){

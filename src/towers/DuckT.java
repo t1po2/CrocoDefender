@@ -4,7 +4,7 @@ public class DuckT extends Tower {
 
 
     public DuckT(){
-        super(300, 1, 430, 5200,"default_proj");
+        super(300, 1, 380, 5200,"default_proj");
         this.upgrade1Cost = 800;
         this.upgrade2Cost = 1500;
         this.upgrade3Cost = 3000;
