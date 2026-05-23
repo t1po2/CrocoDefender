@@ -12,7 +12,7 @@ public class StrongDuckT extends Tower{
 
 
     public StrongDuckT(){
-        super(100, 0, 5, 2600,"default_proj");
+        super(100, 0, 240, 2600,"default_proj");
         this.upgrade1Cost = 800;
         this.upgrade2Cost = 1500;
         this.upgrade3Cost = 3000;
