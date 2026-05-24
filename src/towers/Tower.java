@@ -8,6 +8,15 @@ import projectiles.Default_proj;
 import projectiles.Laser_proj;
 import projectiles.Splitter_proj;
 
+/** Super class for all the sub tower types <br> 
+ * has shooting logic where it evalutes closes tagert <br>
+ * the original mechanic breaks the loop after targetting first croco in list and within tower range <br>
+ * 
+ * now it has to go through the whole ArrayList multiple times which decreases performance <br>
+ * 
+ * 
+ */
+
 
 
 public abstract class Tower implements Upgrades {
@@ -63,33 +72,41 @@ public abstract class Tower implements Upgrades {
 
     // -- Tower shooting logic --
     public void updateShooting(long currentTime, Point pos, ArrayList<Croco> crocos, ArrayList<Projectile> projectiles){
-
         if (currentTime - lastShotTime >= this.fireRate){
-            
-            for (Croco target : crocos){
+        
+        Croco closestTarget = null;
+        double shortestDist = this.range; // sets minimum dist to max range 
 
-                double dist = pos.distance(target.getX(),target.getY());        // calcs distance between tower pos and target X/Y
+        // Finds a croco 
+        for (Croco target : crocos){
+            double dist = pos.distance(target.getX(), target.getY()); // calcs distance between tower pos and target X/Y
 
-                if (dist <= this.range){
+            // if croco is in range and has shorter range than shortestDist 
+            if (dist <= shortestDist){
+                shortestDist = dist;      // updates closest distance 
+                closestTarget = target;   //marks closes target
+            }
+        }
+
+        // 2. Schieße auf den gefundenen Gegner (falls einer in Reichweite war)
+        if (closestTarget != null) {
 
                     switch (this.projectileKey) {
                         case "default_proj":
-                            projectiles.add(new Default_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
+                            projectiles.add(new Default_proj(pos.x, pos.y, closestTarget, this.damage, this.projectileKey, crocos, projectiles));
                             break;
                         case "splitter_proj":
-                            projectiles.add(new Splitter_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
+                            projectiles.add(new Splitter_proj(pos.x, pos.y, closestTarget, this.damage, this.projectileKey, crocos, projectiles));
                             break;
                         case "laser_proj":
-                            projectiles.add(new Laser_proj(pos.x, pos.y, target, this.damage, this.projectileKey, crocos, projectiles));
+                            projectiles.add(new Laser_proj(pos.x, pos.y, closestTarget, this.damage, this.projectileKey, crocos, projectiles));
                             break;
-
                     }
                     this.lastShotTime = currentTime;
-                    break;
                 }
             }
         }
-    }
+    
 
 
 

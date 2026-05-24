@@ -3,6 +3,7 @@ package projectiles;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import Crocodiles.Croco;
+import game.GameConfig;
 import game.Resource;
 
 public abstract class Projectile {
@@ -23,7 +24,7 @@ public abstract class Projectile {
         this.target = target;
         this.damage = damage;
         this.texture = Resource.getResource(projectileKey);
-        this.speed = 7.0; 
+        this.speed = GameConfig.getProjectileSpeed(); 
         this.allCrocos = allCrocos; 
         this.allProjectiles = allProjectiles; // addding this lsit so we can simulate splitetrs etc bcs GamnePanel draws allProjectile list
     }

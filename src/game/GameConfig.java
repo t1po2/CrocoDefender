@@ -22,6 +22,7 @@ public class GameConfig {
     private static int spawnDelay = 10;         //spawn delay between each croco in frames
 
     // -- Projectile AOE Radius --
+    private static int projectileSpeed= 10;
     private static int splashRadius = 25; //in px
     private static int splashDamage = 1;    
 
@@ -94,5 +95,8 @@ public class GameConfig {
     }
     public static int getSlowEffectTime(){
         return slowEffect;
+    }
+    public static int getProjectileSpeed(){
+        return projectileSpeed;
     }
 }
