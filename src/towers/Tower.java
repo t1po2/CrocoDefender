@@ -14,7 +14,7 @@ import projectiles.Splitter_proj;
  * 
  * now it has to go through the whole ArrayList multiple times which decreases performance <br>
  * 
- * 
+ * @author Nguyen Viet Hung
  */
 
 
