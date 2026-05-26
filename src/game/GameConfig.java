@@ -4,7 +4,13 @@ package game;
  * @author Nguyen Viet Hung 
  * 
  * <b> Global game configs </b>
- * For easier balance changes 
+ * For easier balance changes <br>
+ * 
+ *  =How to add a Map=
+ * add png to Resources.java <br>
+ * add new MapKey to Game panel <br>
+ * add new Map to MapSelector.java <br>
+ * 
  */
 
 public class GameConfig {
@@ -30,7 +36,7 @@ public class GameConfig {
 
 
 
-
+    
 
 
 

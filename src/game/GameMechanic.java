@@ -1,6 +1,7 @@
 package game;
 
 import maps.MapLayout;
+import maps.Mt_Croco;
 import maps.Swamp_Map;
 import player.PlayerStats;
 import projectiles.Projectile;
@@ -38,6 +39,7 @@ public class GameMechanic {
 
     //
     private String currentMap;
+    private MapLayout loadedMap;
 
     // own class to store references to resouce manager
     public static class TowerData {
@@ -67,10 +69,13 @@ public class GameMechanic {
 
         switch (currentMap) {
             case "swamp_map":
-                MapLayout loadedMap = new Swamp_Map();
-                this.waypoints = loadedMap.getWaypoints();
+                loadedMap = new Swamp_Map();
+                break;
+            case "mt_croco":
+                loadedMap = new Mt_Croco();
                 break;
         }
+        this.waypoints = loadedMap.getWaypoints();
     }
 
     // --- Setters ---

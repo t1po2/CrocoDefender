@@ -34,7 +34,7 @@ public class MapSelector extends JFrame {
         JLabel label1 = new JLabel("Select a Map");
         mapSelector.add(label1);
 
-        String[] maps = { "swamp_map"};    // String for the buttons
+        String[] maps = { "swamp_map", "mt_croco"};    // String for the buttons
 
         final JComboBox<String> mapSelected = new JComboBox<String>(maps);       //JComboBox is a retractable pane Layout
         mapSelector.add(mapSelected);

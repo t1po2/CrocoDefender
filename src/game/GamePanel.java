@@ -15,7 +15,7 @@ public class GamePanel extends JPanel {
     private GameMechanic mechanic;
 
     // toggle mouseListener
-    private boolean toggleMouseListener = false; // toggle mouseListener
+    private boolean toggleMouseListener = true; // toggle mouseListener
 
     // Labels for Player Stats
     private JLabel playerHpL;

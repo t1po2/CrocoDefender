@@ -21,6 +21,7 @@ public class Resource {
         try {
             //map 
             gameResources.put("swamp_map", ImageIO.read(new File("src/resources/maps/swamp_map.png")));
+            gameResources.put("mt_croco", ImageIO.read(new File("src/resources/maps/mt_croco.png")));
             
             //Croco textures
             gameResources.put("basic_croco", ImageIO.read(new File("src/resources/crocodiles/basic_croco.png")));
