@@ -9,7 +9,7 @@ Have Fun :)
 
 ## [Patch v0.14]   
 *26/05/2026*   
-- added new Map: 
+- added new Map:    
         >Visit Mount Croco in this new Update: Centuries ago before the Crocos invaded, this mountain was home of the rare ore "Coca". Now the crocos are trying to occupy this outpost to have all the coca for themselves.
 
 ## [Patch v0.13]   
