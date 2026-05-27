@@ -110,8 +110,8 @@ public class GamePanel extends JPanel {
         String[] towerIDs = {
                 "basic_tower",
                 "sniper_tower",
-                "duck_tower",
                 "tank_tower",
+                "duck_tower",
                 "strong_duck",
                 "coming soon..."
         };
@@ -121,8 +121,8 @@ public class GamePanel extends JPanel {
         String[] towerName = {
                 "Basic Tower 1800 Gold",
                 "Sniper Tower 3400 Gold",
-                "Super Duck 5200 Gold",
                 "Tank Tower 2400 Gold",
+                "Super Duck 5200 Gold",
                 "Strong Duck 2600 Gold",
                 "coming soon..."
         };
