@@ -307,6 +307,7 @@ public class GameMechanic {
 
     // helper method to save Game highscore 
     public void saveGameHighscore() {
+        isGameOver = true;
         //opens new Panel for Player name input
         String playerName = javax.swing.JOptionPane.showInputDialog(
             null, 

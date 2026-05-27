@@ -3,6 +3,10 @@ Can you hold the line against the ultimate CROCO invasion? Get ready for action-
 
 Have Fun :)  
 *Updates Down Below*   
+## [Hotfix v0.14.1]  
+*27/05/2026*  
+-fixed bug where game still continues in the background after surrendering the game    
+
 ## [Patch v0.14]   
 *26/05/2026*   
 -added new Map    
