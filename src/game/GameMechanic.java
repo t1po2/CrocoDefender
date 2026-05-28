@@ -7,12 +7,10 @@ import player.PlayerStats;
 import projectiles.Projectile;
 import Crocodiles.*;
 import towers.Tower;
-
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import javax.swing.SwingUtilities;
 
 public class GameMechanic {
     // core
