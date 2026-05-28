@@ -6,6 +6,7 @@ Have Fun :)
 *28/05/2026*  
 - added sound system  
 - new sounds comming soon 
+- fixed bug where window is blank when health points are dropping to 0
 
 *Updates Down Below*   
 ## [Hotfix v0.14.1]  
