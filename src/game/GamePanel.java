@@ -81,11 +81,6 @@ public class GamePanel extends JPanel {
 
         exitBtn.addActionListener(e -> {
             mechanic.saveGameHighscore();
-            java.awt.Window window = SwingUtilities.getWindowAncestor(this);  //had to put java.awt infront cause i have a class with the same name  type missmatch 
-            if (window != null){
-                window.dispose();
-            }
-            new game.main_menu.MainMenu();
         });
 
         //put bottompanel at the bottom 

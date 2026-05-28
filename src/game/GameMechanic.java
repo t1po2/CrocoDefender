@@ -306,12 +306,13 @@ public class GameMechanic {
     }
 
     // helper method to save Game highscore 
+    // helper method to save Game highscore 
     public void saveGameHighscore() {
         isGameOver = true;
         
+        // Wir nutzen SwingUtilities, damit das Eingabefenster flüssig läuft
         javax.swing.SwingUtilities.invokeLater(() -> {
-            
-            // opens new Panel for Player name input
+            // 1. Namenseingabe anzeigen
             String playerName = javax.swing.JOptionPane.showInputDialog(
                 null, 
                 "The wise warrior avoids the battle.\nWhat is your name?", 
@@ -319,15 +320,24 @@ public class GameMechanic {
                 javax.swing.JOptionPane.PLAIN_MESSAGE
             );
 
-            // failsafe if player only types spaces or aborts window 
+            // Failsafe falls abgebrochen wurde
             if (playerName == null || playerName.trim().isEmpty()) {
                 playerName = "Secret Super Hero";
             }
 
-            // hsaves highscore 
+            // 2. Highscore in JSON speichern
             HighScoreManager hm = new HighScoreManager();
             hm.addScore(playerName, waveSystem.curentWave()); 
             System.out.println("Highscore for " + playerName + " saved in JSON!");
+            
+            // 3. JETZT NEU: Fenster schließen und zurück ins Hauptmenü!
+            if (gamePanel != null) {
+                java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(gamePanel);
+                if (window != null) {
+                    window.dispose(); // Schließt das Spielfenster
+                }
+                new game.main_menu.MainMenu(); // Öffnet das Hauptmenü neu
+            }
         });
     }
 }
