@@ -12,6 +12,8 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.SwingUtilities;
+
 public class GameMechanic {
     // core
     private GamePanel gamePanel;
@@ -189,8 +191,7 @@ public class GameMechanic {
 
                 // Did it reach the end of the map?
                 if (currentCroco.hasReachedEnd()) {
-                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took"
-                            + currentCroco.getDmg() + "damage!");
+                    System.out.println(currentCroco.getCrocoType() + " reached the base! You took"+ currentCroco.getDmg() + "damage!");
                     this.player.takeDamage(currentCroco.getDmg());
                     crocos.remove(i); // Delete it from the game
 
@@ -198,9 +199,9 @@ public class GameMechanic {
                     if (this.player.getPlayerHp() <= 0) {
                         isGameOver = true;
                         System.out.println("I WILL TOLERATE YOUR WEAKNESS NO LONGER.");
+                        Resource.playSound("darth_vader");
                         saveGameHighscore();
                     }
-
                 }
             }
         }
@@ -309,22 +310,26 @@ public class GameMechanic {
     // helper method to save Game highscore 
     public void saveGameHighscore() {
         isGameOver = true;
-        //opens new Panel for Player name input
-        String playerName = javax.swing.JOptionPane.showInputDialog(
-            null, 
-            "The wise warrior avoids the battle.\nWhat is your name?", 
-            "Game Over", 
-            javax.swing.JOptionPane.PLAIN_MESSAGE
-        );
+        
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            
+            // opens new Panel for Player name input
+            String playerName = javax.swing.JOptionPane.showInputDialog(
+                null, 
+                "The wise warrior avoids the battle.\nWhat is your name?", 
+                "Game Over", 
+                javax.swing.JOptionPane.PLAIN_MESSAGE
+            );
 
-        //failsafe if player only types spaces or aborts window 
-        if (playerName == null || playerName.trim().isEmpty()) {
-            playerName = "Secret Super Hero";
-        }
+            // failsafe if player only types spaces or aborts window 
+            if (playerName == null || playerName.trim().isEmpty()) {
+                playerName = "Secret Super Hero";
+            }
 
-        HighScoreManager hm = new HighScoreManager();
-        hm.addScore(playerName, waveSystem.curentWave()); 
-        System.out.println("Highscore for " + playerName + " saved in JSON!");
+            // hsaves highscore 
+            HighScoreManager hm = new HighScoreManager();
+            hm.addScore(playerName, waveSystem.curentWave()); 
+            System.out.println("Highscore for " + playerName + " saved in JSON!");
+        });
     }
-
 }

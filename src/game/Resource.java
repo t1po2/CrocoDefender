@@ -51,6 +51,7 @@ public class Resource {
             gameSounds.put("kill_sound", loadClipPool("src/resources/sounds/kill_sound.wav", 6));
             gameSounds.put("take_damage",loadClipPool("src/resources/sounds/take_damage.wav", 10));
             gameSounds.put("laser_sound",loadClipPool("src/resources/sounds/laser_sound.wav", 3));
+            gameSounds.put("darth_vader",loadClipPool("src/resources/sounds/darth_vader.wav", 1));
 
 
             System.out.println("all game resouces are loaded!");
