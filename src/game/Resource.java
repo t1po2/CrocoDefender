@@ -1,19 +1,23 @@
 package game;
 
-
 // this class file loads all nessecery game resources before launching saving memory and increases
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class Resource {
 
     //String type is the resourceID
     private static final Map<String, BufferedImage> gameResources = new HashMap<>();
+    
+    // Clip[] for overlapping sounds
+    private static final Map<String, Clip[]> gameSounds = new HashMap<>();
 
     public static void loadGameResources(){
 
@@ -30,7 +34,6 @@ public class Resource {
             gameResources.put("fat_croco", ImageIO.read(new File("src/resources/crocodiles/fat_croco.png")));
             gameResources.put("arnab",ImageIO.read(new File("src/resources/crocodiles/arnab.png")));
 
-
             //Towers
             gameResources.put("basic_tower", ImageIO.read(new File("src/resources/towers/mortar.png")));
             gameResources.put("sniper_tower",ImageIO.read(new File("src/resources/towers/sniper.png")));
@@ -44,17 +47,52 @@ public class Resource {
             gameResources.put("laser_proj",ImageIO.read(new File("src/resources/projectiles/laser_proj.png")));
 
 
+            // -- Sounds -- 
+            gameSounds.put("kill_sound", loadClipPool("src/resources/sounds/kill_sound.wav", 6));
+            gameSounds.put("take_damage",loadClipPool("src/resources/sounds/take_damage.wav", 10));
+            gameSounds.put("laser_sound",loadClipPool("src/resources/sounds/laser_sound.wav", 3));
+
+
             System.out.println("all game resouces are loaded!");
-        } catch (IOException e ) {
+        } catch (Exception e ) {
             System.out.println("Error loading game resouces: "+ e.getMessage());
         }
     }
 
+    // loads in a sound poolSize times into the hashmap
+    //poolsize is an indicator how many times the same sound can be played "simultaneously"
+    private static Clip[] loadClipPool(String filePath, int poolSize) throws Exception {
+        Clip[] pool = new Clip[poolSize];
+        for (int i = 0; i < poolSize; i++) {
+            File file = new File(filePath); 
+            AudioInputStream stream = AudioSystem.getAudioInputStream(file);        
+            Clip clip = AudioSystem.getClip();  
+            clip.open(stream);  
+            pool[i] = clip; // puts clip into the the pool
+        }
+        return pool;
+    }
 
     // Getter for any game resouces via key 
     public static BufferedImage getResource(String resouceID){      
         return gameResources.get(resouceID);
     }
-
     
+    // plays sounds even overlapping possible
+    public static void playSound(String key) {
+        Clip[] pool = gameSounds.get(key); 
+        
+        if (pool != null) {
+            for (Clip clip : pool) {
+                //selects Clip that is not playing rn 
+                if (!clip.isRunning()) {
+                    clip.setFramePosition(0);
+                    clip.start();
+                    break;
+                }
+            }
+        } else {
+            System.out.println("Sound-Key nicht gefunden: " + key);
+        }
+    }
 }

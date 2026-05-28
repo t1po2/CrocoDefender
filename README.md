@@ -2,6 +2,11 @@
 Can you hold the line against the ultimate CROCO invasion? Get ready for action-packed Tower Defense gameplay! Hungry crocodiles are swarming your base, and it's up to you to stop them. Strategically place your towers, manage your gold, and unleash devastating upgrades to survive endless waves of scary enemies.
 
 Have Fun :)  
+## [Patch v0.14]    
+*28/05/2026*  
+- added sound system  
+- new sounds comming soon 
+
 *Updates Down Below*   
 ## [Hotfix v0.14.1]  
 *27/05/2026*  
@@ -137,7 +142,10 @@ Have Fun :)
 Texture Design:
 > Kahttan Abbas      
 > Max Dix     
-> Anna Tra My Le    
+> Anna Tra My Le     
+
+Sounds:  
+> Ha My Nguyen 
 
 The Rest:  
 > Nguyen Viet Hung  

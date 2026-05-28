@@ -37,7 +37,7 @@ public class TankT extends Tower {
     public void applyUpgrade4(){
         this.projectileKey = "laser_proj";
         this.damage = 1000;
-        this.fireRate = 60000/5;
+        this.fireRate = 60000/10;
         this.range=600;
         lock1=4;
         lock2=4;

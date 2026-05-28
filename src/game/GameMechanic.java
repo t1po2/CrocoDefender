@@ -180,6 +180,7 @@ public class GameMechanic {
                     System.out.println("+" + currentCroco.killRward());
                     this.player.addGold(currentCroco.killRward());
                     crocos.remove(i);
+                    Resource.playSound("kill_sound");
                     continue; // jumps to next croco
                 }
 

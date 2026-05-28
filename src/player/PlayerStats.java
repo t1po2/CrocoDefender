@@ -1,5 +1,7 @@
 package player;
 
+import game.Resource;
+
 public class PlayerStats {
 
     private int gold;
@@ -27,6 +29,7 @@ public class PlayerStats {
         gold = gold + value;
     }
     public void takeDamage(int dmg){
+        Resource.playSound("take_damage");
         playerHP = playerHP - dmg;
     }
 
