@@ -134,7 +134,7 @@ Have Fun :)
 
 ## [Known Issues]  
 - heh *smirk* there are no known issues ;)
-
+- gg wave bug 1 fat croco where is the arnab???
 
 
 ## CREDITS:  
