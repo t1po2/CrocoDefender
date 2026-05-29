@@ -2,13 +2,15 @@
 Can you hold the line against the ultimate CROCO invasion? Get ready for action-packed Tower Defense gameplay! Hungry crocodiles are swarming your base, and it's up to you to stop them. Strategically place your towers, manage your gold, and unleash devastating upgrades to survive endless waves of scary enemies.
 
 Have Fun :)  
-## [Patch v0.14]    
+*Updates Down Below*   
+
+## [Patch v0.15]    
 *28/05/2026*  
 - added sound system  
 - new sounds comming soon 
 - fixed bug where window is blank when health points are dropping to 0
 
-*Updates Down Below*   
+  
 ## [Hotfix v0.14.1]  
 *27/05/2026*  
 - fixed bug where game still continues in the background after surrendering the game    
