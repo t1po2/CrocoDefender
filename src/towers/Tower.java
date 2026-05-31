@@ -106,19 +106,7 @@ public abstract class Tower implements Upgrades {
                 }
             }
         }
-    
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
     @Override
     public final int upgrade1(){

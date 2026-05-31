@@ -4,13 +4,12 @@ import game.Resource;
 
 public class PlayerStats {
 
-    private int gold;
-    private int playerHP = 10;
+    private static int gold = 10000;
+    private static int playerHP = 10;
     
 
 
-    public PlayerStats(){
-        gold = 101000;
+    public PlayerStats(){;
     }
 
 
@@ -25,7 +24,7 @@ public class PlayerStats {
     }
 
     //Setters
-    public void addGold(int value){
+    public static void addGold(int value){
         gold = gold + value;
     }
     public void takeDamage(int dmg){
@@ -33,7 +32,7 @@ public class PlayerStats {
         playerHP = playerHP - dmg;
     }
 
-    public void removeGold(int value){
-        this.gold = this.gold -value;
+    public static  void removeGold(int value){
+        gold = gold - value;
     }
 }

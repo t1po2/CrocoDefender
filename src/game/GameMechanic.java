@@ -144,6 +144,9 @@ public class GameMechanic {
             case "strong_duck":
                 newTowerStats = new towers.StrongDuckT();
                 break;
+            case "coca_farm":
+                newTowerStats = new towers.CocaFarm();
+                break;
             default:
                 newTowerStats = new towers.BasicT();
                 System.out.println("newTowerStats coudn't load in Tower");
@@ -158,7 +161,7 @@ public class GameMechanic {
 
         towers.add(new TowerData(p, selectedTower, newTowerStats));
         // System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
-        player.removeGold(newTowerStats.getCost());
+        PlayerStats.removeGold(newTowerStats.getCost());
     }
 
 
@@ -178,7 +181,7 @@ public class GameMechanic {
                 // Check if Crocodiles have hp
                 if (currentCroco.getHealth() <= 0) {
                     System.out.println("+" + currentCroco.killRward());
-                    this.player.addGold(currentCroco.killRward());
+                    PlayerStats.addGold(currentCroco.killRward());
                     crocos.remove(i);
                     Resource.playSound("kill_sound");
                     continue; // jumps to next croco
@@ -289,11 +292,11 @@ public class GameMechanic {
     }
 
     public void spendGold(int amount) {
-        player.removeGold(amount); // setter
+        PlayerStats.removeGold(amount); // setter
     }
 
     public void addGold(int amount) {
-        player.addGold(amount);
+        PlayerStats.addGold(amount);
     }
 
     public void sellTower(TowerData tower) {

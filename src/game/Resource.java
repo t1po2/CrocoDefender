@@ -40,6 +40,7 @@ public class Resource {
             gameResources.put("duck_tower", ImageIO.read(new File("src/resources/towers/duck.png")));
             gameResources.put("tank_tower", ImageIO.read(new File("src/resources/towers/tank.png")));
             gameResources.put("strong_duck",ImageIO.read(new File("src/resources/towers/strong_duck.png")));
+            gameResources.put("coca_farm",ImageIO.read(new File("src/resources/towers/strong_duck.png")));
 
             //projectiles 
             gameResources.put("splitter_proj",ImageIO.read(new File("src/resources/projectiles/default_proj.png")));    // change that

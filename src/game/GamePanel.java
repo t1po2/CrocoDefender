@@ -108,7 +108,7 @@ public class GamePanel extends JPanel {
                 "tank_tower",
                 "duck_tower",
                 "strong_duck",
-                "coming soon..."
+                "coca_farm"
         };
 
         // need to create seperate string for label name
@@ -116,10 +116,10 @@ public class GamePanel extends JPanel {
         String[] towerName = {
                 "Basic Tower 1800 Gold",
                 "Sniper Tower 3400 Gold",
-                "Tank Tower 2400 Gold",
+                "Tank Tower 2900 Gold",
                 "Super Duck 5200 Gold",
                 "Strong Duck 2600 Gold",
-                "coming soon..."
+                "coca_farm 2400"
         };
 
         for (int i = 0; i < towerIDs.length; i++) {
