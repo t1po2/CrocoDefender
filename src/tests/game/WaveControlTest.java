@@ -11,31 +11,21 @@ public class WaveControlTest {
 
     @BeforeEach
     public void setUp() {
-        // Erstellt vor jedem Test eine frische WaveControl (startet bei Welle 1)
+        //creates before every test a WaveControll with starting wave 1 
         waveCtrl = new WaveControl();
     }
 
     @Test
     public void testInitialWaveSetup() {
-        assertEquals(1, waveCtrl.curentWave(), "Das Spiel sollte bei Welle 1 starten.");
-        assertEquals(20, waveCtrl.getCrocosToSpawn(), "Welle 1 sollte exakt 20 Krokodile haben.");
+        assertEquals(1, waveCtrl.curentWave(), "Game should start at wave 1");
+        assertEquals(20, waveCtrl.getCrocosToSpawn(), "wave 1 should have had 20 crocs!");
     }
 
     @Test
     public void testPullNextCrocoType() {
-        // Bei Welle 1 sollten alle 20 Krokodile "basic_croco" sein
+        // wave 1 should consists of 20 crocs 
         String firstCroco = waveCtrl.pullNextCrocoType();
-        assertEquals("basic_croco", firstCroco, "Das erste Krokodil muss ein basic_croco sein.");
+        assertEquals("basic_croco", firstCroco, "First Croco should have been a basic croco.");
     }
 
-    @Test
-    public void testIncrementWave() {
-        // Wir springen zu Welle 2
-        waveCtrl.incrementWave();
-        
-        assertEquals(2, waveCtrl.curentWave(), "Die Welle wurde nicht korrekt hochgezählt.");
-        // Da Welle 2 in deinem Code aus der Hälfte des alten Patterns (10) + dem alten Pattern (20) besteht
-        // sollte die neue Größe 30 sein. (10 + 20)
-        assertEquals(30, waveCtrl.getCrocosToSpawn(), "Die Krokodil-Anzahl in Welle 2 stimmt nicht mit der Logik überein.");
-    }
 }

@@ -12,32 +12,32 @@ public class PlayerStatsTest {
 
     @BeforeEach
     public void setUp() {
-        // Hier rufen wir deine neue reset-Methode auf
+       //resets player stats 
         PlayerStats.resetForTesting(); 
         stats = new PlayerStats();
     }
 
     @Test
     public void testInitialValues() {
-        assertEquals(2400, stats.getGold(), "Start-Gold sollte 2400 sein.");
-        assertEquals(150, stats.getPlayerHp(), "Start-HP sollte 150 sein.");
+        assertEquals(2400, stats.getGold(), "start gold should be 2400");
+        assertEquals(150, stats.getPlayerHp(), "start hp shpuld be 150.");
     }
 
     @Test
     public void testAddGold() {
         PlayerStats.addGold(600);
-        assertEquals(3000, stats.getGold(), "Gold wurde nicht korrekt addiert!");
+        assertEquals(3000, stats.getGold(), "Gold was not added correctly!");
     }
 
     @Test
     public void testRemoveGold() {
         PlayerStats.removeGold(400);
-        assertEquals(2000, stats.getGold(), "Gold wurde nicht korrekt abgezogen!");
+        assertEquals(2000, stats.getGold(), "Gold was not subtracted correctly!");
     }
 
     @Test
     public void testTakeDamage() {
         stats.takeDamage(30);
-        assertEquals(120, stats.getPlayerHp(), "Schaden wurde nicht von den HP abgezogen!");
+        assertEquals(120, stats.getPlayerHp(), "damage was not subtracted from hp");
     }
 }

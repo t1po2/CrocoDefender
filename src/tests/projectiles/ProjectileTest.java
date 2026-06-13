@@ -6,16 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProjectileTest {
 
-    // Dummy Projektil für den Test
+    // Dummy projectile for the test 
     class DummyProjectile extends Projectile {
         public DummyProjectile() {
-            // Start bei X=50, Y=50, KEIN Target (null), 25 Dmg
+            // Start at  X=50, Y=50, no Target (null), 25 Dmg
             super(50, 50, null, 25, "dummy_key", null, null);
         }
 
         @Override
         protected void onHit() {
-            // Für den Test irrelevant
+            // irrelevant for the test 
         }
     }
 
@@ -23,19 +23,19 @@ public class ProjectileTest {
     public void testInitialStats() {
         DummyProjectile proj = new DummyProjectile();
         
-        assertEquals(50, proj.getX(), "Start X ist falsch.");
-        assertEquals(50, proj.getY(), "Start Y ist falsch.");
-        assertTrue(proj.isActive(), "Ein neues Projektil muss am Anfang aktiv sein.");
+        assertEquals(50, proj.getX(), "Start X is false.");
+        assertEquals(50, proj.getY(), "Start Y is false.");
+        assertTrue(proj.isActive(), "A new projectile must be active at the start.");
     }
 
     @Test
     public void testUpdateWithNullTarget() {
         DummyProjectile proj = new DummyProjectile();
         
-        // Act: Wir rufen update() auf, obwohl es keinen Gegner gibt (Target = null)
+        // Act: We call update() even though there is no opponent (Target = null).
         proj.update();
 
-        // Assert: Die Logik in deiner Projectile.java sollte das Projektil sofort auf 'false' setzen!
-        assertFalse(proj.isActive(), "Projektil ohne Ziel (null) darf nicht aktiv bleiben, sonst gibt es Fehler im Spiel!");
+        // Assert: The logic in your Projectile.java should immediately set the projectile to 'false'!
+        assertFalse(proj.isActive(), "A projectile without a target (null) must not remain active, otherwise game errors will occur!");
     }
 }
