@@ -1,6 +1,5 @@
 package towers;
 import java.awt.Point;
-import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 
 import Crocodiles.Croco;
