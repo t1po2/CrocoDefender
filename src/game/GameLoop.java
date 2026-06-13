@@ -129,4 +129,15 @@ public class GameLoop implements Runnable{
         fps++;
     }
 
+    @Override
+    public String toString() {
+        return "GameLoop {" +
+                "running=" + running + 
+                ", FPS=" + fps + 
+                ", UPS=" + ups + 
+                ", targetUpdateRate=" + (1.0 / updateRate) + "Hz" +
+                "}";
+    }
+    
+
 }

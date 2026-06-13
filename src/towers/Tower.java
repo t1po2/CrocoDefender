@@ -352,6 +352,7 @@ public abstract class Tower implements Upgrades {
                 + ", upgrade4Cost=" + upgrade4Cost + ", upgrade1Desc=" + upgrade1Desc + ", upgrade2Desc=" + upgrade2Desc
                 + ", upgrade3Desc=" + upgrade3Desc + ", upgrade4Desc=" + upgrade4Desc + "]";
     }
+
 }
 
 

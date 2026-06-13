@@ -344,4 +344,12 @@ public class GamePanel extends JPanel {
     public void clearRangeHighlight() { // helper method, deletes range of Tower when Tower is getting selled
         this.rangeOfCurrentTower = null;
     }
+
+
+
+    //is MouseListener active 
+    @Override
+    public String toString() {
+        return "GamePanel {MouseListenerActive: " + toggleMouseListener + "}";
+}
 }

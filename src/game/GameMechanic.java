@@ -495,4 +495,13 @@ public class GameMechanic {
             }
         });
     }
+
+
+
+    // does the game run and which wave
+    @Override
+    public String toString() {
+    return "GameMechanic {Wave: " + waveSystem.curentWave() + 
+           ", GameOver: " + isGameOver + "}";
+    }
 }

@@ -217,4 +217,11 @@ public class WaveControl {
     }
 
 
+
+    // Which wave and how many crocos (for balancing)
+    @Override
+    public String toString() {
+        return "WaveControl {CurrentWave: " + wave + 
+            ", EnemiesRemaining: " + getCrocosToSpawn() + "}";
+}
 }

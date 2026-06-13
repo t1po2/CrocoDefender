@@ -181,4 +181,11 @@ public class Resource {
             System.out.println("sound-key not found: " + key);
         }
     }
+
+    //return status of loaded resources 
+    @Override
+    public String toString() {
+        return "Resource {ImagesLoaded: " + gameResources.size() + 
+             ", SoundsLoaded: " + gameSounds.size() + "}";
+    }
 }

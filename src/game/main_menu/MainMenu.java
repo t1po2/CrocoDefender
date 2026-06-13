@@ -142,4 +142,10 @@ public class MainMenu extends JFrame {
         scoreLabel.setText(sb.toString());
     }
 
+    @Override
+    public String toString() {
+        return "MainMenu []";
+    }
+
+    
 }

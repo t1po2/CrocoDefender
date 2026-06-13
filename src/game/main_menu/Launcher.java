@@ -52,5 +52,10 @@ public class Launcher {
         });
         
     }
+
+    @Override
+    public String toString() {
+        return "Launcher []";
+    }
     
 }

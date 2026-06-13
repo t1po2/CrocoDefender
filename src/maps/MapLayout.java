@@ -81,4 +81,9 @@ public abstract class MapLayout {
         this.mapDesc = mapDesc;
     }
 
+    // return total waypoints of a map 
+    @Override
+    public String toString() {
+        return "MapLayout {Total Waypoints: " + getWaypoints().size() + "}";
+}
 }

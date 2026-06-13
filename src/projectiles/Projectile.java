@@ -178,4 +178,12 @@ public abstract class Projectile {
     public boolean isShrapnel() {
         return false;
     }
+
+
+    // location of projectile and if it is active 
+    @Override
+    public String toString() {
+    return "Projectile {Pos: (" + x + "/" + y + 
+           "), Active: " + active + ", Dmg: " + damage + "}";
+}
 }

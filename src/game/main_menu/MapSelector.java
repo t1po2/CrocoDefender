@@ -96,4 +96,11 @@ public class MapSelector extends JFrame {
     public String selectedMap(){
         return this.map;
     }
+
+
+     @Override
+     public String toString() {
+        return "MapSelector [map=" + map + "]";
+     }
+    
 }

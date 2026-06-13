@@ -117,4 +117,10 @@ public class PlayerStats {
         gold = 2400;
         playerHP = 150;
     }
+
+    // return Gold and Hp
+    @Override
+    public String toString() {
+        return "PlayerStats {HP: " + playerHP + ", Gold: " + gold + "}";
+}
 }

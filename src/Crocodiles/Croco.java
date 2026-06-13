@@ -212,4 +212,13 @@ public abstract class Croco  {
     // slow time effect
     this.effectTime = System.currentTimeMillis() + GameConfig.getSlowEffectTime(); 
     }
+
+
+    // Croco type, hp and location
+    @Override
+    public String toString() {
+        return "Croco {Type: " + getCrocoType() + 
+              ", HP: " + getHealth() + 
+              ", Pos: (" + getX() + "/" + getY() + ")}";
+}
 }
