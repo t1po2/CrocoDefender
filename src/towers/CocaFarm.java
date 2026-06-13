@@ -1,10 +1,13 @@
 package towers;
 import java.awt.Point;
+import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 
 import Crocodiles.Croco;
+import game.Resource;
 import player.PlayerStats;
 import projectiles.Projectile;
+import projectiles.TextProjectile;
 
 public class CocaFarm extends Tower {
 
@@ -13,7 +16,7 @@ public class CocaFarm extends Tower {
     private int maxDrop=8;
 
     public CocaFarm(){
-        super(0,0,160, 3200,null);
+        super(0,0,60,3200,null);
 
         this.upgrade1Cost = 1600;
         this.upgrade2Cost = 2000;
@@ -33,6 +36,8 @@ public class CocaFarm extends Tower {
             PlayerStats.addGold(goldDrop);
             this.dropCount++;
             this.lastShotTime = currentTime;
+            projectiles.add(new TextProjectile(pos.x, pos.y - 30, "+"+goldDrop));
+            Resource.playSound("money_sound");
             
         } 
     }

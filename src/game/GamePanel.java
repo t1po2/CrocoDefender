@@ -4,6 +4,8 @@ import javax.swing.*;
 import Crocodiles.Croco;
 import game.GameMechanic.TowerData;
 import projectiles.Projectile;
+import projectiles.TextProjectile;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -119,7 +121,7 @@ public class GamePanel extends JPanel {
                 "Tank Tower 2900 Gold",
                 "Super Duck 5200 Gold",
                 "Strong Duck 2600 Gold",
-                "coca_farm 2400"
+                "coca_farm 3400"
         };
 
         for (int i = 0; i < towerIDs.length; i++) {
@@ -226,6 +228,15 @@ public class GamePanel extends JPanel {
                         g.fillRect((int) p.getX() - 3, (int) p.getY() - 3, 6, 6); // 6x6 square for shrapnel -> need to subtract 3 for the center
                         continue;
                     }
+                    if (p instanceof TextProjectile) {
+                        TextProjectile tp = (TextProjectile) p; //converts into a projectile
+                        
+                        g.setColor(Color.YELLOW);
+                        g.setFont(new Font("Arial", Font.BOLD, 18));
+                        g.drawString(tp.getText(), (int) tp.getX() - 15, (int) tp.getY());
+                        continue; // draw the label
+                    }
+
                     if (p.getTexture() != null) {
                         Graphics2D g2d = (Graphics2D) g.create();
 

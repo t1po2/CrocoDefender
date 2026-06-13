@@ -92,9 +92,7 @@ public class WaveControl {
                 spawnPattern.add(lastPattern.get(i));
             }
         }
-       for (int i=0; i<lastPattern.size()/2; i++) { // formula for appending last Pattern/2
-            spawnPattern.add(lastPattern.get(i));
-        }
+       spawnPattern.addAll(lastPattern);
 
         totalCrocosThisWave = spawnPattern.size();   
         // transfer last Pattern to list that gets pulled

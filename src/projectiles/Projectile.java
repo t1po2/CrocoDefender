@@ -17,6 +17,7 @@ public abstract class Projectile {
     protected ArrayList<Croco> allCrocos;
     ArrayList<Projectile> allProjectiles;
 
+
     // all projectile need This 
     public Projectile(double startX, double startY, Croco target, int damage, String projectileKey,ArrayList<Croco> allCrocos,ArrayList<Projectile> allProjectiles) {
         this.x = startX;
@@ -67,7 +68,9 @@ public abstract class Projectile {
     public double getY() { return y; }
     public boolean isActive() { return active; }
     public BufferedImage getTexture() { return texture; }
+
     public boolean isShrapnel(){ 
         return false; 
-    }   //default for all non aoe projectiles
+    }   
+    //default for all non aoe projectiles
 }
