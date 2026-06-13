@@ -276,7 +276,7 @@ public class GameMechanic {
         // If it passes the rules, add it
 
         towers.add(new TowerData(p, selectedTower, newTowerStats));
-        // System.out.println("Placed " + selectedTower + " at " + p.x + "," + p.y);
+        Resource.playSound("place_sound");
         PlayerStats.removeGold(newTowerStats.getCost());
     }
 
