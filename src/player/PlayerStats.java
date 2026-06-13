@@ -110,4 +110,11 @@ public class PlayerStats {
     public static  void removeGold(int value){
         gold = gold - value;
     }
+
+
+    //Method for JUnit testing 
+    public static void resetForTesting() {
+        gold = 2400;
+        playerHP = 150;
+    }
 }
