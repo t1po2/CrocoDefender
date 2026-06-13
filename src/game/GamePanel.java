@@ -110,6 +110,7 @@ public class GamePanel extends JPanel {
 
         exitBtn.addActionListener(e -> {
             mechanic.saveGameHighscore();
+            Resource.playSound("darth_vader");
         });
 
         //put bottompanel at the bottom 
