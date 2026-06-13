@@ -10,16 +10,43 @@ import javax.swing.JPanel;
 
 
 /**
+ * Map selection interface for Croco Defender game.
+ * <p>
+ * Provides a graphical interface allowing players to choose between available game maps
+ * before starting a new game. Extends {@link javax.swing.JFrame} to create a modal window
+ * containing map selection controls.
+ * </p>
+ *
+ * <p>
+ * The class uses a {@link javax.swing.JComboBox} to present available map options
+ * and provides confirmation feedback via {@link javax.swing.JOptionPane} when a
+ * selection is made. Once a map is selected, the choice is communicated to the
+ * {@link MainMenu} class via {@link MainMenu#setMap(String)}.
+ * </p>
+ *
  * @author Nguyen Viet Hung
- * Additional Window for displaying map options for a cleaner user interface 
- * and improves quality of life
+ * @see MainMenu
+ * @see MainMenu#setMap(String)
  */
-
 
 public class MapSelector extends JFrame {
 
     private String map;
 
+     /**
+     * Constructs a new MapSelector window.
+     * <p>
+     * Initializes the map selection interface with the following components:
+     * <ul>
+     *   <li>Title label ("Select a Map")</li>
+     *   <li>Dropdown combo box containing available maps</li>
+     *   <li>Confirmation button to select the chosen map</li>
+     * </ul>
+     * </p>
+     * <p>
+     * The window will automatically center on screen and defaults to 600x400 pixels.
+     * </p>
+     */
     public MapSelector() {
 
         
@@ -54,6 +81,17 @@ public class MapSelector extends JFrame {
         setVisible(true); 
     }
 
+
+     /**
+     * Returns the currently selected map.
+     * <p>
+     * This getter provides access to the map that was most recently selected
+     * via the user interface. Returns {@code null} if no selection has been made.
+     * </p>
+     *
+     * @return the name of the selected map, or {@code null} if none selected
+     */
+    
     // getter for game to know which map 
     public String selectedMap(){
         return this.map;

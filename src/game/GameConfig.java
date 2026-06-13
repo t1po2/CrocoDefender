@@ -1,16 +1,31 @@
 package game;
-
 /**
- * @author Nguyen Viet Hung 
- * 
- * <b> Global game configs </b>
- * For easier balance changes <br>
- * 
- *  =How to add a Map=
- * add png to Resources.java <br>
- * add new MapKey to Game panel <br>
- * add new Map to MapSelector.java <br>
- * 
+ * Central configuration class for Croco Defender game settings.
+ * <p>
+ * Contains all global game parameters for balancing and gameplay mechanics.
+ * This class provides static access to configuration values through getter methods,
+ * allowing consistent game behavior across different components while enabling
+ * easy adjustments to game balance.
+ * </p>
+ *
+ * <h3>Map Addition Guide:</h3>
+ * <ol>
+ *   <li>Add map image file to Resources.java</li>
+ *   <li>Create new MapKey in Game panel</li>
+ *   <li>Add map name to MapSelector.java</li>
+ * </ol>
+ *
+ * <h3>Configuration Categories:</h3>
+ * <ul>
+ *   <li><b>Tower Upgrades:</b> Pricing and selling mechanics</li>
+ *   <li><b>Wave Management:</b> Timing between rounds and enemy spawns</li>
+ *   <li><b>Projectile Effects:</b> Movement speed and area-of-effect properties</li>
+ * </ul>
+ *
+ * @author Nguyen Viet Hung
+ * @see Resources
+ * @see game.MainMenu
+ * @see game.main_menu.MapSelector
  */
 
 public class GameConfig {

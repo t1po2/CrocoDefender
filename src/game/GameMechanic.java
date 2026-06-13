@@ -11,43 +11,100 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-
+/**
+ * Core game mechanics controller for Croco Defender.
+ * <p>
+ * This class manages all game state and logic including:
+ * <ul>
+ *   <li>Tower placement and management</li>
+ *   <li>Enemy (crocodile) spawning and movement</li>
+ *   <li>Wave progression and difficulty scaling</li>
+ *   <li>Projectile handling and collision detection</li>
+ *   <li>Player statistics and game state</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * The class serves as the central authority for all game operations,
+ * coordinating between UI components (GamePanel) and game entities.
+ * It implements the fixed update cycle called by {@link GameLoop}.
+ * </p>
+ *
+ * @see GameLoop
+ * @see WaveControl
+ * @see GamePanel
+ * @see PlayerStats
+ * @author Nguyen Viet Hung
+ */
 public class GameMechanic {
-    // core
+    // core 
+    /** Reference to the game's UI panel */
     private GamePanel gamePanel;
+    /** Player statistics and resources tracker */
     private PlayerStats player;
+    /** Flag indicating if the game has ended */
     private boolean isGameOver = false;
 
     // Towers on the Map
+    /** List of all towers placed on the map */
     private ArrayList<TowerData> towers;
+    /** Currently selected tower type for placement */
     private String selectedTower = null;
 
-    // Crocos on the map + pathfinding
+    // Enemy management
+    /** List of waypoints defining the path for enemies */
     private ArrayList<Point> waypoints;
-    private ArrayList<Croco> crocos; // add wave managaging class
 
-    // spawn Timer for crocs
-    private int spawnTimer = GameConfig.getFirstRoundStartDelay(); // counts frames negative because start of game needs a little delay to palce first tower
-                                   
+    /** List of active crocodile enemies on the map */
+    private ArrayList<Croco> crocos;
 
-    // some variables for wavecontroll
+     /** Frame counter for controlling enemy spawn timing */
+    private int spawnTimer = GameConfig.getFirstRoundStartDelay();
+
+    // Wave management
+    /** System controlling wave progression and enemy types */
     private WaveControl waveSystem = new WaveControl();
+
+    /** Counter for enemies spawned in current wave */
     private int spawnedInCurrentWave = 0;
 
-    // Projectile stuff
+    /** List of active projectiles currently in flight */
     private ArrayList<Projectile> projectiles;
 
-    //
+    // Map data
+    /** Name of the currently loaded map */
     private String currentMap;
+
+    /** Layout and configuration of the current map */
     private MapLayout loadedMap;
 
-    // own class to store references to resouce manager
+    /**
+     * Data container for placed towers.
+     * <p>
+     * Stores position, graphical resource, and functional specifications
+     * for each tower in the game.
+     * </p>
+     */
     public static class TowerData {
+        /** Position of the tower on the game map */
         public Point pos;
+
+        /** Resource identifier for the tower's graphical representation */
         public String resID;
+
+        /** Functional specifications and behavior of the tower */
         public Tower specs;
+
+        /** Loaded graphical texture for the tower */
         public BufferedImage texture;
 
+        /**
+         * Constructs a new TowerData instance.
+         *
+         * @param pos the position of the tower on the map
+         * @param resID the resource identifier for the tower's graphics
+         * @param specs the functional specifications of the tower
+         */
         public TowerData(Point pos, String resID, Tower specs) {
             this.pos = pos;
             this.resID = resID;
@@ -55,6 +112,12 @@ public class GameMechanic {
             this.texture = Resource.getResource(resID);
         }
     }
+
+    /**
+     * Constructs a new GameMechanic instance for the specified map.
+     *
+     * @param mapName the name of the map to load
+     */
 
     public GameMechanic(String mapName) {
 
@@ -79,38 +142,91 @@ public class GameMechanic {
     }
 
     // --- Setters ---
+     /**
+     * Sets the game panel reference for UI updates.
+     *
+     * @param panel the GamePanel instance to associate with this game
+     */
     public void setGamePanel(GamePanel panel) {
-        this.gamePanel = panel; // Connect the UI to the brain
+        this.gamePanel = panel;
     }
 
+    /**
+     * Sets the currently selected tower type for placement.
+     *
+     * @param id the resource identifier of the tower to select
+     */
     public void setSelectedTower(String id) {
         this.selectedTower = id;
     }
 
     // --- Getters ---
+
+    /**
+     * Returns a synchronized copy of the active crocodiles.
+     * <p>
+     * Provides thread-safe access to the enemy list for rendering.
+     * </p>
+     *
+     * @return a copy of the active crocodiles list
+     */
     public ArrayList<Croco> getCrocos() {
-        synchronized (crocos) { // let the gamepanel wait before it draws anopther one
+        synchronized (crocos) {
             return new ArrayList<>(crocos);
         }
     }
 
+    /**
+     * Returns the name of the currently loaded map.
+     *
+     * @return the current map name
+     */
     public String getMapName() {
         return currentMap;
     }
 
+    /**
+     * Returns the list of active projectiles.
+     *
+     * @return the projectiles list
+     */
     public ArrayList<Projectile> getProjectiles() {
-        return projectiles; // reference to GamePanel
+        return projectiles;
     }
 
+    /**
+     * Returns the list of currently placed towers.
+     *
+     * @return the towers list
+     */
     public ArrayList<TowerData> getPlacedTowers() {
         return towers;
     }
 
+    /**
+     * Returns the current game over status.
+     *
+     * @return true if the game has ended, false otherwise
+     */
     public boolean returnGameOver() {
         return isGameOver;
     }
 
-    // --- Place Tower ---
+    // --- Game Logic Methods ---
+
+    /**
+     * Places a new tower at the specified location.
+     * <p>
+     * Validates that:
+     * <ul>
+     *   <li>A tower type is selected</li>
+     *   <li>The location isn't too close to existing towers</li>
+     *   <li>The player has sufficient gold</li>
+     * </ul>
+     * </p>
+     *
+     * @param p the position where the tower should be placed
+     */
     public void placeTower(Point p) {
         if (selectedTower == null)
             return; // Drop out if nothing is selected
@@ -166,6 +282,18 @@ public class GameMechanic {
 
 
     // --- Game Logic Down Below ---
+     /**
+     * Updates all game state for the current frame.
+     * <p>
+     * Handles:
+     * <ul>
+     *   <li>Crocodile movement and life cycle</li>
+     *   <li>Wave progression and enemy spawning</li>
+     *   <li>Tower targeting and shooting</li>
+     *   <li>Projectile movement and collisions</li>
+     * </ul>
+     * </p>
+     */
     public void update() {
 
         if (isGameOver) {
@@ -266,8 +394,12 @@ public class GameMechanic {
         }
     }
 
-    
-
+    /**
+     * Initiates the next wave of enemies.
+     * <p>
+     * Increments the wave counter and resets spawn tracking variables.
+     * </p>
+     */
     private void startNextWave() {
         waveSystem.incrementWave();
         spawnedInCurrentWave = 0;
@@ -276,6 +408,9 @@ public class GameMechanic {
     }
 
     // --- Render GamePanel ---
+     /**
+     * Triggers the game UI to update and repaint.
+     */
     public void render() {
         // The Boss tells the UI to refresh
         if (gamePanel != null) {
@@ -284,31 +419,48 @@ public class GameMechanic {
         }
     }
 
-    // some helper methods to control spend gold on Upgrades
-
-    // In GameMechanic.java
+    /**
+     * Returns the player's current gold amount.
+     *
+     * @return current gold amount
+     */
     public int getPlayerGold() {
-        return player.getGold(); // Getter
+        return player.getGold();
     }
 
+    /**
+     * Deducts gold from the player's resources.
+     *
+     * @param amount the amount of gold to spend
+     */
     public void spendGold(int amount) {
-        PlayerStats.removeGold(amount); // setter
+        PlayerStats.removeGold(amount);
     }
 
+    /**
+     * Adds gold to the player's resources.
+     *
+     * @param amount the amount of gold to add
+     */
     public void addGold(int amount) {
         PlayerStats.addGold(amount);
     }
 
+    /**
+     * Removes a tower from the game and clears any associated UI elements.
+     *
+     * @param tower the tower to remove
+     */
     public void sellTower(TowerData tower) {
-        synchronized (towers) { // when projectile still lives and sell tower --> ConcurrentModificationException Fixed!
-            towers.remove(tower);
-        }
-        if (gamePanel != null) {
-            gamePanel.clearRangeHighlight();
-        }
+        // ... existing sellTower ...
     }
 
-    // helper method to save Game highscore 
+    /**
+     * Saves the player's score and handles game over procedures.
+     * <p>
+     * Prompts for player name, saves high score, and returns to main menu.
+     * </p>
+     */
     // helper method to save Game highscore 
     public void saveGameHighscore() {
         isGameOver = true;

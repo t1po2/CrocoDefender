@@ -12,6 +12,26 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+
+
+/**
+ * The GamePanel class represents the main visualization component for the tower defense game.
+ * It handles rendering of the game world including the map, towers, crocodiles, projectiles,
+ * and UI elements like player stats, tower selection menu, and upgrade panels.
+ *
+ * <p>This class manages:
+ * <ul>
+ *   <li>Rendering of game elements (map, towers, enemies, projectiles)</li>
+ *   <li>Display of player statistics (health, gold, current wave)</li>
+ *   <li>Tower selection interface</li>
+ *   <li>Mouse interaction for tower placement and selection</li>
+ *   <li>Range visualization for selected towers</li>
+ *   <li>Game over screen display</li>
+ * </ul>
+ *
+ * @see GameMechanic
+ * @see UpgradePanel
+ */
 public class GamePanel extends JPanel {
     private BufferedImage map;
     private GameMechanic mechanic;
@@ -30,6 +50,13 @@ public class GamePanel extends JPanel {
     private UpgradePanel upgradePanel;
     private TowerData rangeOfCurrentTower = null;
 
+
+
+    /**
+     * Constructs a new GamePanel with the specified game mechanics.
+     *
+     * @param mechanics The GameMechanic instance that controls game logic and data
+     */
     public GamePanel(GameMechanic mechanics) {
         this.mechanic = mechanics;
 
@@ -176,6 +203,15 @@ public class GamePanel extends JPanel {
         });
     }
 
+
+    /**
+     * Updates the displayed player statistics including health, gold, and current wave.
+     * This method is typically called whenever these values change in the game state.
+     *
+     * @param health The current player health value to display
+     * @param gold The current player gold amount to display
+     * @param wave The current wave number to display
+     */
     // helper function to update stats
     public void updatePlayerStats(int health, int gold, int wave) {
         if (playerHpL != null && playerGoldL != null && playerWaveL != null) {
@@ -186,7 +222,16 @@ public class GamePanel extends JPanel {
     }
 
     // --- Function to render all the game components ---
-
+    /**
+     * Custom painting method that renders all game elements including:
+     * - The game map
+     * - Towers and their ranges when selected
+     * - Crocodiles (enemies)
+     * - Projectiles
+     * - Game over screen when applicable
+     *
+     * @param g The Graphics context used for rendering
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -283,11 +328,19 @@ public class GamePanel extends JPanel {
     }
 
     // setter for UpgradeUI
-
+    /**
+     * Sets the upgrade panel that will be displayed when towers are selected.
+     *
+     * @param upgradePanel The UpgradePanel instance to associate with this GamePanel
+     */
     public void setUpgradePanel(game.UpgradePanel upgradePanel) {
         this.upgradePanel = upgradePanel;
     }
-
+    
+    /**
+     * Clears the range highlight visual effect from the currently selected tower.
+     * Typically called when a tower is sold or deselected.
+     */
     public void clearRangeHighlight() { // helper method, deletes range of Tower when Tower is getting selled
         this.rangeOfCurrentTower = null;
     }

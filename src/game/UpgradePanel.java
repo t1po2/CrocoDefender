@@ -5,21 +5,56 @@ import game.GameMechanic.TowerData;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * UI panel for managing tower upgrades and selling in the tower defense game.
+ *
+ * <p>This panel provides an interface for players to:
+ * <ul>
+ *   <li>View current tower statistics and upgrade costs</li>
+ *   <li>Purchase tower upgrades to improve various attributes</li>
+ *   <li>Sell towers for a portion of their build cost</li>
+ * </ul>
+ *
+ * <p>The panel appears when a player selects a tower and displays real-time information
+ * about upgrade options and the sale value of the selected tower. Upgrades are organized
+ * into four distinct upgrade paths for different tower improvements.
+ *
+ * @see GameMechanic
+ * @see TowerData
+ */
+
 public class UpgradePanel extends JPanel {
 
+   /** Label displaying tower information and sale value */
     private JLabel infoLabel;
-    private JButton upgradeBtn1;
-    private JButton upgradeBtn2;
-    private JButton upgradeBtn3;
-    private JButton upgradeBtn4;
+
+    /** Buttons for the four different upgrade paths */
+    private JButton upgradeBtn1, upgradeBtn2, upgradeBtn3, upgradeBtn4;
+
+    /** Button for selling the currently selected tower */
     private JButton sellBtn;
+
+    /** Reference to the currently selected tower */
     private TowerData currentTower;
+
+    /** Reference to the game mechanics controller */
     private GameMechanic gameMechanic;
 
+    /**
+     * Pricing factor for upgrades - determines how much upgrade costs increase
+     * after each upgrade purchase. Configured via GameConfig.
+     */
+    private int factor = GameConfig.getUpgradeFactor();  // setts factor of which upgrade prices increases after upgraded realFactor = ((factor/10)+1)
 
-    //for balance changes:
-
-    private int factor = GameConfig.getUpgradeFactor(); // setts factor of which upgrade prices increases after upgraded realFactor = ((factor/10)+1)
+    /**
+     * Constructs an UpgradePanel with the required UI components.
+     *
+     * <p>The panel is initialized with one label for displaying tower information
+     * and five buttons (one for selling and four for different upgrades).
+     * The panel starts hidden and only becomes visible when a tower is selected.
+     */
+    
 
 
     public UpgradePanel() {
@@ -129,6 +164,27 @@ public class UpgradePanel extends JPanel {
         this.setVisible(false);     //upgrade pannel is invis at the start
     }
 
+
+
+
+    /**
+     * Updates the panel UI to display information for the specified tower.
+     *
+     * <p>This method:
+     * <ul>
+     *   <li>Stores a reference to the selected tower</li>
+     *   <li>Updates the info label with the tower's sell value</li>
+     *   <li>Configures each upgrade button with appropriate text, tooltips, and enabled state</li>
+     *   <li>Makes the panel visible</li>
+     * </ul>
+     *
+     * <p>For each upgrade path, the method checks if the upgrade is available or at max level,
+     * and configures the button accordingly. Available upgrades display their current level,
+     * effect description, and cost.
+     *
+     * @param tower The TowerData object representing the tower to display upgrade options for
+     */
+
    //reference in game panle tower is clicked current tower is linked this method so UpgradeUI always knows which tower is clicked
    public void updateUIForTower(TowerData tower) {
         this.currentTower = tower;
@@ -199,11 +255,36 @@ public class UpgradePanel extends JPanel {
         this.setVisible(true); 
     }
 
+    /**
+     * Hides the upgrade panel and clears the current tower selection.
+     *
+     * <p>This method is typically called when:
+     * <ul>
+     *   <li>A tower is sold</li>
+     *   <li>The player clicks elsewhere on the map</li>
+     *   <li>The game UI needs to be reset</li>
+     * </ul>
+     */
     public void hidePanel() {
         this.currentTower = null;
         this.setVisible(false); //hoide panel after clicking in empty space
     }
+
+    
     //setters
+    /**
+     * Sets the GameMechanic instance for this panel.
+     *
+     * <p>The GameMechanic is needed to:
+     * <ul>
+     *   <li>Check player gold before allowing upgrades</li>
+     *   <li>Deduct gold costs when upgrades are purchased</li>
+     *   <li>Add gold when towers are sold</li>
+     *   <li>Handle tower removal when they are sold</li>
+     * </ul>
+     *
+     * @param game The GameMechanic instance that controls game logic
+     */
     public void setGameMechanic(GameMechanic game){
         this.gameMechanic = game;
     }

@@ -11,14 +11,56 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+
+
+/**
+ * Central resource management system for the tower defense game.
+ *
+ * <p>This class handles loading, caching, and providing access to all game resources including:
+ * <ul>
+ *   <li>Game maps (PNG images)</li>
+ *   <li>Tower sprites (PNG images)</li>
+ *   <li>Crocodile enemy sprites (PNG images)</li>
+ *   <li>Projectile sprites (PNG images)</li>
+ *   <li>Sound effects (WAV files)</li>
+ * </ul>
+ *
+ * <p>All resources are loaded once at game startup and stored in memory for efficient access
+ * during gameplay. The class implements a resource pooling system for sound effects to
+ * allow multiple simultaneous playbacks of the same sound.
+ *
+ * @see BufferedImage
+ * @see Clip
+ */
+
 public class Resource {
 
     //String type is the resourceID
+    /** Cache for storing loaded game images with their resource IDs as keys */
     private static final Map<String, BufferedImage> gameResources = new HashMap<>();
     
     // Clip[] for overlapping sounds
+     /**
+     * Cache for storing sound effect pools.
+     * Each sound entry contains an array of Clip objects to enable overlapping playback.
+     */
     private static final Map<String, Clip[]> gameSounds = new HashMap<>();
 
+    /**
+     * Preloads all game resources including images and sound effects.
+     *
+     * <p>This method should be called once at game startup. It loads:
+     * <ul>
+     *   <li>Map textures</li>
+     *   <li>Crocodile enemy sprites</li>
+     *   <li>Tower sprites</li>
+     *   <li>Projectile sprites</li>
+     *   <li>Sound effects with multiple instances for overlapping playback</li>
+     * </ul>
+     *
+     * @throws RuntimeException if any resource fails to load
+     * @see #loadClipPool(String, int)
+     */
     public static void loadGameResources(){
 
         // loading all nessecary game resources 
@@ -64,6 +106,18 @@ public class Resource {
 
     // loads in a sound poolSize times into the hashmap
     //poolsize is an indicator how many times the same sound can be played "simultaneously"
+
+     /**
+     * Loads multiple instances of a sound effect to create a playback pool.
+     *
+     * <p>This allows the same sound to be played multiple times simultaneously
+     * by providing multiple Clip instances that can be started independently.
+     *
+     * @param filePath Path to the sound file within the resources directory
+     * @param poolSize Number of Clip instances to create for overlapping playback
+     * @return An array of Clip objects ready for playback
+     * @throws Exception If the sound file cannot be loaded or audio system initialization fails
+     */
     private static Clip[] loadClipPool(String filePath, int poolSize) throws Exception {
         Clip[] pool = new Clip[poolSize];
         
@@ -86,11 +140,31 @@ public class Resource {
     }
 
     // Getter for any game resouces via key 
+    /**
+     * Retrieves a game resource by its unique identifier.
+     *
+     * @param resourceID The identifier key for the requested resource
+     * @return The BufferedImage associated with the resourceID, or null if not found
+     * @see #gameResources
+     */
     public static BufferedImage getResource(String resouceID){      
         return gameResources.get(resouceID);
     }
     
     // plays sounds even overlapping possible
+    /**
+     * Plays a sound effect identified by its key.
+     *
+     * <p>This method uses the sound pool to play the requested sound effect,
+     * allowing for multiple simultaneous playbacks if the pool contains
+     * multiple instances of the requested sound.
+     *
+     * <p>If no available Clip is found in the pool, the sound won't play.
+     *
+     * @param key The identifier for the sound effect to play
+     * @see #gameSounds
+     * @see #loadClipPool(String, int)
+     */
     public static void playSound(String key) {
         Clip[] pool = gameSounds.get(key); 
         

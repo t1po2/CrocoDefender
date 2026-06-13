@@ -1,10 +1,52 @@
 package game;
 import javax.swing.*;
 
+
+
+/**
+ * Main game window container for the Croco Defender tower defense game.
+ *
+ * <p>This class creates and manages the application window that contains:
+ * <ul>
+ *   <li>The primary game display (GamePanel)</li>
+ *   <li>The upgrade interface (UpgradePanel)</li>
+ * </ul>
+ *
+ * <p>The window uses a layered pane system to properly position UI elements
+ * and ensure correct rendering order. The game panel occupies the main layer,
+ * while the upgrade panel floats above it in the palette layer.
+ *
+ * @see GamePanel
+ * @see UpgradePanel
+ * @see GameMechanic
+ */
 public class Window {
+    /** The main application window frame */
     private JFrame frame;
+
+    /** The primary game visualization panel */
     private GamePanel gamePanel;
 
+
+
+    /**
+     * Constructs the main game window with all UI components.
+     *
+     * <p>This method:
+     * <ul>
+     *   <li>Creates the main application frame</li>
+     *   <li>Sets window properties (title, size, close operation)</li>
+     *   <li>Creates and configures a JLayeredPane for UI organization</li>
+     *   <li>Initializes and positions the GamePanel in the default layer</li>
+     *   <li>Initializes and positions the UpgradePanel in the palette layer</li>
+     *   <li>Establishes connections between UI components</li>
+     *   <li>Makes the window visible and centers it on screen</li>
+     * </ul>
+     *
+     * @param mechanic The GameMechanic instance that controls game logic
+     * @see GamePanel#GamePanel(GameMechanic)
+     * @see UpgradePanel#setGameMechanic(GameMechanic)
+     */
     public Window(GameMechanic mechanic){
         frame = new JFrame("Croco Defender");
         // Wir setzen die INNERE Größe des Fensters (ohne die Windows-Titelleiste)

@@ -10,15 +10,29 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 
+
 /**
- * @author Nguyen Viet Hung 
- * 
- * Main menu of the game.
- * Create options to start a game, choose a map or quit the game
+ * Main menu of the Croco Defender game.
+ * <p>
+ * Provides the primary interface for players to start a new game,
+ * select a game map, view high scores, or exit the application.
+ * This class extends {@link javax.swing.JFrame} to create a graphical window
+ * containing interactive buttons and high score display.
+ * </p>
+ *
+ * <p>
+ * When the "Start Game" button is clicked, the game will launch using
+ * either the selected map (if one was chosen via MapSelector) or prompt the
+ * player to select a map first. The menu displays the top 5 high scores
+ * from the HighScoreManager in an HTML-formatted label.
+ * </p>
+ *
+ * @author Nguyen Viet Hung
+ * @see game.Launcher
+ * @see game.HighScoreManager
+ * @see MainMenu#setMap(String)
+ * @see MainMenu#getMap()
  */
-
-
-
 
 
 public class MainMenu extends JFrame {
