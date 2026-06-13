@@ -134,7 +134,7 @@ public class UpgradePanel extends JPanel {
         this.currentTower = tower;
         infoLabel.setText("Sell Price: " + tower.specs.getTowerValue());
 
-        sellBtn.setToolTipText("Turm verkaufen und Gold zurückerhalten.");
+        sellBtn.setToolTipText("Sell tower.");
 
         // --- UPGRADE 1 CHECK ---
         if (tower.specs.locked1()) {

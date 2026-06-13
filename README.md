@@ -3,6 +3,26 @@ Can you hold the line against the ultimate CROCO invasion? Get ready for action-
 
 Have Fun :)  
 *Updates Down Below*   
+## [Official Realese v1.0]  
+*13/06/2026*  
+
+The wait is finally over! The ultimate CROCO invasion is here, and it is time to hold the line. Croco Defender has officially reached Version 1.0, bringing you the complete, action-packed Tower Defense experience.
+Since our early testing phases, we have completely reworked the game logic, added a dynamic wave system, and introduced devastating upgrades to help you survive the endless waves of scary enemies. Whether you are a strategic mastermind or just here to see ducks fight crocodiles, this release has something for everyone.
+
+- 🌟 Version 1.0 Highlights
+Epic Maps & Deep Lore: Defend your base across multiple environments, including the treacherous Swamp Map and the legendary Mount Croco, an ancient outpost rich with the rare "Coca" ore.
+The Ultimate Arsenal: Manage your gold to place a variety of powerful defenses, from the basic mortar and Sniper Tower to the Heavy Tank Tower. And of course, unleash the "Strong Duck"—a tower with so much aura that it influences nearby crocos without even shooting!
+A Fearsome Croco Army: The invasion force has evolved. You will face the Basic, Speedy, Mid, and Fat Crocos. Beware the ultimate threat: The Arnab—a slow, stinky, and incredibly tanky beast.
+Deep Combat Mechanics: Enjoy fully functional upgrade systems, splash damage mechanics, and a brand-new audio system that brings the battlefield to life.
+Prove Your Worth: A fully integrated Scoreboard is now available to track your heroic actions and immortalize your high scores.
+
+
+- 🏆 Credits & Special Thanks
+This game would not have been possible without our amazing team:
+Texture Design: Massive thanks to Kahttan Abbas, Max Dix, and Anna Tra My Le for bringing the world to life.
+Sounds: Ha My Nguyen for the awesome audio experience.
+The Rest (Code, Tears, and Magic): Nguyen Viet Hung.
+Thank you all for playing, testing, and supporting the development. Have fun, and good luck defending the base!  
 
 ## [Patch v0.15]    
 *28/05/2026*  

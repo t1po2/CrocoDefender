@@ -4,7 +4,7 @@ import game.Resource;
 
 public class PlayerStats {
 
-    private static int gold = 10000;
+    private static int gold = 2400;
     private static int playerHP = 150;
     
 
