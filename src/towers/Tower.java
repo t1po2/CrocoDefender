@@ -78,7 +78,7 @@ public abstract class Tower implements Upgrades {
         this.range = range;
         this.damage = damage;
         this.cost = cost;
-        this.towerValue = cost;       //rounds the number sell price is at 70%
+        this.towerValue = cost * 0.7;       //rounds the number sell price is at 70%
         this.projectileKey = projectileKey;
 
         //unfortunetly there is only current time in milliseconds 

@@ -452,7 +452,8 @@ public class GameMechanic {
      * @param tower the tower to remove
      */
     public void sellTower(TowerData tower) {
-        // ... existing sellTower ...
+        towers.remove(tower);
+        
     }
 
     /**
