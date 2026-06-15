@@ -4,6 +4,8 @@ Can you hold the line against the ultimate CROCO invasion? Get ready for action-
 Have Fun :)  
 *Updates Down Below*   
 ## [Hotfix v1.0.1]  
+*15/06/2026*  
+
 - fixed bug where u sold a tower getting money without removing tower  
 - fixed false sell price    
 
