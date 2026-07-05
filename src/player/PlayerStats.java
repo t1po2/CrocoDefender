@@ -29,7 +29,7 @@ public class PlayerStats {
 
     
     /** The player's current gold amount. Used to build and upgrade towers. */
-    private static int gold = 2400;
+    private static int gold = 100000;
 
     /** The player's current health points. Game ends when this reaches zero. */
     private static int playerHP = 150;
