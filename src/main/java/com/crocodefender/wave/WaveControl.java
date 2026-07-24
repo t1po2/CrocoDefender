@@ -49,6 +49,11 @@ public class WaveControl {
      */
     private ArrayList<String> spawnQ = new ArrayList<>();
 
+    private String crocoTypes[] = {"basic_croco", "speedy_croco", "mid_croco", "fat_croco"};
+
+
+    private final Random rand = new Random();
+
     /**
      * Constructs a new WaveControl and prepares the initial wave.
      *
@@ -104,59 +109,56 @@ public class WaveControl {
         int len = quotes.length;
         Random randInt = new Random();
         int rng = randInt.nextInt(len);
-        System.out.println(quotes[rng]);
+        System.out.println(quotes[rng]);  
 
         // -- Configure Wave difficulty --
 
 
-        if (wave == 1){
-            for (int i= 0;i<20;i++){
+        if (wave==1){
+            for (int i = 0 ; i<20;i++){
                 spawnPattern.add("basic_croco");
-            }
-        } else if ( wave == 3){                        //wave 3 +speedy_croco
-            for (int i= 0;i<10;i++){
-                spawnPattern.add("speedy_croco");
-                spawnPattern.add("basic_croco");
-            }
-        } else if (wave==6){                        // wave 6   +mid_croco , +fat_croco
-            spawnPattern.add("fat_croco");
-            for (int i=0;i<30;i++){
-                spawnPattern.add("mid_croco");
-            } 
-        } else if (wave== 7){                       // wave 7
-            for (int i = 0;i<30;i++){
-                spawnPattern.add("basic_croco");
-            }
-        } else if (wave == 8){                  //wave 8   +fat_Croco
-            for (int i = 0;i<20;i++){
-                spawnPattern.add("fat_croco");
-            }
-            for (int i = 0 ; i<10;i++){
-                spawnPattern.add("speedy_croco");
-                spawnPattern.add("mid_croco");
-            }
-            for (int i=0;i<40;i++){
-                spawnPattern.add("basic_croco");
-            }
-        } else if (wave == 10){
-            spawnPattern.add("arnab");
-        } else if (wave == 15){
-            for (int i = 0 ; i<5;i++){
-            spawnPattern.add("arnab");
-            }
-        } else if (wave == 20){
-            spawnPattern.add("arnab");
-            spawnPattern.add("arnab");
-        } else {
-            for (int i=0; i<lastPattern.size()/2; i++) { //for the rounds in between without new Crocos
-                spawnPattern.add(lastPattern.get(i));
             }
         }
+
+        if (wave==2){
+            for (int i = 0; i<10;i++){
+                spawnPattern.add("speedy_croco");
+            }
+        }
+
+        if (wave==4){
+            for (int i = 0; i<10;i++){
+                spawnPattern.add("mid_croco");
+            }
+        }
+
+        if (wave==7){
+            for (int i=0;i<6;i++){
+                spawnPattern.add("fat_croco");
+            }
+        }
+        
+        if (wave>8){
+            int max=20;
+            if (wave % 2 == 0){
+                max += 5;
+            }
+            int i=0;
+            while (i < max){
+                int x = rand.nextInt(4);
+
+                spawnPattern.add(crocoTypes[x]);
+                i++;
+            }
+        }
+
+        
+
        spawnPattern.addAll(lastPattern);
 
         totalCrocosThisWave = spawnPattern.size();   
         // transfer last Pattern to list that gets pulled
-        spawnQ = new ArrayList<>(spawnPattern);
+        spawnQ = new ArrayList<>(spawnPattern);             
     }
 
     /**
@@ -192,13 +194,13 @@ public class WaveControl {
      */
     public int curentWave(){
         return wave;
-
+    }
     /**
      * Returns the configured delay between enemy spawns.
      *
      * @return The spawn delay in milliseconds
      */
-    }
+  
     public int getSpawnDelay(){
         return spawnDelay;
     }
@@ -213,6 +215,7 @@ public class WaveControl {
      *
      * @see #prepareNextWave()
      */ 
+
     public void incrementWave(){
         this.wave=this.wave+1;
         prepareNextWave();
@@ -225,5 +228,5 @@ public class WaveControl {
     public String toString() {
         return "WaveControl {CurrentWave: " + wave + 
             ", EnemiesRemaining: " + getCrocosToSpawn() + "}";
-}
+    } 
 }
