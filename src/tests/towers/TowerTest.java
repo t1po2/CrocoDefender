@@ -1,7 +1,9 @@
 package tests.towers;
 
-import towers.Tower;
 import org.junit.jupiter.api.Test;
+
+import main.java.com.crocodefender.entities.towers.Tower;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TowerTest {
