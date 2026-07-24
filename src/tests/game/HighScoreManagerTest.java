@@ -1,9 +1,11 @@
 package tests.game;
 
-import game.HighScoreManager;
-import game.HighScoreEntry;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import main.java.com.crocodefender.score.HighScoreEntry;
+import main.java.com.crocodefender.score.HighScoreManager;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HighScoreManagerTest {

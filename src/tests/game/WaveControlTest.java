@@ -1,8 +1,10 @@
 package tests.game;
 
-import game.WaveControl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import main.java.com.crocodefender.wave.WaveControl;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class WaveControlTest {

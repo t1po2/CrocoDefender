@@ -1,7 +1,9 @@
 package tests.projectiles;
 
-import projectiles.Projectile;
 import org.junit.jupiter.api.Test;
+
+import main.java.com.crocodefender.entities.projectiles.Projectile;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProjectileTest {

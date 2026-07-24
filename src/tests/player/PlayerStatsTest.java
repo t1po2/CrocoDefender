@@ -1,9 +1,10 @@
 package tests.player; 
 
-import player.PlayerStats; 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import main.java.com.crocodefender.player.PlayerStats;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerStatsTest {
