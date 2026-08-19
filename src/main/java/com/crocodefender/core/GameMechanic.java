@@ -135,6 +135,7 @@ public class GameMechanic {
         switch (currentMap) {
             case "swamp_map":
                 loadedMap = new Swamp_Map();
+                
                 break;
             case "mt_croco":
                 loadedMap = new Mt_Croco();
@@ -239,7 +240,7 @@ public class GameMechanic {
             if (distance < 50) { // cant place tower within 50 pixels of their radius
                 System.out.println("Cannot place here! Too close to another tower.");
                 return; // Deny placement
-            }
+           }
         }
 
         Tower newTowerStats;
@@ -378,6 +379,9 @@ public class GameMechanic {
         }
 
         // --- TOWER SHOOTING LOGIC ---
+
+        // Tower shooting and projectile movement got moved to the class respectively
+
         long currentTime = System.currentTimeMillis();
 
         synchronized (towers){
@@ -385,7 +389,7 @@ public class GameMechanic {
                 tower.specs.updateShooting(currentTime, tower.pos, crocos, projectiles);
             }
         }
-            
+        
         // --- PROJECTILE MOVEMENT ---
         for (int i = projectiles.size() - 1; i >= 0; i--) {
             Projectile p = projectiles.get(i);
@@ -410,7 +414,7 @@ public class GameMechanic {
     }
 
     // --- Render GamePanel ---
-     /**
+    /**
      * Triggers the game UI to update and repaint.
      */
     public void render() {
