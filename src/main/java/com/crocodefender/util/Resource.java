@@ -64,10 +64,11 @@ public class Resource {
     public static void loadGameResources(){
 
         // loading all nessecary game resources 
+        //Fix remove prefix ressources to load in the proper images
         try {
             //map 
             gameResources.put("swamp_map", ImageIO.read(Resource.class.getResource("/resources/maps/swamp_map.png")));
-            gameResources.put("mt_croco", ImageIO.read(Resource.class.getResource("/resources/maps/mt_croco.png")));
+            gameResources.put("mt_croco", ImageIO.read(Resource.class.getResource("/maps/mt_croco.png")));
             
             //Croco textures
             gameResources.put("basic_croco", ImageIO.read(Resource.class.getResource("/resources/crocodiles/basic_croco.png")));
